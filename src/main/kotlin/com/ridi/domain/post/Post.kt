@@ -11,6 +11,4 @@ data class Post(
     @Column val createdAt: Date = Date(),
     @Column val user: String
 ) {
-    constructor() : this(1, "", Date(), "")
-    constructor(user: String) : this(1, "", Date(), user)
 }
