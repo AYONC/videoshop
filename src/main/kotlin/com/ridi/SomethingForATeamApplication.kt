@@ -12,11 +12,13 @@ import org.springframework.context.annotation.Bean
 import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter
+import org.springframework.scheduling.annotation.EnableScheduling
 import javax.persistence.EntityManagerFactory
 import javax.sql.DataSource
 
 
 @SpringBootApplication
+@EnableScheduling
 class SomethingForATeamApplication {
     @Bean
     fun dataSource(): DataSource =

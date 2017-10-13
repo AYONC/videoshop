@@ -36,7 +36,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Post extends TableImpl<PostRecord> {
 
-    private static final long serialVersionUID = 1194034753;
+    private static final long serialVersionUID = -1271607059;
 
     /**
      * The reference instance of <code>tmp.post</code>
@@ -70,6 +70,11 @@ public class Post extends TableImpl<PostRecord> {
      * The column <code>tmp.post.user</code>.
      */
     public final TableField<PostRecord, String> USER = createField("user", org.jooq.impl.SQLDataType.VARCHAR.length(255), this, "");
+
+    /**
+     * The column <code>tmp.post.createdAt</code>.
+     */
+    public final TableField<PostRecord, Timestamp> CREATEDAT = createField("createdAt", org.jooq.impl.SQLDataType.TIMESTAMP, this, "");
 
     /**
      * Create a <code>tmp.post</code> table reference

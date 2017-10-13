@@ -23,30 +23,34 @@ import javax.annotation.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Post implements Serializable {
 
-    private static final long serialVersionUID = -885811026;
+    private static final long serialVersionUID = 1257376673;
 
     private final Integer   id;
     private final String    content;
     private final Timestamp createdAt;
     private final String    user;
+    private final Timestamp createdat;
 
     public Post(Post value) {
         this.id = value.id;
         this.content = value.content;
         this.createdAt = value.createdAt;
         this.user = value.user;
+        this.createdat = value.createdat;
     }
 
     public Post(
         Integer   id,
         String    content,
         Timestamp createdAt,
-        String    user
+        String    user,
+        Timestamp createdat
     ) {
         this.id = id;
         this.content = content;
         this.createdAt = createdAt;
         this.user = user;
+        this.createdat = createdat;
     }
 
     public Integer getId() {
@@ -65,6 +69,10 @@ public class Post implements Serializable {
         return this.user;
     }
 
+    public Timestamp getCreatedat() {
+        return this.createdat;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Post (");
@@ -73,6 +81,7 @@ public class Post implements Serializable {
         sb.append(", ").append(content);
         sb.append(", ").append(createdAt);
         sb.append(", ").append(user);
+        sb.append(", ").append(createdat);
 
         sb.append(")");
         return sb.toString();
