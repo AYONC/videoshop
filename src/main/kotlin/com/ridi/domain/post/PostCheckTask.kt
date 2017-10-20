@@ -1,12 +1,15 @@
 package com.ridi.domain.post
 
+import com.ridi.common.loggerFor
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 
 @Component
 class PostCheckTask {
+    private val logger = loggerFor(javaClass)
+
     @Scheduled(fixedRate = 5000)
     fun checkPost() {
-        println("check post task")
+        logger.debug("check post task")
     }
 }

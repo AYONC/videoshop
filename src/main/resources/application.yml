@@ -10,6 +10,8 @@ spring:
     active: dev
   jooq:
     sql-dialect: mysql
+logging:
+  config: classpath:logback-spring.xml
 
 ---
 
