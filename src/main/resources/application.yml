@@ -1,8 +1,18 @@
 server:
   port: 8080
+
 ---
+
 spring:
+  application:
+    name: video-rental-shop
   profiles:
     active: dev
   jooq:
     sql-dialect: mysql
+
+---
+
+zookeeper:
+  enabled: true
+  connectString: localhost:2181

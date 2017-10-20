@@ -8,7 +8,9 @@ import org.jooq.impl.DataSourceConnectionProvider
 import org.jooq.impl.DefaultConfiguration
 import org.jooq.impl.DefaultDSLContext
 import org.jooq.impl.DefaultRecordMapper
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.ComponentScan
 import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter
@@ -18,7 +20,9 @@ import javax.sql.DataSource
 
 
 @SpringBootApplication
+@ComponentScan
 @EnableScheduling
+@EnableAutoConfiguration
 class SomethingForATeamApplication {
     @Bean
     fun dataSource(): DataSource =
