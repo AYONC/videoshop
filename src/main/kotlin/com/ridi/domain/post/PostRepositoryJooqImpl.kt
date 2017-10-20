@@ -10,13 +10,13 @@ import org.jooq.Record
 class PostRepositoryJooqImpl(
     private val jooq: DSLContext
 ) : PostRepositoryJooq {
-    override fun findTest1(): Post =
+    override fun findTest1(): Post? =
         jooq.select()
             .from(POST)
             .where(POST.CONTENT.eq("test1"))
             .fetchOne(mapper())
 
-    override fun findTest2(): Post =
+    override fun findTest2(): Post? =
         jooq.select()
             .from(POST)
             .where(POST.CONTENT.eq("test2"))
