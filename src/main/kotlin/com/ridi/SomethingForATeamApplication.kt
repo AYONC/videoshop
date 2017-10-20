@@ -14,6 +14,7 @@ import org.springframework.context.annotation.ComponentScan
 import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter
+import org.springframework.scheduling.annotation.EnableAsync
 import org.springframework.scheduling.annotation.EnableScheduling
 import javax.persistence.EntityManagerFactory
 import javax.sql.DataSource
@@ -23,6 +24,7 @@ import javax.sql.DataSource
 @ComponentScan
 @EnableScheduling
 @EnableAutoConfiguration
+@EnableAsync
 class SomethingForATeamApplication {
     @Bean
     fun dataSource(): DataSource =
