@@ -11,6 +11,7 @@ import org.jooq.impl.DefaultRecordMapper
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
+import org.springframework.jdbc.datasource.DataSourceTransactionManager
 import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter
@@ -67,6 +68,9 @@ class SomethingForATeamApplication {
 
     @Bean
     fun dsl(): DefaultDSLContext = DefaultDSLContext(this.configuration())
+
+    @Bean
+    fun transactionManager() = DataSourceTransactionManager(this.dataSource())
 }
 
 fun main(args: Array<String>) {

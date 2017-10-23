@@ -15,7 +15,6 @@ import java.util.List;
 import javax.annotation.Generated;
 
 import org.jooq.Field;
-import org.jooq.Identity;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -36,7 +35,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Post extends TableImpl<PostRecord> {
 
-    private static final long serialVersionUID = -1271607059;
+    private static final long serialVersionUID = 1895953669;
 
     /**
      * The reference instance of <code>tmp.post</code>
@@ -54,7 +53,7 @@ public class Post extends TableImpl<PostRecord> {
     /**
      * The column <code>tmp.post.id</code>.
      */
-    public final TableField<PostRecord, Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<PostRecord, Long> ID = createField("id", org.jooq.impl.SQLDataType.BIGINT.nullable(false), this, "");
 
     /**
      * The column <code>tmp.post.content</code>.
@@ -70,11 +69,6 @@ public class Post extends TableImpl<PostRecord> {
      * The column <code>tmp.post.user</code>.
      */
     public final TableField<PostRecord, String> USER = createField("user", org.jooq.impl.SQLDataType.VARCHAR.length(255), this, "");
-
-    /**
-     * The column <code>tmp.post.createdAt</code>.
-     */
-    public final TableField<PostRecord, Timestamp> CREATEDAT = createField("createdAt", org.jooq.impl.SQLDataType.TIMESTAMP, this, "");
 
     /**
      * Create a <code>tmp.post</code> table reference
@@ -104,14 +98,6 @@ public class Post extends TableImpl<PostRecord> {
     @Override
     public Schema getSchema() {
         return Tmp.TMP;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Identity<PostRecord, Integer> getIdentity() {
-        return Keys.IDENTITY_POST;
     }
 
     /**

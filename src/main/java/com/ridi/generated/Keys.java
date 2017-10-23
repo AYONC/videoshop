@@ -4,14 +4,13 @@
 package com.ridi.generated;
 
 
-import com.ridi.generated.tables.Author;
 import com.ridi.generated.tables.Post;
-import com.ridi.generated.tables.records.AuthorRecord;
+import com.ridi.generated.tables.PostComment;
+import com.ridi.generated.tables.records.PostCommentRecord;
 import com.ridi.generated.tables.records.PostRecord;
 
 import javax.annotation.Generated;
 
-import org.jooq.Identity;
 import org.jooq.UniqueKey;
 import org.jooq.impl.AbstractKeys;
 
@@ -34,15 +33,13 @@ public class Keys {
     // IDENTITY definitions
     // -------------------------------------------------------------------------
 
-    public static final Identity<AuthorRecord, Integer> IDENTITY_AUTHOR = Identities0.IDENTITY_AUTHOR;
-    public static final Identity<PostRecord, Integer> IDENTITY_POST = Identities0.IDENTITY_POST;
 
     // -------------------------------------------------------------------------
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final UniqueKey<AuthorRecord> KEY_AUTHOR_PRIMARY = UniqueKeys0.KEY_AUTHOR_PRIMARY;
     public static final UniqueKey<PostRecord> KEY_POST_PRIMARY = UniqueKeys0.KEY_POST_PRIMARY;
+    public static final UniqueKey<PostCommentRecord> KEY_POST_COMMENT_PRIMARY = UniqueKeys0.KEY_POST_COMMENT_PRIMARY;
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
@@ -53,13 +50,8 @@ public class Keys {
     // [#1459] distribute members to avoid static initialisers > 64kb
     // -------------------------------------------------------------------------
 
-    private static class Identities0 extends AbstractKeys {
-        public static Identity<AuthorRecord, Integer> IDENTITY_AUTHOR = createIdentity(Author.AUTHOR, Author.AUTHOR.ID);
-        public static Identity<PostRecord, Integer> IDENTITY_POST = createIdentity(Post.POST, Post.POST.ID);
-    }
-
     private static class UniqueKeys0 extends AbstractKeys {
-        public static final UniqueKey<AuthorRecord> KEY_AUTHOR_PRIMARY = createUniqueKey(Author.AUTHOR, "KEY_author_PRIMARY", Author.AUTHOR.ID);
         public static final UniqueKey<PostRecord> KEY_POST_PRIMARY = createUniqueKey(Post.POST, "KEY_post_PRIMARY", Post.POST.ID);
+        public static final UniqueKey<PostCommentRecord> KEY_POST_COMMENT_PRIMARY = createUniqueKey(PostComment.POST_COMMENT, "KEY_post_comment_PRIMARY", PostComment.POST_COMMENT.ID);
     }
 }

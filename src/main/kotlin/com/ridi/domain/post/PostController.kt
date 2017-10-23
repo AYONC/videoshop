@@ -11,6 +11,19 @@ import org.springframework.web.bind.annotation.RestController
 class PostController (
     private val postService: PostService
 ) {
+    @GetMapping("create-post/{content}/{user}")
+    fun createPost(@PathVariable content: String, @PathVariable user: String): Any {
+        return mapOf(
+            "posts" to postService.createPost(content, user)
+        )
+    }
+
+    @GetMapping("create-post-comment/{content}/{user}/{postId}")
+    fun createPostComment(@PathVariable content: String, @PathVariable user: String, @PathVariable postId: Long): Any {
+        postService.createPostComment(content, user, postId)
+        return mapOf("success" to true)
+    }
+
     @GetMapping("/test1")
     fun postTest1() : Any {
         postService.findTest1()?.let {
@@ -30,5 +43,10 @@ class PostController (
     @GetMapping("/test3/{user}")
     fun postTest3(@PathVariable user: String) = mapOf(
         "posts" to postService.findTest3(user)
+    )
+
+    @GetMapping("/comment/test1")
+    fun commentTest1() = mapOf(
+        "comments" to postService.findComments()
     )
 }

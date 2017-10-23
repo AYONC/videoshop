@@ -4,8 +4,9 @@
 package com.ridi.generated;
 
 
-import com.ridi.generated.tables.Author;
+import com.ridi.generated.tables.HibernateSequence;
 import com.ridi.generated.tables.Post;
+import com.ridi.generated.tables.PostComment;
 
 import javax.annotation.Generated;
 
@@ -24,12 +25,17 @@ import javax.annotation.Generated;
 public class Tables {
 
     /**
-     * The table <code>tmp.author</code>.
+     * The table <code>tmp.hibernate_sequence</code>.
      */
-    public static final Author AUTHOR = com.ridi.generated.tables.Author.AUTHOR;
+    public static final HibernateSequence HIBERNATE_SEQUENCE = com.ridi.generated.tables.HibernateSequence.HIBERNATE_SEQUENCE;
 
     /**
      * The table <code>tmp.post</code>.
      */
     public static final Post POST = com.ridi.generated.tables.Post.POST;
+
+    /**
+     * The table <code>tmp.post_comment</code>.
+     */
+    public static final PostComment POST_COMMENT = com.ridi.generated.tables.PostComment.POST_COMMENT;
 }
