@@ -16,7 +16,9 @@ class HelloController(
 
     @GetMapping("/name")
     @ResponseBody
-    fun name() = "Hello, ${helloService.getTestName()}"
+    fun name() = mapOf(
+        "msg" to "Hello, ${helloService.getTestName()}"
+    )
 
     @GetMapping("/test-async")
     @ResponseBody

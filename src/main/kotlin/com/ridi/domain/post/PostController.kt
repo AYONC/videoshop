@@ -1,6 +1,7 @@
 package com.ridi.domain.post
 
 import com.ridi.common.exception.NotFoundException
+import com.ridi.common.loggerFor
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController
 class PostController (
     private val postService: PostService
 ) {
+    val logger = loggerFor(javaClass)
+
     @GetMapping("create-post/{content}/{user}")
     fun createPost(@PathVariable content: String, @PathVariable user: String): Any {
         return mapOf(
@@ -27,7 +30,10 @@ class PostController (
     @GetMapping("/test1")
     fun postTest1() : Any {
         postService.findTest1()?.let {
-            return mapOf("post" to it)
+            return mapOf(
+                "post" to it,
+                "comments" to postService.findComments()
+            )
         }
         throw NotFoundException()
     }
@@ -47,6 +53,11 @@ class PostController (
 
     @GetMapping("/comment/test1")
     fun commentTest1() = mapOf(
-        "comments" to postService.findComments()
+        "commentssss" to postService.findComments()
     )
+
+    @GetMapping("/test4")
+    fun postTest4(): Any {
+        return "testttt"
+    }
 }

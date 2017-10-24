@@ -28,5 +28,10 @@ class PostService(
 
     fun findTest3(user: String) : List<Post> = postRepo.findByUser(user)
 
-    fun findComments() : List<PostComment> = postCommentRepo.findAll()
+    fun findComments() : List<PostComment> {
+        val comments = postCommentRepo.findAll()
+        logger.debug("###, comments: ${comments}")
+        logger.debug("###, comments.size: ${comments.size}")
+        return comments
+    }
 }

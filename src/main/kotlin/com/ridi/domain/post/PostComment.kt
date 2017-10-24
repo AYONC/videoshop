@@ -7,9 +7,9 @@ import javax.persistence.*
 @Entity
 @Table(name = "post_comment")
 data class PostComment (
-    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE) private val id: Long = 0,
-    @Column private val content: String,
-    @Column(name = "created_at") private val createdAt: Date = Date(),
-    @Column private val user: String,
-    @JoinColumn(name = "post_id") @ManyToOne(targetEntity = Post::class, fetch = FetchType.LAZY) private val post: Post
+    @Id @GeneratedValue(strategy = GenerationType.AUTO) val id: Long = 0,
+    @Column val content: String,
+    @Column(name = "created_at") val createdAt: Date = Date(),
+    @Column val user: String,
+    @ManyToOne(targetEntity = Post::class) @JoinColumn(name = "post_id") val post: Post
 )
