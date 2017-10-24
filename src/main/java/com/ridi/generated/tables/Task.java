@@ -35,7 +35,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Task extends TableImpl<TaskRecord> {
 
-    private static final long serialVersionUID = -1108817930;
+    private static final long serialVersionUID = 1180796142;
 
     /**
      * The reference instance of <code>tmp.task</code>
@@ -74,6 +74,11 @@ public class Task extends TableImpl<TaskRecord> {
      * The column <code>tmp.task.member_id</code>.
      */
     public final TableField<TaskRecord, Long> MEMBER_ID = createField("member_id", org.jooq.impl.SQLDataType.BIGINT, this, "");
+
+    /**
+     * The column <code>tmp.task.is_completed</code>.
+     */
+    public final TableField<TaskRecord, Boolean> IS_COMPLETED = createField("is_completed", org.jooq.impl.SQLDataType.BIT, this, "");
 
     /**
      * Create a <code>tmp.task</code> table reference

@@ -1,16 +1,15 @@
-package com.ridi.domain.example.controller
+package com.ridi.domain.example.task
 
-import com.ridi.domain.example.service.MemberService
+import com.ridi.domain.example.member.MemberService
 import org.springframework.stereotype.Controller
-import com.ridi.domain.example.service.TaskService
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.ModelAndView
 
 @Controller
 @RequestMapping("/example/tasks")
 class TaskController (
-    private val taskService: TaskService,
-    private val memberService: MemberService
+        private val taskService: TaskService,
+        private val memberService: MemberService
 ) {
     @GetMapping("/{taskId}/")
     fun task(@PathVariable taskId: Long): Any {

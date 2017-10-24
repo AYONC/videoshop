@@ -43,7 +43,8 @@
                 });
             }
 
-            document.querySelector('.assign_btn').addEventListener('click', e => {
+            document.querySelectorAll('.assign_btn').forEach(btn => {
+              btn.addEventListener('click', e=> {
                 const memberId = e.target.attributes['data'].value;
                 fetch(`/example/tasks/{{task.id}}/assign/${memberId}/`, {
                     method: 'PUT',
@@ -53,6 +54,7 @@
                 })
                 .then(resp => resp.json())
                 .then(data => window.location.reload(true));
+              });
             });
         </script>
     </body>

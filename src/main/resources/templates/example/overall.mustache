@@ -4,21 +4,26 @@
     <body>
         <h2>overall</h2>
         <h3>tasks</h3>
+        <ul>
         {{#task_summaries}}
-            <strong>
+            <li>
                 <a href="/example/tasks/{{id}}/">
                     {{title}}
                     {{#member}}(assigned to {{member}}){{/member}}
                     {{^member}}(not assigned){{/member}}
                 </a>
-            </strong>
+            </li>
         {{/task_summaries}}
+        </ul>
         <hr />
 
         <h3>members</h3>
         <ul>
             {{#members}}
-                <li>{{name}} ({{createdAt}})</li>
+                <li>
+                  <a href="/example/members/{{id}}/">{{name}}</a>
+                  ({{createdAt}})
+                </li>
             {{/members}}
         </ul>
         <hr />

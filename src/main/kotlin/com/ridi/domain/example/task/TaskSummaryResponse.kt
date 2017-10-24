@@ -1,6 +1,4 @@
-package com.ridi.domain.example.dto
-
-import com.ridi.domain.example.model.Task
+package com.ridi.domain.example.task
 
 data class TaskSummaryResponse(private val task: Task) {
     val id = task.id

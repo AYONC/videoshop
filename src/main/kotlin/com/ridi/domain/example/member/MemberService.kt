@@ -1,8 +1,6 @@
-package com.ridi.domain.example.service
+package com.ridi.domain.example.member
 
-import com.ridi.domain.example.model.Member
-import com.ridi.domain.example.model.Task
-import com.ridi.domain.example.repository.MemberRepository
+import com.ridi.domain.example.task.Task
 import org.springframework.stereotype.Service
 
 @Service

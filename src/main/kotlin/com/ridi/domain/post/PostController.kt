@@ -1,6 +1,5 @@
 package com.ridi.domain.post
 
-import com.ridi.common.exception.NotFoundException
 import com.ridi.common.loggerFor
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.*

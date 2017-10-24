@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component
 class PostCheckTask {
     private val logger = loggerFor(javaClass)
 
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 50000)
     fun checkPost() {
         logger.debug("check post task")
     }

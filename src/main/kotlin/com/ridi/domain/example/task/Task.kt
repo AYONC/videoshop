@@ -1,16 +1,19 @@
-package com.ridi.domain.example.model
+package com.ridi.domain.example.task
 
+import com.ridi.domain.example.member.Member
 import javax.persistence.*
 import java.util.Date
+import javax.validation.constraints.NotNull
 
 @Entity
 @Table(name = "task")
 data class Task(
         @Id @GeneratedValue(strategy = GenerationType.AUTO) val id: Long = 0,
-        @Column val title: String,
-        @Column val content: String,
+        @Column @NotNull val title: String,
+        @Column @NotNull val content: String,
+        @Column(name = "is_completed") @NotNull val isCompleted: Boolean = false,
         @JoinColumn(name = "member_id") @ManyToOne(targetEntity = Member::class) var member: Member? = null,
-        @Column(name = "created_at") val createdAt: Date = Date()
+        @Column(name = "created_at") @NotNull val createdAt: Date = Date()
 ) {
     fun assign(member: Member) {
         this.member = member

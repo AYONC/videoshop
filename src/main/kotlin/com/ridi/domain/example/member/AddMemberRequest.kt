@@ -1,6 +1,5 @@
-package com.ridi.domain.example.dto
+package com.ridi.domain.example.member
 
-import com.ridi.domain.example.model.Member
 import javax.validation.constraints.NotEmpty
 
 data class AddMemberRequest (

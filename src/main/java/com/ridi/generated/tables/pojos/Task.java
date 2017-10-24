@@ -23,13 +23,14 @@ import javax.annotation.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Task implements Serializable {
 
-    private static final long serialVersionUID = -649808979;
+    private static final long serialVersionUID = -862298210;
 
     private final Long      id;
     private final String    content;
     private final Timestamp createdAt;
     private final String    title;
     private final Long      memberId;
+    private final Boolean   isCompleted;
 
     public Task(Task value) {
         this.id = value.id;
@@ -37,6 +38,7 @@ public class Task implements Serializable {
         this.createdAt = value.createdAt;
         this.title = value.title;
         this.memberId = value.memberId;
+        this.isCompleted = value.isCompleted;
     }
 
     public Task(
@@ -44,13 +46,15 @@ public class Task implements Serializable {
         String    content,
         Timestamp createdAt,
         String    title,
-        Long      memberId
+        Long      memberId,
+        Boolean   isCompleted
     ) {
         this.id = id;
         this.content = content;
         this.createdAt = createdAt;
         this.title = title;
         this.memberId = memberId;
+        this.isCompleted = isCompleted;
     }
 
     public Long getId() {
@@ -73,6 +77,10 @@ public class Task implements Serializable {
         return this.memberId;
     }
 
+    public Boolean getIsCompleted() {
+        return this.isCompleted;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Task (");
@@ -82,6 +90,7 @@ public class Task implements Serializable {
         sb.append(", ").append(createdAt);
         sb.append(", ").append(title);
         sb.append(", ").append(memberId);
+        sb.append(", ").append(isCompleted);
 
         sb.append(")");
         return sb.toString();

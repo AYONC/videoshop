@@ -1,9 +1,7 @@
-package com.ridi.domain.example.service
+package com.ridi.domain.example.task
 
-import com.ridi.domain.example.model.Member
-import com.ridi.domain.example.model.Task
+import com.ridi.domain.example.member.Member
 import org.springframework.stereotype.Service
-import com.ridi.domain.example.repository.TaskRepository
 
 @Service
 class TaskService(
@@ -22,6 +20,8 @@ class TaskService(
     }
 
     fun findAll() = taskRepo.findAll()
+
+    fun findAssigned(member: Member) = taskRepo.findAssigned(member.id)
 
     fun getOne(id: Long) = taskRepo.getOne(id)
 }

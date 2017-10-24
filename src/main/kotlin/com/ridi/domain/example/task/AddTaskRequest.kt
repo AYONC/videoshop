@@ -1,6 +1,5 @@
-package com.ridi.domain.example.dto
+package com.ridi.domain.example.task
 
-import com.ridi.domain.example.model.Task
 import javax.validation.constraints.NotEmpty
 
 data class AddTaskRequest (
