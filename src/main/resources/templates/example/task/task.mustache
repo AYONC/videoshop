@@ -2,8 +2,9 @@
     <head>
     </head>
     <body>
+        <a href="/example/"><< home</a>
         {{#task}}
-        <h2>{{title}}</h2>
+        <h2>task: {{title}}</h2>
         <ul>
             <li>
                 content:
@@ -22,24 +23,27 @@
         <span>
             assign:
             {{#assignableMembers}}
-                <button class="assign_button" data="{{id}}">{{name}}</button>
+                <button class="assign_btn" data="{{id}}">{{name}}</button>
             {{/assignableMembers}}
         </span>
         {{/task}}
 
         <script>
-            document.querySelector('.cancel_assign_btn').addEventListener('click', e => {
-                fetch("/example/tasks/{{task.id}}/cancel-assign/", {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    }
-                })
-                .then(resp => resp.json())
-                .then(data => window.location.reload(true));
-            });
+            const cancelAssignBtn = document.querySelector('.cancel_assign_btn');
+            if (cancelAssignBtn != null) {
+                cancelAssignBtn.addEventListener('click', e => {
+                    fetch("/example/tasks/{{task.id}}/cancel-assign/", {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    })
+                    .then(resp => resp.json())
+                    .then(data => window.location.reload(true));
+                });
+            }
 
-            document.querySelector('.assign_button').addEventListener('click', e => {
+            document.querySelector('.assign_btn').addEventListener('click', e => {
                 const memberId = e.target.attributes['data'].value;
                 fetch(`/example/tasks/{{task.id}}/assign/${memberId}/`, {
                     method: 'PUT',
