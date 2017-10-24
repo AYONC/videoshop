@@ -1,0 +1,55 @@
+<html>
+    <head>
+    </head>
+    <body>
+        {{#task}}
+        <h2>{{title}}</h2>
+        <ul>
+            <li>
+                content:
+                <input type="text" name="content" id="content" value="{{content}}" />
+            </li>
+            <li>
+                {{#member}}
+                    assigned to {{member.name}}
+                    <button class="cancel_assign_btn">cancel</button>
+                {{/member}}
+                {{^member}}
+                    not assigned
+                {{/member}}
+            </li>
+        </ul>
+        <span>
+            assign:
+            {{#assignableMembers}}
+                <button class="assign_button" data="{{id}}">{{name}}</button>
+            {{/assignableMembers}}
+        </span>
+        {{/task}}
+
+        <script>
+            document.querySelector('.cancel_assign_btn').addEventListener('click', e => {
+                fetch("/example/tasks/{{task.id}}/cancel-assign/", {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                .then(resp => resp.json())
+                .then(data => window.location.reload(true));
+            });
+
+            document.querySelector('.assign_button').addEventListener('click', e => {
+                const memberId = e.target.attributes['data'].value;
+                fetch(`/example/tasks/{{task.id}}/assign/${memberId}/`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                .then(resp => resp.json())
+                .then(data => window.location.reload(true));
+            });
+        </script>
+    </body>
+</html>

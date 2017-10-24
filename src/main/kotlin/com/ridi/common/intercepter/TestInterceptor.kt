@@ -11,7 +11,7 @@ class TestInterceptor : HandlerInterceptorAdapter() {
     private val logger = loggerFor(javaClass)
 
     override fun preHandle(request: HttpServletRequest, response: HttpServletResponse, handler: Any): Boolean {
-        logger.debug("before handle request")
+        logger.debug("request: ", request)
         return true
     }
 }

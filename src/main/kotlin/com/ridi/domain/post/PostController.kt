@@ -25,23 +25,23 @@ class PostController (
         return mapOf("success" to true)
     }
 
-    @GetMapping("/test1")
-    fun postTest1() : Any {
-        postService.findTest1()?.let {
-            return mapOf(
-                "post" to it
-            )
-        }
-        throw NotFoundException()
-    }
+//    @GetMapping("/test1")
+//    fun postTest1() : Any {
+//        postService.findTest1()?.let {
+//            return mapOf(
+//                "post" to it
+//            )
+//        }
+//        throw NotFoundException()
+//    }
 
-    @GetMapping("/test2")
-    fun postTest2() : Any {
-        postService.findTest2()?.let {
-            return mapOf("post" to it)
-        }
-        throw NotFoundException()
-    }
+//    @GetMapping("/test2")
+//    fun postTest2() : Any {
+//        postService.findTest2()?.let {
+//            return mapOf("post" to it)
+//        }
+//        throw NotFoundException()
+//    }
 
     @GetMapping("/test3/{user}")
     fun postTest3(@PathVariable user: String) = mapOf(

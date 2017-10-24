@@ -5,8 +5,11 @@ package com.ridi.generated;
 
 
 import com.ridi.generated.tables.HibernateSequence;
+import com.ridi.generated.tables.Member;
 import com.ridi.generated.tables.Post;
 import com.ridi.generated.tables.PostComment;
+import com.ridi.generated.tables.Task;
+import com.ridi.generated.tables.TaskComment;
 
 import javax.annotation.Generated;
 
@@ -30,6 +33,11 @@ public class Tables {
     public static final HibernateSequence HIBERNATE_SEQUENCE = com.ridi.generated.tables.HibernateSequence.HIBERNATE_SEQUENCE;
 
     /**
+     * The table <code>tmp.member</code>.
+     */
+    public static final Member MEMBER = com.ridi.generated.tables.Member.MEMBER;
+
+    /**
      * The table <code>tmp.post</code>.
      */
     public static final Post POST = com.ridi.generated.tables.Post.POST;
@@ -38,4 +46,14 @@ public class Tables {
      * The table <code>tmp.post_comment</code>.
      */
     public static final PostComment POST_COMMENT = com.ridi.generated.tables.PostComment.POST_COMMENT;
+
+    /**
+     * The table <code>tmp.task</code>.
+     */
+    public static final Task TASK = com.ridi.generated.tables.Task.TASK;
+
+    /**
+     * The table <code>tmp.task_comment</code>.
+     */
+    public static final TaskComment TASK_COMMENT = com.ridi.generated.tables.TaskComment.TASK_COMMENT;
 }

@@ -1,0 +1,33 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <h2>overall</h2>
+        <h3>tasks</h3>
+        {{#task_summaries}}
+            <strong>
+                <a href="/example/tasks/{{id}}/">
+                    {{title}}
+                    {{#member}}(assigned to {{member}}){{/member}}
+                    {{^member}}(not assigned){{/member}}
+                </a>
+            </strong>
+        {{/task_summaries}}
+        <hr />
+
+        <h3>members</h3>
+        <ul>
+            {{#members}}
+                <li>name ({{createdAt}})</li>
+            {{/members}}
+        </ul>
+        <hr />
+
+        <div>
+            <a href="/example/add-member/">add member</a>
+        </div>
+        <div>
+            <a href="/example/add-task">add task</a>
+        </div>
+    </body>
+</html>

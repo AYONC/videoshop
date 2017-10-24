@@ -25,9 +25,9 @@ class PostService(
 
     fun findAll() : List<Post> = postRepo.findAll()
 
-    fun findTest1() : Post? = postRepo.findTest1()
+//    fun findTest1() : Post? = postRepo.findTest1()
 
-    fun findTest2() : Post? = postRepo.findTest2()
+//    fun findTest2() : Post? = postRepo.findTest2()
 
     fun findTest3(user: String) : List<Post> = postRepo.findByUser(user)
 

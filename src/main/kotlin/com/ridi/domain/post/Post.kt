@@ -8,6 +8,6 @@ import javax.persistence.*
 data class Post(
     @Id @GeneratedValue(strategy = GenerationType.AUTO) val id: Long = 0,
     @Column val content: String,
-    @Column(name = "created_at") val createdAt: Date = Date(),
-    @Column val user: String
+    @Column val user: String,
+    @Column(name = "created_at") val createdAt: Date = Date()
 )

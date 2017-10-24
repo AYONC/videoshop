@@ -5,8 +5,11 @@ package com.ridi.generated;
 
 
 import com.ridi.generated.tables.HibernateSequence;
+import com.ridi.generated.tables.Member;
 import com.ridi.generated.tables.Post;
 import com.ridi.generated.tables.PostComment;
+import com.ridi.generated.tables.Task;
+import com.ridi.generated.tables.TaskComment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,7 +35,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Tmp extends SchemaImpl {
 
-    private static final long serialVersionUID = 336177705;
+    private static final long serialVersionUID = 246061025;
 
     /**
      * The reference instance of <code>tmp</code>
@@ -45,6 +48,11 @@ public class Tmp extends SchemaImpl {
     public final HibernateSequence HIBERNATE_SEQUENCE = com.ridi.generated.tables.HibernateSequence.HIBERNATE_SEQUENCE;
 
     /**
+     * The table <code>tmp.member</code>.
+     */
+    public final Member MEMBER = com.ridi.generated.tables.Member.MEMBER;
+
+    /**
      * The table <code>tmp.post</code>.
      */
     public final Post POST = com.ridi.generated.tables.Post.POST;
@@ -53,6 +61,16 @@ public class Tmp extends SchemaImpl {
      * The table <code>tmp.post_comment</code>.
      */
     public final PostComment POST_COMMENT = com.ridi.generated.tables.PostComment.POST_COMMENT;
+
+    /**
+     * The table <code>tmp.task</code>.
+     */
+    public final Task TASK = com.ridi.generated.tables.Task.TASK;
+
+    /**
+     * The table <code>tmp.task_comment</code>.
+     */
+    public final TaskComment TASK_COMMENT = com.ridi.generated.tables.TaskComment.TASK_COMMENT;
 
     /**
      * No further instances allowed
@@ -80,7 +98,10 @@ public class Tmp extends SchemaImpl {
     private final List<Table<?>> getTables0() {
         return Arrays.<Table<?>>asList(
             HibernateSequence.HIBERNATE_SEQUENCE,
+            Member.MEMBER,
             Post.POST,
-            PostComment.POST_COMMENT);
+            PostComment.POST_COMMENT,
+            Task.TASK,
+            TaskComment.TASK_COMMENT);
     }
 }
