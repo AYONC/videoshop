@@ -47,11 +47,8 @@ class SomethingForATeamApplication {
             afterPropertiesSet()
         }.`object`
 
-    @Bean
-	fun transactionAwareDataSource(): TransactionAwareDataSourceProxy = TransactionAwareDataSourceProxy(this.dataSource())
-
 	@Bean
-	fun connectionProvider(): DataSourceConnectionProvider = DataSourceConnectionProvider(this.transactionAwareDataSource())
+	fun connectionProvider(): DataSourceConnectionProvider = DataSourceConnectionProvider(this.dataSource())
 
     @Bean
     fun configuration(): DefaultConfiguration {
