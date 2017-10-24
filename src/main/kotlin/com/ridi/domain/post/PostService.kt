@@ -15,6 +15,9 @@ class PostService(
     fun createPost(content: String, user: String) = postRepo.save(Post(content = content, user = user))
 
     @Transactional
+    fun create(post: Post) = postRepo.save(post)
+
+    @Transactional
     fun createPostComment(content: String, user: String, postId: Long) {
         val post = postRepo.getOne(postId)
         postCommentRepo.save(PostComment(content = content, user = user, post = post))

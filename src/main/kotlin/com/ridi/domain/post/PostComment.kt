@@ -11,5 +11,5 @@ data class PostComment (
     @Column val content: String,
     @Column(name = "created_at") val createdAt: Date = Date(),
     @Column val user: String,
-    @ManyToOne(targetEntity = Post::class) @JoinColumn(name = "post_id") val post: Post
+    @JoinColumn(name = "post_id") @ManyToOne(targetEntity = Post::class) val post: Post
 )

@@ -2,10 +2,9 @@ package com.ridi.domain.post
 
 import com.ridi.common.exception.NotFoundException
 import com.ridi.common.loggerFor
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.validation.BindingResult
+import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("/post")
@@ -14,12 +13,11 @@ class PostController (
 ) {
     val logger = loggerFor(javaClass)
 
-    @GetMapping("create-post/{content}/{user}")
-    fun createPost(@PathVariable content: String, @PathVariable user: String): Any {
-        return mapOf(
-            "posts" to postService.createPost(content, user)
-        )
-    }
+    @PostMapping("/")
+    fun createPost(@RequestBody @Valid req: CreatePostRequest, bindingResult: BindingResult) = mapOf(
+        "bindingResult" to bindingResult.hasErrors(),
+        "post" to postService.create(req.toEntity())
+    )
 
     @GetMapping("create-post-comment/{content}/{user}/{postId}")
     fun createPostComment(@PathVariable content: String, @PathVariable user: String, @PathVariable postId: Long): Any {
@@ -31,8 +29,7 @@ class PostController (
     fun postTest1() : Any {
         postService.findTest1()?.let {
             return mapOf(
-                "post" to it,
-                "comments" to postService.findComments()
+                "post" to it
             )
         }
         throw NotFoundException()
@@ -48,7 +45,7 @@ class PostController (
 
     @GetMapping("/test3/{user}")
     fun postTest3(@PathVariable user: String) = mapOf(
-        "posts" to postService.findTest3(user)
+        "posts" to postService.findTest3(user).map { PostResponse(it) }
     )
 
     @GetMapping("/comment/test1")
