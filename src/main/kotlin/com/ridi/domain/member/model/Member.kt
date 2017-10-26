@@ -1,4 +1,4 @@
-package com.ridi.domain.example.member
+package com.ridi.domain.member
 
 import javax.persistence.*
 import java.util.Date

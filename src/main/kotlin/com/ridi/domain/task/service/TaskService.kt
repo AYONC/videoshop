@@ -1,6 +1,6 @@
 package com.ridi.domain.task.service
 
-import com.ridi.domain.example.member.Member
+import com.ridi.domain.member.Member
 import com.ridi.domain.task.model.Task
 import com.ridi.domain.task.repository.TaskRepository
 import org.springframework.stereotype.Service

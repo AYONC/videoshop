@@ -17,4 +17,4 @@ logging:
 
 zookeeper:
   enabled: true
-  connectString: localhost:2181
+  connectString: 52.78.50.157:2181

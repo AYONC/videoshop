@@ -1,7 +1,7 @@
-package com.ridi.domain.example.task
+package com.ridi.domain.task
 
-import com.ridi.domain.example.member.AddMemberRequest
-import com.ridi.domain.example.member.MemberService
+import com.ridi.domain.member.AddMemberRequest
+import com.ridi.domain.member.MemberService
 import com.ridi.domain.task.service.TaskService
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
@@ -23,7 +23,7 @@ class MemberController (
     @PostMapping("/add/")
     fun addMember(@Valid addMemberReq: AddMemberRequest): String {
         memberService.create(addMemberReq.toEntity())
-        return "redirect:/example/"
+        return "redirect:/"
     }
 
     @GetMapping("/{memberId}/")
@@ -31,7 +31,7 @@ class MemberController (
         val member = memberService.getOne(memberId)
         val assignedTasks = taskService.findAssigned(member)
 
-        return ModelAndView("example/member/member", mapOf(
+        return ModelAndView("member/member", mapOf(
             "member" to member,
             "assignedTasks" to assignedTasks
         ))

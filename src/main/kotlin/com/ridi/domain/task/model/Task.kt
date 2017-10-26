@@ -1,6 +1,6 @@
 package com.ridi.domain.task.model
 
-import com.ridi.domain.example.member.Member
+import com.ridi.domain.member.Member
 import javax.persistence.*
 import java.util.Date
 import javax.validation.constraints.NotNull

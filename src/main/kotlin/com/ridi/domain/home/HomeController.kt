@@ -1,6 +1,6 @@
 package com.ridi.domain.home
 
-import com.ridi.domain.example.member.MemberService
+import com.ridi.domain.member.MemberService
 import com.ridi.domain.task.service.TaskService
 import com.ridi.domain.task.dto.TaskSummaryResponse
 import org.springframework.stereotype.Controller

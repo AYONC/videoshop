@@ -1,6 +1,6 @@
 package com.ridi.domain.task.repository
 
-import com.ridi.domain.example.member.Member
+import com.ridi.domain.member.Member
 import com.ridi.domain.task.model.Task
 import com.ridi.generated.tables.Member.MEMBER
 import com.ridi.generated.tables.Task.TASK

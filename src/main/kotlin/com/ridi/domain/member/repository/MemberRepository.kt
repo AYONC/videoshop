@@ -1,6 +1,6 @@
-package com.ridi.domain.example.member
+package com.ridi.domain.member
 
-import com.ridi.domain.example.member.Member
+import com.ridi.domain.member.Member
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
