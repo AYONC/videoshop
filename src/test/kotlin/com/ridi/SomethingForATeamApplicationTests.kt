@@ -1,7 +1,6 @@
 package com.ridi
 
-import com.ridi.domain.example.member.MemberService
-import com.ridi.domain.task.service.TaskService
+import com.ridi.domain.task.repository.TaskRepository
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -12,9 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner
 @SpringBootTest
 class SomethingForATeamApplicationTests {
     @Autowired
-    lateinit var memberService: MemberService
-    @Autowired
-    lateinit var taskService: TaskService
+    lateinit var taskRepo: TaskRepository
 
 	@Test
 	fun test_1() {
