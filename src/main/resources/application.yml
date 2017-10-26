@@ -10,11 +10,11 @@ spring:
     active: dev
   jooq:
     sql-dialect: mysql
-logging:
-  config: classpath:logback-spring.xml
+#logging:
+#  config: classpath:logback-spring.xml
 
 ---
 
-zookeeper:
-  enabled: true
-  connectString: 52.78.50.157:2181
+#zookeeper:
+#  enabled: true
+#  connectString: 52.78.50.157:2181
