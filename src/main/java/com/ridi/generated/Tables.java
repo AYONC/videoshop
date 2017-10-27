@@ -6,6 +6,7 @@ package com.ridi.generated;
 
 import com.ridi.generated.tables.HibernateSequence;
 import com.ridi.generated.tables.Member;
+import com.ridi.generated.tables.MemberTasks;
 import com.ridi.generated.tables.Post;
 import com.ridi.generated.tables.PostComment;
 import com.ridi.generated.tables.Task;
@@ -36,6 +37,11 @@ public class Tables {
      * The table <code>tmp.member</code>.
      */
     public static final Member MEMBER = com.ridi.generated.tables.Member.MEMBER;
+
+    /**
+     * The table <code>tmp.Member_tasks</code>.
+     */
+    public static final MemberTasks MEMBER_TASKS = com.ridi.generated.tables.MemberTasks.MEMBER_TASKS;
 
     /**
      * The table <code>tmp.post</code>.

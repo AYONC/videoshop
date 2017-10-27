@@ -6,6 +6,7 @@ package com.ridi.generated;
 
 import com.ridi.generated.tables.HibernateSequence;
 import com.ridi.generated.tables.Member;
+import com.ridi.generated.tables.MemberTasks;
 import com.ridi.generated.tables.Post;
 import com.ridi.generated.tables.PostComment;
 import com.ridi.generated.tables.Task;
@@ -35,7 +36,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Tmp extends SchemaImpl {
 
-    private static final long serialVersionUID = 246061025;
+    private static final long serialVersionUID = 779330507;
 
     /**
      * The reference instance of <code>tmp</code>
@@ -51,6 +52,11 @@ public class Tmp extends SchemaImpl {
      * The table <code>tmp.member</code>.
      */
     public final Member MEMBER = com.ridi.generated.tables.Member.MEMBER;
+
+    /**
+     * The table <code>tmp.Member_tasks</code>.
+     */
+    public final MemberTasks MEMBER_TASKS = com.ridi.generated.tables.MemberTasks.MEMBER_TASKS;
 
     /**
      * The table <code>tmp.post</code>.
@@ -99,6 +105,7 @@ public class Tmp extends SchemaImpl {
         return Arrays.<Table<?>>asList(
             HibernateSequence.HIBERNATE_SEQUENCE,
             Member.MEMBER,
+            MemberTasks.MEMBER_TASKS,
             Post.POST,
             PostComment.POST_COMMENT,
             Task.TASK,
