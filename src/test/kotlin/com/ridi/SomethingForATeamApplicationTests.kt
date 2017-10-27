@@ -1,5 +1,6 @@
 package com.ridi
 
+import com.ridi.domain.member.MemberRepository
 import com.ridi.domain.task.repository.TaskRepository
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -12,6 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner
 class SomethingForATeamApplicationTests {
     @Autowired
     lateinit var taskRepo: TaskRepository
+	@Autowired
+	lateinit var memberRepo: MemberRepository
 
 	@Test
 	fun test_1() {

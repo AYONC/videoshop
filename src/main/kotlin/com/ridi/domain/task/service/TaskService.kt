@@ -25,5 +25,7 @@ class TaskService(
 
     fun findAssigned(member: Member) = taskRepo.findAssigned(member.id)
 
+    fun findByTitle(title: String) = taskRepo.findByTitle(title)
+
     fun getOne(id: Long) = taskRepo.getOne(id)
 }

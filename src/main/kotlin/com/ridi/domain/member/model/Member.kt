@@ -1,7 +1,7 @@
 package com.ridi.domain.member
 
+import java.util.*
 import javax.persistence.*
-import java.util.Date
 import javax.validation.constraints.NotNull
 
 @Entity
