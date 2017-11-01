@@ -29,10 +29,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MemberTasks extends TableImpl<MemberTasksRecord> {
 
-    private static final long serialVersionUID = 1601332371;
+    private static final long serialVersionUID = -1658770413;
 
     /**
-     * The reference instance of <code>tmp.Member_tasks</code>
+     * The reference instance of <code>tmp.member_tasks</code>
      */
     public static final MemberTasks MEMBER_TASKS = new MemberTasks();
 
@@ -45,24 +45,24 @@ public class MemberTasks extends TableImpl<MemberTasksRecord> {
     }
 
     /**
-     * The column <code>tmp.Member_tasks.Member_id</code>.
+     * The column <code>tmp.member_tasks.member_id</code>.
      */
-    public final TableField<MemberTasksRecord, Long> MEMBER_ID = createField("Member_id", org.jooq.impl.SQLDataType.BIGINT.nullable(false), this, "");
+    public final TableField<MemberTasksRecord, Long> MEMBER_ID = createField("member_id", org.jooq.impl.SQLDataType.BIGINT.nullable(false), this, "");
 
     /**
-     * The column <code>tmp.Member_tasks.tasks</code>.
+     * The column <code>tmp.member_tasks.tasks</code>.
      */
     public final TableField<MemberTasksRecord, byte[]> TASKS = createField("tasks", org.jooq.impl.SQLDataType.BLOB, this, "");
 
     /**
-     * Create a <code>tmp.Member_tasks</code> table reference
+     * Create a <code>tmp.member_tasks</code> table reference
      */
     public MemberTasks() {
-        this("Member_tasks", null);
+        this("member_tasks", null);
     }
 
     /**
-     * Create an aliased <code>tmp.Member_tasks</code> table reference
+     * Create an aliased <code>tmp.member_tasks</code> table reference
      */
     public MemberTasks(String alias) {
         this(alias, MEMBER_TASKS);

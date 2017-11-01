@@ -4,6 +4,7 @@
 package com.ridi.generated;
 
 
+import com.ridi.generated.tables.Admin;
 import com.ridi.generated.tables.HibernateSequence;
 import com.ridi.generated.tables.Member;
 import com.ridi.generated.tables.MemberTasks;
@@ -29,6 +30,11 @@ import javax.annotation.Generated;
 public class Tables {
 
     /**
+     * The table <code>tmp.admin</code>.
+     */
+    public static final Admin ADMIN = com.ridi.generated.tables.Admin.ADMIN;
+
+    /**
      * The table <code>tmp.hibernate_sequence</code>.
      */
     public static final HibernateSequence HIBERNATE_SEQUENCE = com.ridi.generated.tables.HibernateSequence.HIBERNATE_SEQUENCE;
@@ -39,7 +45,7 @@ public class Tables {
     public static final Member MEMBER = com.ridi.generated.tables.Member.MEMBER;
 
     /**
-     * The table <code>tmp.Member_tasks</code>.
+     * The table <code>tmp.member_tasks</code>.
      */
     public static final MemberTasks MEMBER_TASKS = com.ridi.generated.tables.MemberTasks.MEMBER_TASKS;
 

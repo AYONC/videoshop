@@ -27,10 +27,10 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MemberTasksRecord extends TableRecordImpl<MemberTasksRecord> implements Record2<Long, byte[]> {
 
-    private static final long serialVersionUID = -1536203024;
+    private static final long serialVersionUID = 921021168;
 
     /**
-     * Setter for <code>tmp.Member_tasks.Member_id</code>.
+     * Setter for <code>tmp.member_tasks.member_id</code>.
      */
     public MemberTasksRecord setMemberId(Long value) {
         set(0, value);
@@ -38,14 +38,14 @@ public class MemberTasksRecord extends TableRecordImpl<MemberTasksRecord> implem
     }
 
     /**
-     * Getter for <code>tmp.Member_tasks.Member_id</code>.
+     * Getter for <code>tmp.member_tasks.member_id</code>.
      */
     public Long getMemberId() {
         return (Long) get(0);
     }
 
     /**
-     * Setter for <code>tmp.Member_tasks.tasks</code>.
+     * Setter for <code>tmp.member_tasks.tasks</code>.
      */
     public MemberTasksRecord setTasks(byte... value) {
         set(1, value);
@@ -53,7 +53,7 @@ public class MemberTasksRecord extends TableRecordImpl<MemberTasksRecord> implem
     }
 
     /**
-     * Getter for <code>tmp.Member_tasks.tasks</code>.
+     * Getter for <code>tmp.member_tasks.tasks</code>.
      */
     public byte[] getTasks() {
         return (byte[]) get(1);

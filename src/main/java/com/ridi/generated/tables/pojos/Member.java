@@ -23,38 +23,38 @@ import javax.annotation.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Member implements Serializable {
 
-    private static final long serialVersionUID = -1979042064;
+    private static final long serialVersionUID = 1515501392;
 
     private final Long      id;
-    private final Timestamp createdAt;
     private final String    name;
+    private final Timestamp createdAt;
 
     public Member(Member value) {
         this.id = value.id;
-        this.createdAt = value.createdAt;
         this.name = value.name;
+        this.createdAt = value.createdAt;
     }
 
     public Member(
         Long      id,
-        Timestamp createdAt,
-        String    name
+        String    name,
+        Timestamp createdAt
     ) {
         this.id = id;
-        this.createdAt = createdAt;
         this.name = name;
+        this.createdAt = createdAt;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public Timestamp getCreatedAt() {
-        return this.createdAt;
-    }
-
     public String getName() {
         return this.name;
+    }
+
+    public Timestamp getCreatedAt() {
+        return this.createdAt;
     }
 
     @Override
@@ -62,8 +62,8 @@ public class Member implements Serializable {
         StringBuilder sb = new StringBuilder("Member (");
 
         sb.append(id);
-        sb.append(", ").append(createdAt);
         sb.append(", ").append(name);
+        sb.append(", ").append(createdAt);
 
         sb.append(")");
         return sb.toString();

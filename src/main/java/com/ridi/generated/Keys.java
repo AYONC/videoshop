@@ -4,11 +4,13 @@
 package com.ridi.generated;
 
 
+import com.ridi.generated.tables.Admin;
 import com.ridi.generated.tables.Member;
 import com.ridi.generated.tables.Post;
 import com.ridi.generated.tables.PostComment;
 import com.ridi.generated.tables.Task;
 import com.ridi.generated.tables.TaskComment;
+import com.ridi.generated.tables.records.AdminRecord;
 import com.ridi.generated.tables.records.MemberRecord;
 import com.ridi.generated.tables.records.PostCommentRecord;
 import com.ridi.generated.tables.records.PostRecord;
@@ -17,8 +19,10 @@ import com.ridi.generated.tables.records.TaskRecord;
 
 import javax.annotation.Generated;
 
+import org.jooq.Identity;
 import org.jooq.UniqueKey;
 import org.jooq.impl.AbstractKeys;
+import org.jooq.types.UInteger;
 
 
 /**
@@ -39,11 +43,13 @@ public class Keys {
     // IDENTITY definitions
     // -------------------------------------------------------------------------
 
+    public static final Identity<AdminRecord, UInteger> IDENTITY_ADMIN = Identities0.IDENTITY_ADMIN;
 
     // -------------------------------------------------------------------------
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final UniqueKey<AdminRecord> KEY_ADMIN_PRIMARY = UniqueKeys0.KEY_ADMIN_PRIMARY;
     public static final UniqueKey<MemberRecord> KEY_MEMBER_PRIMARY = UniqueKeys0.KEY_MEMBER_PRIMARY;
     public static final UniqueKey<PostRecord> KEY_POST_PRIMARY = UniqueKeys0.KEY_POST_PRIMARY;
     public static final UniqueKey<PostCommentRecord> KEY_POST_COMMENT_PRIMARY = UniqueKeys0.KEY_POST_COMMENT_PRIMARY;
@@ -59,7 +65,12 @@ public class Keys {
     // [#1459] distribute members to avoid static initialisers > 64kb
     // -------------------------------------------------------------------------
 
+    private static class Identities0 extends AbstractKeys {
+        public static Identity<AdminRecord, UInteger> IDENTITY_ADMIN = createIdentity(Admin.ADMIN, Admin.ADMIN.ID);
+    }
+
     private static class UniqueKeys0 extends AbstractKeys {
+        public static final UniqueKey<AdminRecord> KEY_ADMIN_PRIMARY = createUniqueKey(Admin.ADMIN, "KEY_admin_PRIMARY", Admin.ADMIN.ID);
         public static final UniqueKey<MemberRecord> KEY_MEMBER_PRIMARY = createUniqueKey(Member.MEMBER, "KEY_member_PRIMARY", Member.MEMBER.ID);
         public static final UniqueKey<PostRecord> KEY_POST_PRIMARY = createUniqueKey(Post.POST, "KEY_post_PRIMARY", Post.POST.ID);
         public static final UniqueKey<PostCommentRecord> KEY_POST_COMMENT_PRIMARY = createUniqueKey(PostComment.POST_COMMENT, "KEY_post_comment_PRIMARY", PostComment.POST_COMMENT.ID);
