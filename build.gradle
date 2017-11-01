@@ -93,7 +93,7 @@ dependencies {
 // gradle-jooq-plugin
 // codegen: `gradle generateDbJooqSchemaSource`
 jooq {
-	version = '3.9.1'
+	version = jooqVersion
 	db(sourceSets.main) {
 		jdbc {
 			driver = 'com.mysql.jdbc.Driver'

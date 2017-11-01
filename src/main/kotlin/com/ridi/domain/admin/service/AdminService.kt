@@ -5,7 +5,7 @@ import com.ridi.domain.admin.repository.AdminRepository
 import org.springframework.stereotype.Service
 
 @Service
-class AdminService (
+class AdminService(
     private val adminRepo: AdminRepository
 ) {
     fun create(admin: Admin) = adminRepo.save(admin)

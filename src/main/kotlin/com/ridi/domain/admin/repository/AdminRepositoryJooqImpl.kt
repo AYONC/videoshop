@@ -7,9 +7,9 @@ import javax.persistence.EntityManager
 
 @Repository
 class AdminRepositoryJooqImpl(
-        private val jooq: DSLContext,
-        em: EntityManager
-): AdminRepositoryJooq, JooqBaseRepository(em) {
+    private val jooq: DSLContext,
+    em: EntityManager
+) : AdminRepositoryJooq, JooqBaseRepository(em) {
     override fun grant() {
         // todo implement
     }

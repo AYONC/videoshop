@@ -21,8 +21,8 @@ import javax.validation.Valid
 
 @Controller
 @RequestMapping("/admin/")
-class AdminController (
-        private val adminService: AdminService
+class AdminController(
+    private val adminService: AdminService
 ) {
     @GetMapping("/add/")
     fun addAdminForm() = "add_admin"
