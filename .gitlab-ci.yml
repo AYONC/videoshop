@@ -1,20 +1,19 @@
-image 805839038026.dkr.ecr.ap-northeast-2.amazonaws.com/base-videoshop:latest
-
-before_script:
+image: 805839038026.dkr.ecr.ap-northeast-2.amazonaws.com/base-videoshop:latest
 
 stages:
   - test
   - build
   - image
-#  - deploy
 
 gradle-test:
   stage: test
-  script: "gradle test"
+  script:
+    - ./gradlew test
 
 gradle-build:
   stage: build
-  script: "gradle build"
+  script:
+    - ./gradlew build
 
 docker-build:
   stage: image
