@@ -9,7 +9,7 @@ variables:
   AWS_REGION: $AWS_REGION
 
 services:
-  - docker:dind
+  - docker:latest
 
 before_script:
   - docker info
