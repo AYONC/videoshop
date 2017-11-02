@@ -1,8 +1,14 @@
 
 spring:
-    profiles: prod
-#    datasource:
-#      password: rbx120303
-#      username: storydev
-#      driver-class-name: "com.mysql.jdbc.Driver"
-#      url: "jdbc:mysql://storydev.cemib2jfp9g1.ap-northeast-2.rds.amazonaws.com:3306/tmp"
+  profiles: prod
+  datasource:
+    password:
+    username:
+    driver-class-name: "com.mysql.jdbc.Driver"
+    url:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: "org.hibernate.dialect.MySQL5Dialect"
