@@ -36,6 +36,7 @@ docker-build:
     - feature/deploy_setting
   script:
     # install awscli
+    - apk update && apk add apt-get
     - apt-get install python3-pip -y
     - pip3 install awscli
 
