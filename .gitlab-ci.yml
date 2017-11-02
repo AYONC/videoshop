@@ -8,18 +8,24 @@ stages:
   - build
   - image
 
+before_script:
+  - ./gradlew clean generateDbJooqSchemaSource
+
 gradle-test:
   stage: test
+  only: feature/deploy_setting
   script:
     - ./gradlew test
 
 gradle-build:
   stage: build
+  only: feature/deploy_setting
   script:
     - ./gradlew build
 
 docker-build:
   stage: image
+  only: feature/deploy_setting
   script:
     - docker build -t $repository_url videoshop -f docker/videoshop/Dockerfile --build-arg version=0.0.1 .
     - docker tag videoshop:latest $repository_url
