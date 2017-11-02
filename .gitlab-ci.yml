@@ -7,25 +7,27 @@ variables:
   AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
   AWS_REGION: $AWS_REGION
 
+services:
+  - docker:dind
 
 stages:
-  - test
-  - build
+#  - test
+#  - build
   - image
 
-gradle-test:
-  stage: test
-  only:
-    - feature/deploy_setting
-  script:
-    - ./gradlew clean generateDbJooqSchemaSource test --stacktrace
-
-gradle-build:
-  stage: build
-  only:
-    - feature/deploy_setting
-  script:
-    - ./gradlew build --stacktrace
+#gradle-test:
+#  stage: test
+#  only:
+#    - feature/deploy_setting
+#  script:
+#    - ./gradlew clean generateDbJooqSchemaSource test --stacktrace
+#
+#gradle-build:
+#  stage: build
+#  only:
+#    - feature/deploy_setting
+#  script:
+#    - ./gradlew build --stacktrace
 
 docker-build:
   stage: image
