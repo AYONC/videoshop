@@ -36,8 +36,7 @@ docker-build:
     - feature/deploy_setting
   script:
     # install awscli
-    - apk update && apk add apt-get
-    - apt-get install python3-pip -y
+    - apk update && apk add python3
     - pip3 install awscli
 
     # aws ecr login
