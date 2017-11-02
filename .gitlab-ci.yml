@@ -9,7 +9,7 @@ variables:
   AWS_REGION: $AWS_REGION
 
 services:
-  - docker:dind
+  - gitlab/dind
 
 before_script:
   - docker info
