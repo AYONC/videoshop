@@ -1,11 +1,7 @@
-image: docker:latest
+image: 805839038026.dkr.ecr.ap-northeast-2.amazonaws.com/base-videoshop:latest
 
 variables:
-  repository_url: 805839038026.dkr.ecr.ap-northeast-2.amazonaws.com
-
-before_script:
-  - apk add --no-cache curl jq python py-pip
-  - pip install awscli
+  repository_url: 805839038026.dkr.ecr.ap-northeast-2.amazonaws.com/videoshop/latest
 
 stages:
   - test
@@ -25,7 +21,6 @@ gradle-build:
 docker-build:
   stage: image
   script:
-    - $(aws ecr get-login --region ap-northeast-2)
-    - docker build -t $repository_url/videoshop:latest videoshop -f docker/videoshop/Dockerfile --build-arg version=0.0.1 .
-    - docker tag videoshop:latest $repository_url/videoshop:latest
-    - docker push $repository_url/videoshop:latest
+    - docker build -t $repository_url videoshop -f docker/videoshop/Dockerfile --build-arg version=0.0.1 .
+    - docker tag videoshop:latest $repository_url
+    - docker push $repository_url
