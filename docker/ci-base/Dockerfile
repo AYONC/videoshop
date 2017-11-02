@@ -12,6 +12,3 @@ RUN ./gradlew dependencies && rm -rf /tmp/gradle-temp
 # install awscli
 RUN apt-get install python3-pip -y
 RUN pip3 install awscli
-
-# install docker
-RUN curl -sSL https://get.docker.com/ | sh
