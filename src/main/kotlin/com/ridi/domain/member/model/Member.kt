@@ -1,4 +1,4 @@
-package com.ridi.domain.member
+package com.ridi.domain.member.model
 
 import java.util.*
 import javax.persistence.*

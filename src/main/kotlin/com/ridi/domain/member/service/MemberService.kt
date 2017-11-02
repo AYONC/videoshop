@@ -1,6 +1,7 @@
-package com.ridi.domain.member
+package com.ridi.domain.member.service
 
-import com.ridi.domain.member.MemberRepository
+import com.ridi.domain.member.model.Member
+import com.ridi.domain.member.repository.MemberRepository
 import com.ridi.domain.task.model.Task
 import org.springframework.stereotype.Service
 

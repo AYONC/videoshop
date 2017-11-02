@@ -1,0 +1,23 @@
+image: 805839038026.dkr.ecr.ap-northeast-2.amazonaws.com/base-videoshop:latest
+
+stages:
+  - test
+  - build
+  - image
+
+gradle-test:
+  stage: test
+  script:
+    - ./gradlew test
+
+gradle-build:
+  stage: build
+  script:
+    - ./gradlew build
+
+docker-build:
+  stage: image
+  script:
+    - docker build -t videoshop -f docker/videoshop/Dockerfile --build-arg version=0.0.1 .
+    - docker tag videoshop:latest 805839038026.dkr.ecr.ap-northeast-2.amazonaws.com/videoshop:latest
+    - docker push 805839038026.dkr.ecr.ap-northeast-2.amazonaws.com/videoshop:latest

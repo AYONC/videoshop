@@ -1,6 +1,6 @@
 package com.ridi.domain.task.controller
 
-import com.ridi.domain.member.MemberService
+import com.ridi.domain.member.service.MemberService
 import com.ridi.domain.task.service.TaskService
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PutMapping

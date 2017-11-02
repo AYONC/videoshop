@@ -1,7 +1,7 @@
-package com.ridi.domain.task
+package com.ridi.domain.member.controller
 
-import com.ridi.domain.member.AddMemberRequest
-import com.ridi.domain.member.MemberService
+import com.ridi.domain.member.dto.AddMemberRequest
+import com.ridi.domain.member.service.MemberService
 import com.ridi.domain.task.service.TaskService
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
