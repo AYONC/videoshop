@@ -1,7 +1,9 @@
 image: 805839038026.dkr.ecr.ap-northeast-2.amazonaws.com/base-videoshop:latest
 
 variables:
-  repository_url: 805839038026.dkr.ecr.ap-northeast-2.amazonaws.com/videoshop/latest
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+  REPOSITORY_URL: 805839038026.dkr.ecr.ap-northeast-2.amazonaws.com/videoshop/latest
+
 
 stages:
   - test
@@ -30,6 +32,6 @@ docker-build:
   only:
     - feature/deploy_setting
   script:
-    - docker build -t $repository_url videoshop -f docker/videoshop/Dockerfile --build-arg version=0.0.1 .
-    - docker tag videoshop:latest $repository_url
-    - docker push $repository_url
+    - docker build -t $REPOSITORY_URL videoshop -f docker/videoshop/Dockerfile --build-arg version=0.0.1 .
+    - docker tag videoshop:latest $REPOSITORY_URL
+    - docker push $REPOSITORY_URL
