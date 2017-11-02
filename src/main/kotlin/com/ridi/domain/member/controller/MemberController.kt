@@ -13,9 +13,9 @@ import javax.validation.Valid
 
 @Controller
 @RequestMapping("/members/")
-class MemberController (
-        private val taskService: TaskService,
-        private val memberService: MemberService
+class MemberController(
+    private val taskService: TaskService,
+    private val memberService: MemberService
 ) {
     @GetMapping("/add/")
     fun addMemberForm() = "add_member"

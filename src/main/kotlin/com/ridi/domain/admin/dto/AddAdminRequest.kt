@@ -8,9 +8,7 @@ data class AddAdminRequest(
     @NotEmpty
     private val name: String,
     @NotEmpty
-    private val phone: String,
-    @NotEmpty
-    private val level: Number
+    private val phone: String
 ) {
-    fun toEntity() = Admin(name = name, phone = phone, level = level)
+    fun toEntity() = Admin(name = name, phone = phone)
 }

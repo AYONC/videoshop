@@ -25,12 +25,18 @@ class AdminController(
     private val adminService: AdminService
 ) {
     @GetMapping("/add/")
-    fun addAdminForm() = "add_admin"
+    fun addAdminForm() = "admin/add_admin"
 
     @PostMapping("/add/")
     fun addAdmin(@Valid addAdminReq: AddAdminRequest): String {
         adminService.create(addAdminReq.toEntity())
-        return "add_admin_success"
+        return "admin/add_admin_success"
+    }
+
+    @PostMapping("/update/")
+    fun updateAdmin(@Valid addAdminReq: AddAdminRequest): String {
+        adminService.create(addAdminReq.toEntity())
+        return "admin/add_admin_success"
     }
 
     @GetMapping("/{adminId}/")

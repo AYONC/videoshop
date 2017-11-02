@@ -10,6 +10,6 @@ data class Admin(
     @Id @GeneratedValue(strategy = GenerationType.AUTO) val id: Long = 0,
     @Column @NotNull val name: String,
     @Column @NotNull val phone: String,
-    @Column @NotNull val level: Number,
+    @Column @NotNull val level: Number = 1,
     @Column(name = "created_at") @NotNull val createdAt: Date = Date()
 )

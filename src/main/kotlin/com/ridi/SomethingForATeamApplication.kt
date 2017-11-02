@@ -70,5 +70,8 @@ class SomethingForATeamApplication {
 }
 
 fun main(args: Array<String>) {
+    System.setProperty("spring.devtools.restart.enabled", "false")
+    System.setProperty("spring.devtools.livereload.enabled", "true")
+    System.setProperty("spring.thymeleaf.cache", "false")
     SpringApplication.run(SomethingForATeamApplication::class.java, *args)
 }
