@@ -2,14 +2,14 @@ image: ridistory/ci-base
 
 variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
-  DOCKER_DRIVER: overlay
+#  DOCKER_DRIVER: overlay
   REPOSITORY_URL: 805839038026.dkr.ecr.ap-northeast-2.amazonaws.com/videoshop:latest
   AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
   AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
   AWS_REGION: $AWS_REGION
 
 services:
-  - gitlab/dind
+  - gitlab:dind
 
 before_script:
   - docker info
