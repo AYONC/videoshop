@@ -32,4 +32,19 @@ class HomeController(
         "task_summaries" to taskService.findAll().map { TaskSummaryResponse(it) },
         "members" to memberService.findAll()
     ))
+
+    // theme 나중에 필요 없어지면 삭제
+
+    @GetMapping("/charts")
+    fun charts() = "theme/charts"
+
+    @GetMapping("/navbar")
+    fun navbar() = "theme/navbar"
+
+    @GetMapping("/blank")
+    fun blank() = "theme/blank"
+
+    @GetMapping("/tables")
+    fun tables() = "theme/tables"
+
 }
