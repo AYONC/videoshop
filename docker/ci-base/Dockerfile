@@ -10,5 +10,5 @@ WORKDIR /tmp/gradle-temp/
 RUN ./gradlew dependencies && rm -rf /tmp/gradle-temp
 
 # install awscli
-RUN sudo apt install python3-pip
+RUN apt-get install python3-pip -y
 RUN pip3 install awscli

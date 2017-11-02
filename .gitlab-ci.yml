@@ -9,19 +9,16 @@ variables:
 
 
 stages:
-#  - test
+  - test
   - build
   - image
 
-before_script:
-  - ./gradlew clean generateDbJooqSchemaSource --stacktrace
-
-#gradle-test:
-#  stage: test
-#  only:
-#    - feature/deploy_setting
-#  script:
-#    - ./gradlew test --stacktrace
+gradle-test:
+  stage: test
+  only:
+    - feature/deploy_setting
+  script:
+    - ./gradlew clean generateDbJooqSchemaSource test --stacktrace
 
 gradle-build:
   stage: build
