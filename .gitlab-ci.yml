@@ -8,12 +8,6 @@ variables:
   AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
   AWS_REGION: $AWS_REGION
 
-services:
-  - docker:dind
-
-before_script:
-  - docker info
-
 stages:
 #  - test
 #  - build
@@ -34,10 +28,14 @@ stages:
 #    - ./gradlew build --stacktrace
 
 docker-build:
+  image: docker:git
+  services:
+    - docker:dnid
   stage: image
   only:
     - feature/deploy_setting
   script:
+    - docker info
     # aws ecr login
     - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
     - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
