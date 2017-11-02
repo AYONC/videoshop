@@ -8,8 +8,8 @@ variables:
   AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
   AWS_REGION: $AWS_REGION
 
-services:
-  - docker:latest
+#services:
+#  - docker:latest
 
 before_script:
   - docker info
