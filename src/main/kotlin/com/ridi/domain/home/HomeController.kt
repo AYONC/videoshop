@@ -13,7 +13,7 @@ class HomeController(
     private val memberService: MemberService
 ) {
     @GetMapping("/")
-    fun home() = "account/login"
+    fun home() = "index"//"account/login"
 
     @GetMapping("/index")
     fun index() = "index"
@@ -46,5 +46,4 @@ class HomeController(
 
     @GetMapping("/tables")
     fun tables() = "theme/tables"
-
 }

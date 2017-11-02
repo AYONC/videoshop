@@ -4,6 +4,7 @@ buildscript {
 		kotlinVersion = '1.1.51'
 		javaVersion = '1.8'
 		springBootVersion = '2.0.0.M5'
+		springFrameworkVersion = '5.0.0.M4'
 		jooqVersion = '3.9.1'
 		h2Version = "1.4.194"
 		mysqlConnectorVersion = '8.0.8-dmr'
@@ -75,6 +76,8 @@ dependencies {
 	compile group: "org.springframework.boot", name: "spring-boot-devtools", version: springBootVersion
 	compile group: "org.springframework.boot", name: "spring-boot-starter-mustache", version: springBootVersion
 	compile group: "org.springframework.session", name: "spring-session-core", version: springBootVersion
+	compile group: "org.springframework.security", name: "spring-security-web", version: springFrameworkVersion
+	compile group: "org.springframework.security", name: "spring-security-config", version: springFrameworkVersion
 //	compile group: "org.springframework.cloud", name: "spring-cloud-starter-zookeeper-config", version: "2.0.0.M1"
 
 	compile group: "org.jetbrains.kotlin", name: "kotlin-stdlib-jre8", version: kotlinVersion
