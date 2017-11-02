@@ -90,6 +90,12 @@ dependencies {
 	jooqRuntime "mysql:mysql-connector-java:${mysqlConnectorVersion}"
 }
 
+bootRun {
+    execSpec {
+        systemProperties System.properties
+    }
+}
+
 // gradle-jooq-plugin
 // codegen: `gradle generateDbJooqSchemaSource`
 jooq {

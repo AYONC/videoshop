@@ -6,8 +6,6 @@ server:
 spring:
   application:
     name: video-rental-shop
-  profiles:
-    active: dev
   jooq:
     sql-dialect: mysql
 #logging:
