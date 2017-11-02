@@ -1,8 +1,8 @@
-image: 805839038026.dkr.ecr.ap-northeast-2.amazonaws.com/base-videoshop:latest
+image: 805839038026.dkr.ecr.ap-northeast-2.amazonaws.com/ci-videoshop:latest
 
 variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
-  REPOSITORY_URL: 805839038026.dkr.ecr.ap-northeast-2.amazonaws.com/videoshop/latest
+  REPOSITORY_URL: 805839038026.dkr.ecr.ap-northeast-2.amazonaws.com/videoshop:latest
 
 
 stages:
