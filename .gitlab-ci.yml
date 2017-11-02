@@ -31,6 +31,7 @@ docker-build:
   image: docker:git
   services:
     - docker:dind
+    - ridistory/ci-base
   stage: image
   only:
     - feature/deploy_setting
