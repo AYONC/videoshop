@@ -13,12 +13,12 @@ stages:
 before_script:
   - ./gradlew clean generateDbJooqSchemaSource --stacktrace
 
-gradle-test:
-  stage: test
-  only:
-    - feature/deploy_setting
-  script:
-    - ./gradlew test --stacktrace
+#gradle-test:
+#  stage: test
+#  only:
+#    - feature/deploy_setting
+#  script:
+#    - ./gradlew test --stacktrace
 
 gradle-build:
   stage: build
