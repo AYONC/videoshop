@@ -1,8 +1,11 @@
-image: localhost:5000/ci-videoshop
+image: ridistory/ci-base
 
 variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
   REPOSITORY_URL: 805839038026.dkr.ecr.ap-northeast-2.amazonaws.com/videoshop:latest
+  AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+  AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+  AWS_REGION: $AWS_REGION
 
 
 stages:
@@ -32,6 +35,14 @@ docker-build:
   only:
     - feature/deploy_setting
   script:
+    # aws ecr login
+    - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+    - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+    - "`aws ecr get-login --no-include-email --region=$AWS_REGION`"
+
+    # build image
     - docker build -t $REPOSITORY_URL videoshop -f docker/videoshop/Dockerfile --build-arg version=0.0.1 .
+
+    # push image
     - docker tag videoshop:latest $REPOSITORY_URL
     - docker push $REPOSITORY_URL
