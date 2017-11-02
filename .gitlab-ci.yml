@@ -11,6 +11,9 @@ variables:
 services:
   - docker:dind
 
+before_script:
+  - docker info
+
 stages:
 #  - test
 #  - build
