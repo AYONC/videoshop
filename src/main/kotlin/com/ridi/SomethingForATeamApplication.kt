@@ -1,7 +1,8 @@
 package com.ridi
 
-import org.springframework.boot.SpringApplication
+import com.ulisesbocchio.jasyptspringboot.environment.StandardEncryptableEnvironment
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.builder.SpringApplicationBuilder
 import org.springframework.scheduling.annotation.EnableAsync
 import org.springframework.scheduling.annotation.EnableScheduling
 
@@ -12,5 +13,7 @@ import org.springframework.scheduling.annotation.EnableScheduling
 class SomethingForATeamApplication
 
 fun main(args: Array<String>) {
-    SpringApplication.run(SomethingForATeamApplication::class.java, *args)
+    SpringApplicationBuilder()
+            .environment(StandardEncryptableEnvironment())
+            .sources(SomethingForATeamApplication::class.java).run(*args)
 }

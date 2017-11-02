@@ -11,6 +11,10 @@ spring:
 #logging:
 #  config: classpath:logback-spring.xml
 
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    password: junglekim
 ---
 
 #zookeeper:

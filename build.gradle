@@ -77,6 +77,8 @@ dependencies {
 
 //	compile group: "org.springframework.cloud", name: "spring-cloud-starter-zookeeper-config", version: "2.0.0.M1"
 
+	compile group: "com.github.ulisesbocchio", name: "jasypt-spring-boot-starter", version: "1.16"
+
 	compile group: "org.jetbrains.kotlin", name: "kotlin-stdlib-jre8", version: kotlinVersion
 	compile group: "org.jetbrains.kotlin", name: "kotlin-reflect", version: kotlinVersion
 
