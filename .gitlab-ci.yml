@@ -28,7 +28,7 @@ stages:
 #    - ./gradlew build --stacktrace
 
 docker-build:
-  image: docker:git
+  image: docker:latest
   services:
     - docker:dind
   stage: image
