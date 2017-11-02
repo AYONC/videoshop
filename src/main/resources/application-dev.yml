@@ -2,7 +2,7 @@
 spring:
   profiles: dev
   datasource:
-    password: rbx120303
+    password: ENC(h2WUkeVO4a9WmSThMYWWVIp51O9vhZu/)
     username: storydev
     driver-class-name: "com.mysql.jdbc.Driver"
     url: "jdbc:mysql://storydev.cemib2jfp9g1.ap-northeast-2.rds.amazonaws.com:3306/tmp"
@@ -16,5 +16,5 @@ spring:
   redis:
     port: 6379
     host: "127.0.0.1"
-    password: ''
-    database: 0
+#    password: ''
+#    database: 0
