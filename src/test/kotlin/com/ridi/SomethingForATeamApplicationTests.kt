@@ -1,6 +1,6 @@
 package com.ridi
 
-import com.ridi.domain.member.MemberRepository
+import com.ridi.domain.member.repository.MemberRepository
 import com.ridi.domain.task.repository.TaskRepository
 import org.junit.Test
 import org.junit.runner.RunWith

@@ -1,6 +1,6 @@
 package com.ridi.domain.task.controller
 
-import com.ridi.domain.member.MemberService
+import com.ridi.domain.member.service.MemberService
 import com.ridi.domain.task.dto.AddTaskRequest
 import com.ridi.domain.task.service.TaskService
 import org.springframework.stereotype.Controller
