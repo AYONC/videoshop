@@ -30,7 +30,7 @@ stages:
 docker-build:
   image: docker:git
   services:
-    - docker:dnid
+    - docker:dind
   stage: image
   only:
     - feature/deploy_setting
