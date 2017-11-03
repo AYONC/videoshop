@@ -13,8 +13,8 @@ before_script:
 
 cache:
   paths:
-    - .gradle/wrapper
-    - .gradle/caches
+    - $GRADLE_USER_HOME/wrapper
+    - $GRADLE_USER_HOME/caches
 
 stages:
   - test
@@ -29,8 +29,7 @@ gradle-test:
     - ./gradlew clean generateDbJooqSchemaSource test --stacktrace
   artifacts:
     paths:
-      - src/
-      - .gradle/
+      - src/main/java/com/ridi/generated/
 
 gradle-build:
   stage: build
@@ -40,8 +39,6 @@ gradle-build:
     - ./gradlew build --stacktrace
   artifacts:
     paths:
-      - src/
-      - .gradle/
       - build/
 
 
