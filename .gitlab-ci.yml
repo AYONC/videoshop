@@ -24,11 +24,11 @@ gradle-build:
   stage: build
   only:
     - feature/deploy_setting
-  script:
   cache:
     paths:
       - src/
       - .gradle/
+  script:
     - ./gradlew build --stacktrace
 
 
