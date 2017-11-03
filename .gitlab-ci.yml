@@ -8,6 +8,14 @@ variables:
   AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
   AWS_REGION: $AWS_REGION
 
+before_script:
+  - export GRADLE_USER_HOME=/cache/.gradle
+
+cache:
+  paths:
+    - .gradle/wrapper
+    - .gradle/caches
+
 stages:
   - test
   - build
