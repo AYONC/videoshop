@@ -6,3 +6,6 @@ docker-build-ci-base-image:
 
 docker-build-videoshop-image:
 	docker build -f docker/videoshop/Dockerfile -t videoshop --build-arg version=0.0.1 .
+
+docker-build-image-builder:
+	docker build -f docker/image-builder/Dockerfile -t image-builder .

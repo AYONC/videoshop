@@ -26,9 +26,12 @@ gradle-build:
     - feature/deploy_setting
   script:
     - ./gradlew build --stacktrace
+  cache:
+    paths:
+      - build/libs/
 
 docker-build:
-  image: docker:latest
+  image: ridistory/image-builder:latest
   services:
     - docker:dind
   stage: image
