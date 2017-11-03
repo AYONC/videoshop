@@ -3,29 +3,29 @@ image: ridistory/ci-base
 variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
   DOCKER_DRIVER: overlay
-  REPOSITORY_URL: 805839038026.dkr.ecr.ap-northeast-2.amazonaws.com/videoshop:latest
+  REPOSITORY_URL: $REPOSITORY_URL
   AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
   AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
   AWS_REGION: $AWS_REGION
 
 stages:
-#  - test
-#  - build
+  - test
+  - build
   - image
 
-#gradle-test:
-#  stage: test
-#  only:
-#    - feature/deploy_setting
-#  script:
-#    - ./gradlew clean generateDbJooqSchemaSource test --stacktrace
-#
-#gradle-build:
-#  stage: build
-#  only:
-#    - feature/deploy_setting
-#  script:
-#    - ./gradlew build --stacktrace
+gradle-test:
+  stage: test
+  only:
+    - feature/deploy_setting
+  script:
+    - ./gradlew clean generateDbJooqSchemaSource test --stacktrace
+
+gradle-build:
+  stage: build
+  only:
+    - feature/deploy_setting
+  script:
+    - ./gradlew build --stacktrace
 
 docker-build:
   image: docker:latest
@@ -45,8 +45,7 @@ docker-build:
     - "`aws ecr get-login --no-include-email --region=$AWS_REGION`"
 
     # build image
-    - docker build -t $REPOSITORY_URL videoshop -f docker/videoshop/Dockerfile --build-arg version=0.0.1 .
+    - docker build -t $REPOSITORY_URL -f docker/videoshop/Dockerfile --build-arg version=0.0.1 .
 
     # push image
-    - docker tag videoshop:latest $REPOSITORY_URL
     - docker push $REPOSITORY_URL
