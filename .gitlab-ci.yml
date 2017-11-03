@@ -3,7 +3,7 @@ image: ridistory/ci-base
 variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
   DOCKER_DRIVER: overlay
-  REPOSITORY_URL: $REPOSITORY_URL
+  PROD_IMAGE_URL: $PROD_IMAGE_URL
   AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
   AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
   AWS_REGION: $AWS_REGION
@@ -23,8 +23,6 @@ stages:
 
 gradle-test:
   stage: test
-  only:
-    - feature/deploy_setting
   script:
     - ./gradlew clean generateDbJooqSchemaSource test --stacktrace
   artifacts:
@@ -34,21 +32,20 @@ gradle-test:
 gradle-build:
   stage: build
   only:
-    - feature/deploy_setting
+    - release/*
   script:
     - ./gradlew build --stacktrace
   artifacts:
     paths:
       - build/
 
-
-docker-build:
+docker-production-deploy:
   image: ridistory/image-builder:latest
   services:
     - docker:dind
   stage: image
   only:
-    - feature/deploy_setting
+    - release/production
   script:
     # aws ecr login
     - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
@@ -56,7 +53,7 @@ docker-build:
     - "`aws ecr get-login --no-include-email --region=$AWS_REGION`"
 
     # build image
-    - docker build -t $REPOSITORY_URL -f docker/videoshop/Dockerfile --build-arg version=0.0.1 .
+    - docker build -t $PROD_IMAGE_URL -f docker/videoshop/Dockerfile --build-arg version=0.0.1 .
 
     # push image
-    - docker push $REPOSITORY_URL
+    - docker push $PROD_IMAGE_URL
