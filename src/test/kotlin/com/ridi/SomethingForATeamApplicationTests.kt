@@ -1,6 +1,7 @@
 package com.ridi
 
-import com.ridi.domain.member.MemberRepository
+import com.ridi.domain.member.repository.MemberRepository
+import com.ridi.domain.admin.repository.AdminRepository
 import com.ridi.domain.task.repository.TaskRepository
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -15,7 +16,8 @@ class SomethingForATeamApplicationTests {
     lateinit var taskRepo: TaskRepository
 	@Autowired
 	lateinit var memberRepo: MemberRepository
-
+    @Autowired
+    lateinit var adminRepo: AdminRepository
 	@Test
 	fun test_1() {
 	}

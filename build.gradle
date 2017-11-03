@@ -45,6 +45,10 @@ noArg {
 	annotation("javax.persistence.Entity")
 }
 
+bootRun {
+	sourceResources sourceSets.main
+}
+
 group = 'com.ridi'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = javaVersion
