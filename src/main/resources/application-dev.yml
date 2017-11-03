@@ -1,0 +1,20 @@
+
+spring:
+  profiles: dev
+  datasource:
+    password: ENC(h2WUkeVO4a9WmSThMYWWVIp51O9vhZu/)
+    username: storydev
+    driver-class-name: "com.mysql.jdbc.Driver"
+    url: "jdbc:mysql://storydev.cemib2jfp9g1.ap-northeast-2.rds.amazonaws.com:3306/tmp"
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: mysql
+    properties:
+      hibernate:
+        dialect: "org.hibernate.dialect.MySQL5Dialect"
+  redis:
+    port: 8081
+    host: "127.0.0.1"
+#    password: "rbx120303"
+#    database: 0
