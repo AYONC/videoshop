@@ -20,7 +20,7 @@ gradle-test:
   script:
     - ./gradlew clean generateDbJooqSchemaSource test --stacktrace
   artifacts:
-    path:
+    paths:
       - src/
       - .gradle/
 
