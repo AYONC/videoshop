@@ -37,9 +37,11 @@ class VideoController(
     @GetMapping("/{videoId}/")
     fun video(@PathVariable videoId: Long): Any {
         val video = videoService.getOne(videoId)
+        val videoPrices = videoPriceService.findByVideo(video)
         return ModelAndView(
                 "video/detail", mapOf(
-                "video" to video
+                "video" to video,
+                "videoPrices" to videoPrices
         ))
     }
 

@@ -20,6 +20,31 @@
             <button type="submit">실행</button>
         </form>
         {{/video}}
+        <div>
+            <h2>비디오가격보기</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>가격</th>
+                        <th>적용시작시간</th>
+                        <th>생성시간</th>
+                        <th>적용여부</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {{#videoPrices}}
+                    <tr>
+                        <td>{{id}}</td>
+                        <td>{{price}}</td>
+                        <td>{{startedAt}}</td>
+                        <td>{{createdAt}}</td>
+                        <td>{{isCurrentPrice}}</td>
+                    </tr>
+                {{/videoPrices}}
+                </tbody>
+            </table>
+        </div>
 
         <script type="text/javascript">
             const openButton = document.querySelector(".video-open-button");

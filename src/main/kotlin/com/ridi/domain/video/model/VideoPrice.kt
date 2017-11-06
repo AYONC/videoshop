@@ -10,7 +10,16 @@ import javax.validation.constraints.NotNull
 data class VideoPrice(
         @Id @GeneratedValue(strategy = GenerationType.AUTO) val id: Long = 0,
         @Column @NotNull val price: Int = 0,
-        @JoinColumn(name = "video_id") @ManyToOne(targetEntity = Video::class) @NotNull val video: Video,
+
+        @ManyToOne(targetEntity = Video::class)
+        @JoinColumn(name = "video_id")
+        @NotNull
+        val video: Video,
+
         @Column(name = "started_at") @NotNull val startedAt: Date = Date(),
         @Column(name = "created_at") @NotNull val createdAt: Date = Date()
-)
+) {
+    fun isCurrentPrice(): Boolean {
+        return false
+    }
+}
