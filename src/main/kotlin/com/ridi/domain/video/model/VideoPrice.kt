@@ -18,8 +18,4 @@ data class VideoPrice(
 
         @Column(name = "started_at") @NotNull val startedAt: Date = Date(),
         @Column(name = "created_at") @NotNull val createdAt: Date = Date()
-) {
-    fun isCurrentPrice(): Boolean {
-        return false
-    }
-}
+)
