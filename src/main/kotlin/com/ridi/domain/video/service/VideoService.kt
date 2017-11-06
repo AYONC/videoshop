@@ -26,7 +26,17 @@ class VideoService(
         return video
     }
 
-    fun open(videoId: Long) {}
+    fun open(videoId: Long) {
+        changeIsOpened(videoId, true)
+    }
 
-    fun close(videoId: Long) {}
+    fun close(videoId: Long) {
+        changeIsOpened(videoId, false)
+    }
+
+    private fun changeIsOpened(videoId: Long, isOpened: Boolean) {
+        val video: Video = getOne(videoId)
+        video.isOpened = isOpened
+        videoRepo.save(video)
+    }
 }
