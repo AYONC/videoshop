@@ -1,6 +1,6 @@
 
 spring:
-  profiles: dev
+  profiles: test
   datasource:
     password: ENC(h2WUkeVO4a9WmSThMYWWVIp51O9vhZu/)
     username: storydev
