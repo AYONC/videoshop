@@ -12,5 +12,6 @@ data class Video(
     @Column @NotNull var title: String,
     @Column @NotNull var description: String,
     @Column(name = "cover_path", nullable = true) var coverPath: String? = null,
+    @Column(name = "is_opened", nullable = false) var isOpened: Boolean = false,
     @Column(name = "created_at") @NotNull val createdAt: Date = Date()
 )

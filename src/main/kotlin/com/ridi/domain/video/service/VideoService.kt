@@ -25,4 +25,8 @@ class VideoService(
         videoRepo.save(video)
         return video
     }
+
+    fun open(videoId: Long) {}
+
+    fun close(videoId: Long) {}
 }

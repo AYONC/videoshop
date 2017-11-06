@@ -2,7 +2,6 @@ package com.ridi.domain.video.controller
 
 import com.ridi.domain.video.dto.AddVideoRequest
 import com.ridi.domain.video.dto.UpdateVideoRequest
-import com.ridi.domain.video.model.Video
 import com.ridi.domain.video.service.VideoPriceService
 import com.ridi.domain.video.service.VideoService
 import org.springframework.stereotype.Controller
@@ -36,17 +35,20 @@ class VideoController(
     }
 
     @GetMapping("/{videoId}/")
-    fun video(@PathVariable videoId: Long): Any = ModelAndView(
-        "video/detail", mapOf(
-        "video" to videoService.getOne(videoId)
-    ))
+    fun video(@PathVariable videoId: Long): Any {
+        val video = videoService.getOne(videoId)
+        return ModelAndView(
+                "video/detail", mapOf(
+                "video" to video
+        ))
+    }
 
     @PostMapping("/{videoId}/")
     fun updateVideo(@PathVariable videoId: Long, @Valid updateVideoRequest: UpdateVideoRequest): Any {
         val video = videoService.update(videoId, updateVideoRequest)
         return  ModelAndView(
-            "video/detail", mapOf(
-            "video" to video
+                "video/detail", mapOf(
+                "video" to video
         ))
     }
 }
