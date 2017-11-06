@@ -47,6 +47,9 @@ noArg {
 
 bootRun {
 	sourceResources sourceSets.main
+	execSpec {
+		systemProperties System.properties
+	}
 }
 
 group = 'com.ridi'
@@ -97,12 +100,6 @@ dependencies {
 	testCompile group: "org.jetbrains.kotlin", name: "kotlin-test-junit", version: kotlinVersion
 
 	jooqRuntime "mysql:mysql-connector-java:${mysqlConnectorVersion}"
-}
-
-bootRun {
-    execSpec {
-        systemProperties System.properties
-    }
 }
 
 // gradle-jooq-plugin
