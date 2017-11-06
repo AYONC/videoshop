@@ -1,0 +1,15 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <a href="/"><< home</a>
+        {{#video}}
+        <h2>비디오 보기 - {{title}}</h2>
+        <form method="POST">
+            <input type="text" name="title" placeholder="title" value="{{title}}"/>
+            <input type="text" name="description" placeholder="description" value="{{description}}"/>
+            <button type="submit">실행</button>
+        </form>
+        {{/video}}
+    </body>
+</html>

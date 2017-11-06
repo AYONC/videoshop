@@ -9,5 +9,5 @@ data class AddVideoRequest(
         @NotEmpty
         private val description: String
 ) {
-    fun toEntity() = Video(title=title, description=description)
+    fun toEntity() = Video(title = title, description = description)
 }
