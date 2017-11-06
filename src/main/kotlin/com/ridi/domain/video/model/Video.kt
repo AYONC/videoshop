@@ -11,6 +11,6 @@ data class Video(
     @Id @GeneratedValue(strategy = GenerationType.AUTO) val id: Long = 0,
     @Column @NotNull val title: String,
     @Column @NotNull val description: String,
-    @Column(name = "cover_path", nullable = true) val coverPath: String,
+    @Column(name = "cover_path", nullable = true) val coverPath: String? = null,
     @Column(name = "created_at") @NotNull val createdAt: Date = Date()
 )
