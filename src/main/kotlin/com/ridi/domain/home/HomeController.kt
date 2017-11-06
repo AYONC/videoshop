@@ -1,15 +1,14 @@
 package com.ridi.domain.home
 
 import com.ridi.domain.member.service.MemberService
-import com.ridi.domain.task.service.TaskService
 import com.ridi.domain.task.dto.TaskSummaryResponse
+import com.ridi.domain.task.service.TaskService
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.servlet.ModelAndView
-import javax.servlet.http.HttpSession
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
-
+import org.springframework.web.servlet.ModelAndView
+import javax.servlet.http.HttpSession
 
 
 @Controller

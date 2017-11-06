@@ -1,8 +1,8 @@
 package com.ridi.domain.task.model
 
 import com.ridi.domain.member.model.Member
+import java.util.*
 import javax.persistence.*
-import java.util.Date
 import javax.validation.constraints.NotNull
 
 @Entity
