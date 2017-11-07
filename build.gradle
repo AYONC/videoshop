@@ -48,6 +48,9 @@ noArg {
 
 bootRun {
 	sourceResources sourceSets.main
+	execSpec {
+		systemProperties System.properties
+	}
 }
 
 group = 'com.ridi'
@@ -74,11 +77,19 @@ dependencies {
 	compile group: "org.springframework.boot", name: "spring-boot-starter-jooq", version: springBootVersion
 	compile group: "org.springframework.boot", name: "spring-boot-starter-data-jpa", version: springBootVersion
 	compile group: "org.springframework.boot", name: "spring-boot-devtools", version: springBootVersion
+	compile group: "org.springframework.boot", name: "spring-boot-starter-mustache", version: "2.0.0.M4"
+	compile group: "org.springframework.boot", name: "spring-boot-starter-redis", version: "1.0.0.RELEASE"
+
+	compile group: "org.springframework.session", name: "spring-session-data-redis", version: "2.0.0.M4"
+	compile group: "io.lettuce", name: "lettuce-core", version: "5.0.0.RC2"
+
 	compile group: "org.springframework.boot", name: "spring-boot-starter-mustache", version: springBootVersion
 	compile group: "org.springframework.session", name: "spring-session-core", version: springBootVersion
 	compile group: "org.springframework.boot", name: "spring-boot-starter-security", version: springBootVersion
 //	compile group: "org.springframework.security", name: "spring-security-config", version: springFrameworkVersion
 //	compile group: "org.springframework.cloud", name: "spring-cloud-starter-zookeeper-config", version: "2.0.0.M1"
+
+	compile group: "com.github.ulisesbocchio", name: "jasypt-spring-boot-starter", version: "1.16"
 
 	compile group: "org.jetbrains.kotlin", name: "kotlin-stdlib-jre8", version: kotlinVersion
 	compile group: "org.jetbrains.kotlin", name: "kotlin-reflect", version: kotlinVersion

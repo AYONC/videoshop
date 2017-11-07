@@ -2,7 +2,7 @@
 /build/
 /out/
 !gradle/wrapper/gradle-wrapper.jar
-/main/java/com/ridi/genreated/
+/src/main/java/com/ridi/generated/**/*
 
 ### STS ###
 .apt_generated
