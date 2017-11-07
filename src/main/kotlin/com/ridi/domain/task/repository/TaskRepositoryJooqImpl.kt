@@ -5,7 +5,6 @@ import com.ridi.generated.tables.Task.TASK
 import com.ridi.infra.repository.JooqBaseRepository
 import org.jooq.DSLContext
 import org.springframework.stereotype.Repository
-import java.sql.Timestamp
 import javax.persistence.EntityManager
 
 @Repository

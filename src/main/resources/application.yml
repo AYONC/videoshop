@@ -6,13 +6,15 @@ server:
 spring:
   application:
     name: video-rental-shop
-  profiles:
-    active: dev
   jooq:
     sql-dialect: mysql
 #logging:
 #  config: classpath:logback-spring.xml
 
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    password: junglekim
 ---
 
 #zookeeper:
