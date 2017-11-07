@@ -4,6 +4,7 @@ import com.ridi.domain.member.service.MemberService
 import com.ridi.domain.task.dto.TaskSummaryResponse
 import com.ridi.domain.task.service.TaskService
 import org.springframework.stereotype.Controller
+import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
@@ -17,10 +18,18 @@ class HomeController(
     private val memberService: MemberService
 ) {
     @GetMapping("/")
-    fun home() = "account/login"
+    fun home(model: Model): String {
+        model.addAllAttributes(mapOf(
+                "TITLE" to "로그인",
+                "DEFAULT_EMAIL" to "abcd@gmail.co.jp",
+                "CAKE" to mapOf("CHOCO" to "BLACK"),
+                "R_FUNC" to { "firjfdddd" }
+        ))
+        return "account/login"
+    }
 
     @GetMapping("/index")
-    fun index() = "index"
+    fun index() = "home/index"
 
     @GetMapping("/login")
     fun login() = "account/login"
@@ -32,7 +41,7 @@ class HomeController(
     fun forgotPassword() = "account/forgot-password"
 
     @GetMapping("/overall")
-    fun overall() = ModelAndView("overall", mapOf(
+    fun overall() = ModelAndView("home/overall", mapOf(
         "task_summaries" to taskService.findAll().map { TaskSummaryResponse(it) },
         "members" to memberService.findAll()
     ))

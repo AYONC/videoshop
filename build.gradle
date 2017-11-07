@@ -76,7 +76,8 @@ dependencies {
 	compile group: "org.springframework.boot", name: "spring-boot-starter-jooq", version: springBootVersion
 	compile group: "org.springframework.boot", name: "spring-boot-starter-data-jpa", version: springBootVersion
 	compile group: "org.springframework.boot", name: "spring-boot-devtools", version: springBootVersion
-	compile group: "org.springframework.boot", name: "spring-boot-starter-mustache", version: "2.0.0.M4"
+	compile group: "pl.allegro.tech.boot", name: "handlebars-spring-boot-starter", version: "0.2.15"
+
 	compile group: "org.springframework.boot", name: "spring-boot-starter-redis", version: "1.0.0.RELEASE"
 
 	compile group: "org.springframework.session", name: "spring-session-data-redis", version: "2.0.0.M4"

@@ -1,0 +1,34 @@
+{{#partial "content"}}
+<h2>overall</h2>
+<h3>tasks</h3>
+<ul>
+{{#task_summaries}}
+    <li>
+        <a href="/tasks/{{id}}/">
+            {{title}}
+            {{#member}}(assigned to {{member}}){{/member}}
+            {{^member}}(not assigned){{/member}}
+        </a>
+    </li>
+{{/task_summaries}}
+</ul>
+<hr />
+
+<h3>members</h3>
+<ul>
+    {{#members}}
+        <li>
+          <a href="/members/{{id}}/">{{name}}</a>
+          ({{createdAt}})
+        </li>
+    {{/members}}
+</ul>
+<hr />
+
+<div>
+    <a href="/members/add/">add member</a>
+</div>
+<div>
+    <a href="/tasks/add/">add task</a>
+</div>
+{{/partial}}
