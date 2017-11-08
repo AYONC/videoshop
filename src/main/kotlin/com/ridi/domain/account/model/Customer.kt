@@ -5,9 +5,10 @@ import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
 
-class Customer: UserDetails {
-    private var username: String = ""
-    private var password: String = ""
+class Customer(
+    private var username: String,
+    private var password: String
+): UserDetails {
 
     private var isAccountNonExpired: Boolean = false
     private var isAccountNonLocked: Boolean = false

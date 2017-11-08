@@ -29,10 +29,4 @@ class AccountController(
         accountService.create(addAdminReq.toEntity())
         return "admin/add_admin_success"
     }
-
-    @GetMapping("/{adminId}/")
-    fun admin(@PathVariable adminId: Long): Any {
-        val admin = accountService.getAccount(adminId)
-        return admin
-    }
 }

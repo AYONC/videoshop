@@ -1,6 +1,5 @@
 package com.ridi.domain.account.repository
 
-
 import com.ridi.domain.account.model.Account
 import com.ridi.generated.tables.Account.ACCOUNT
 import com.ridi.infra.repository.JooqBaseRepository

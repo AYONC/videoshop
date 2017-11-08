@@ -20,7 +20,16 @@ class SomethingForATeamApplicationTests {
 	lateinit var memberRepo: MemberRepository
     @Autowired
     lateinit var accountRepo: AccountRepository
+
 	@Test
-	fun test_1() {
+	fun accountFindByUsername() {
+		val account = accountRepo.findByUsername("test")
+		print(account)
+	}
+
+	@Test
+	fun taskFind() {
+		val tasks = taskRepo.findAssigned(1)
+		print(tasks)
 	}
 }

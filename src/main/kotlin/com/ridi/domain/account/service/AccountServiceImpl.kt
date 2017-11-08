@@ -21,8 +21,19 @@ class AccountServiceImpl(
     }
 
     override fun loadUserByUsername(username: String): UserDetails? {
-        var account = accountRepo.findByUsername(username).get(0)
-        return Customer()
+        System.out.println(username)
+
+        try {
+            var accounts = accountRepo.findByUsername(username)
+            for (account in accounts) {
+                System.out.println(account)
+            }
+        } finally {
+
+        }
+
+        var customer: Customer = Customer(username=username, password="1234")
+        return customer
     }
 
     override fun getAuthorities(username: String): Collection<GrantedAuthority> {

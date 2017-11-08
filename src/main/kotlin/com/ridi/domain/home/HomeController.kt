@@ -22,9 +22,6 @@ class HomeController(
     @GetMapping("/index")
     fun index() = "index"
 
-    @GetMapping("/login")
-    fun login() = "account/login"
-
     @GetMapping("/register")
     fun register() = "account/register"
 
