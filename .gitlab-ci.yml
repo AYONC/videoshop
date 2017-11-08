@@ -32,7 +32,8 @@ gradle-test:
 gradle-build:
   stage: build
   only:
-    - release/*
+    - release/production
+    - release/staging
   script:
     - ./gradlew build --stacktrace
   artifacts:
