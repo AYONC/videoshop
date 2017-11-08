@@ -14,6 +14,9 @@ import javax.validation.Valid
 class AccountController(
     private val accountService: AccountService
 ) {
+    @RequestMapping("/login")
+    fun account() = "account/login"
+
     @GetMapping("/add/")
     fun addAdminForm() = "admin/add_admin"
 

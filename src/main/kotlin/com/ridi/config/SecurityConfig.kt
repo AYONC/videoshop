@@ -16,20 +16,22 @@ class SecurityConfig(
 ) : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity) {
-        http.csrf().disable()
+        http
             .authorizeRequests()
-            .antMatchers("/account/login").permitAll()
-            .antMatchers("/account").hasAuthority("USER")
-            .antMatchers("/admin").hasAuthority("ADMIN")
+//            .antMatchers("**").hasAuthority(RoleType.STAFF.toString())
+//            .antMatchers("/admin").hasAuthority(RoleType.ADMIN.toString())
             .anyRequest().authenticated()
             .and()
             .formLogin()
+            .loginPage("/account/login")
             .loginProcessingUrl("/login")
+            .permitAll()
             .and()
             .logout()
             .logoutRequestMatcher(AntPathRequestMatcher("/logout"))
             .logoutSuccessUrl("/")
     }
+
 
     @Configuration
     class AuthenticationConfiguration(
@@ -38,8 +40,9 @@ class SecurityConfig(
         val passwordEncoder: PasswordEncoder = AccountPasswordEncoder()
 
         override fun init(auth: AuthenticationManagerBuilder) {
-            auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder)
+            auth.userDetailsService(userDetailsService).passwordEncoder(AccountPasswordEncoder())
         }
+
     }
 
     // todo password encoding

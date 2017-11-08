@@ -19,13 +19,14 @@ class HomeController(
 ) {
     @GetMapping("/")
     fun home(model: Model): String {
-        model.addAllAttributes(mapOf(
+        return index()
+        /*model.addAllAttributes(mapOf(
                 "TITLE" to "로그인",
-                "DEFAULT_EMAIL" to "abcd@gmail.co.jp",
+                "DEFAULT_EMAIL" to "email",
                 "CAKE" to mapOf("CHOCO" to "BLACK"),
                 "R_FUNC" to { "firjfdddd" }
         ))
-        return "account/login"
+        return "account/login"*/
     }
 
     @GetMapping("/index")
@@ -37,7 +38,7 @@ class HomeController(
     @GetMapping("/forgot-password")
     fun forgotPassword() = "account/forgot-password"
 
-    @GetMapping("/overall")
+    @RequestMapping("/overall")
     fun overall() = ModelAndView("home/overall", mapOf(
         "task_summaries" to taskService.findAll().map { TaskSummaryResponse(it) },
         "members" to memberService.findAll()
