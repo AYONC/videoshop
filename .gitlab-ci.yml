@@ -65,5 +65,5 @@ docker-production-deploy:
     - docker push $PROD_IMAGE_URL:latest
 
     # deploy
-    - ecs deploy videoshop-cluster video-service -t $CI_COMMIT_SHA --region $AWS_REGION --access-key-id $AWS_ACCESS_KEY_ID --secret-access-key $AWS_SECRET_ACCESS_KEY
+    - ecs deploy videoshop-cluster videoshop-service -t $CI_COMMIT_SHA --region $AWS_REGION --access-key-id $AWS_ACCESS_KEY_ID --secret-access-key $AWS_SECRET_ACCESS_KEY
     - export AWS_REGION=$AWS_REGION
