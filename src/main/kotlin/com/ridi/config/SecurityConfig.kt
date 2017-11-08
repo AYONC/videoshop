@@ -2,9 +2,11 @@ package com.ridi.config
 
 import com.ridi.common.RoleType
 import com.ridi.domain.account.service.AccountService
+import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.config.http.SessionCreationPolicy
@@ -12,33 +14,48 @@ import org.springframework.security.core.Authentication
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.web.DefaultRedirectStrategy
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher
 import org.springframework.stereotype.Component
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
+import org.springframework.session.web.http.HeaderHttpSessionStrategy
+import org.springframework.session.web.http.HttpSessionStrategy
+import org.springframework.session.MapSessionRepository
+import org.springframework.session.SessionRepository
+import org.springframework.session.config.annotation.web.http.EnableSpringHttpSession
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
+
 
 @Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 class SecurityConfig(
     var accountService: AccountService
 ) : WebSecurityConfigurerAdapter() {
+//    override fun configure(builder: AuthenticationManagerBuilder?) {
+//        builder!!.inMemoryAuthentication()
+//                .withUser("user").password("password").roles("USER")
+//    }
 
     override fun configure(http: HttpSecurity) {
         http.csrf().disable()
-            .sessionManagement()
-            .sessionCreationPolicy(SessionCreationPolicy.NEVER)
-            .and()
+//            .sessionManagement()
+//            .sessionCreationPolicy(SessionCreationPolicy.NEVER)
+//            .and()
             .authorizeRequests()
-            .antMatchers("/admin/**").hasAuthority(RoleType.ADMIN.toString())
-            .antMatchers("/**").hasAuthority(RoleType.STAFF.toString())
-            .anyRequest().authenticated()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/**").hasAuthority("USER")
+                .anyRequest().authenticated()
 //            .antMatchers("/index").permitAll()
             .and()
             .formLogin()
 //            .loginPage("/account/login")
-            .successHandler(RefererRedirectionAuthenticationSuccessHandler())
-//            .loginProcessingUrl("/account/login")
-            .permitAll()
+//                .defaultSuccessUrl("/")
+            .loginProcessingUrl("/login")
+//                .successHandler(SuccessHandler())
             .and()
             .logout()
             .logoutRequestMatcher(AntPathRequestMatcher("/logout"))
@@ -46,15 +63,14 @@ class SecurityConfig(
     }
 /*
 
-    @Bean
-    fun httpSessionStrategy() = HeaderHttpSessionStrategy()
-
-    @Bean
-    override fun authenticationManagerBean(): AuthenticationManager {
-        return super.authenticationManagerBean()
-    }
-*/
-
+    class SuccessHandler: AuthenticationSuccessHandler {
+        override fun onAuthenticationSuccess(request: HttpServletRequest?, response: HttpServletResponse?, authentication: Authentication?) {
+            DefaultRedirectStrategy().sendRedirect(request, response, "/index")
+        }
+    }*/
+//    @Bean
+//    fun successHandler() = RefererRedirectionAuthenticationSuccessHandler()
+/*
     @Component
     class RefererRedirectionAuthenticationSuccessHandler : SimpleUrlAuthenticationSuccessHandler() {
         var redirectStrategy = DefaultRedirectStrategy()
@@ -64,11 +80,11 @@ class SecurityConfig(
         }
 
         override fun onAuthenticationSuccess(request: HttpServletRequest?, response: HttpServletResponse?, authentication: Authentication?) {
-            redirectStrategy.sendRedirect(request, response, "/");
-//            super.onAuthenticationSuccess(request, response, authentication)
+//            redirectStrategy.sendRedirect(request, response, "/");
+            super.onAuthenticationSuccess(request, response, authentication)
         }
     }
-
+*/
     @Configuration
     class AuthenticationConfiguration(
         var userDetailsService: UserDetailsService
@@ -94,3 +110,41 @@ class SecurityConfig(
         }
     }
 }
+
+/*
+
+@Configuration
+@EnableSpringHttpSession
+class HttpSessionConfig {
+    @Bean
+    fun httpSessionStrategy(): HttpSessionStrategy {
+        return HeaderHttpSessionStrategy()
+    }
+}
+*/
+/*
+class CommonLoginSuccessHandler(defaultUrl: String): SavedRequestAwareAuthenticationSuccessHandler() {
+    init {
+        defaultTargetUrl = defaultUrl
+    }
+    override fun onAuthenticationSuccess(request: HttpServletRequest, response: HttpServletResponse, authentication: Authentication?) {
+        var session = request.getSession(false)
+        var redirectUrl = session.getAttribute("prevPage").toString()
+        if (redirectUrl != null) {
+            session.removeAttribute("prevPage")
+            redirectStrategy.sendRedirect(request, response, redirectUrl)
+        } else {
+//            super.onAuthenticationSuccess(request, response, authentication)
+            redirectStrategy.sendRedirect(request, response, defaultTargetUrl)
+        }
+    }
+}
+*/
+/*
+
+@RestController
+class UserController {
+    @RequestMapping("/api/users")
+    fun authorized()  = "Hello Secured World"
+}
+*/

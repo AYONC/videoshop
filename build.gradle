@@ -86,6 +86,7 @@ dependencies {
 
 	compile group: "org.springframework.session", name: "spring-session-core", version: springBootVersion
 	compile group: "org.springframework.boot", name: "spring-boot-starter-security", version: springBootVersion
+	compile group: "org.springframework.security", name: "spring-security-config", version: springFrameworkVersion
 
 	compile group: "com.github.ulisesbocchio", name: "jasypt-spring-boot-starter", version: "1.16"
 
