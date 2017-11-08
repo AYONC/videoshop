@@ -21,4 +21,5 @@ spring:
 
 
 handlebars:
+  suffix: .hbs
   cache: false
