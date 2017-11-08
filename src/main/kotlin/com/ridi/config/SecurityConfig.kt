@@ -37,7 +37,6 @@ class SecurityConfig(
     class AuthenticationConfiguration(
         var userDetailsService: UserDetailsService
     ) : GlobalAuthenticationConfigurerAdapter() {
-        val passwordEncoder: PasswordEncoder = AccountPasswordEncoder()
 
         override fun init(auth: AuthenticationManagerBuilder) {
             auth.userDetailsService(userDetailsService).passwordEncoder(AccountPasswordEncoder())
