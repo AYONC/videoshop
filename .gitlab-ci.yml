@@ -51,7 +51,6 @@ docker-production-deploy:
     # aws ecr login
     - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
     - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-    - export AWS_REGION=$AWS_REGION
     - "`aws ecr get-login --no-include-email --region=$AWS_REGION`"
 
     # build image
@@ -66,4 +65,5 @@ docker-production-deploy:
     - docker push $PROD_IMAGE_URL:latest
 
     # deploy
-    - ecs deploy videoshop-cluster video-service -t $CI_COMMIT_SHA
+    - ecs deploy videoshop-cluster video-service -t $CI_COMMIT_SHA --region $AWS_REGION --access-key-id $AWS_ACCESS_KEY_ID --secret-access-key $AWS_SECRET_ACCESS_KEY
+    - export AWS_REGION=$AWS_REGION
