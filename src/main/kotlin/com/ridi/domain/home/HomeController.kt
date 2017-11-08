@@ -17,7 +17,7 @@ class HomeController(
     private val taskService: TaskService,
     private val memberService: MemberService
 ) {
-    @GetMapping("/")
+    @RequestMapping("/")
     fun home(model: Model): String {
         return index()
         /*model.addAllAttributes(mapOf(
