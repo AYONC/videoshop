@@ -53,7 +53,15 @@ docker-production-deploy:
     - "`aws ecr get-login --no-include-email --region=$AWS_REGION`"
 
     # build image
-    - docker build -t $PROD_IMAGE_URL -f docker/videoshop/Dockerfile --build-arg version=0.0.1 .
+    - docker build -t videoshop -f docker/videoshop/Dockerfile --build-arg version=0.0.1 .
+
+    # tagging
+    - docker tag videoshop $PROD_IMAGE_URL:$CI_COMMIT_SHA
+    - docker tag videoshop $PROD_IMAGE_URL:latest
 
     # push image
-    - docker push $PROD_IMAGE_URL
+    - docker push $PROD_IMAGE_URL:$CI_COMMIT_SHA
+    - docker push $PROD_IMAGE_URL:latest
+
+    # deploy
+    - ecs deploy videoshop-cluster video-service -t $CI_COMMIT_SHA
