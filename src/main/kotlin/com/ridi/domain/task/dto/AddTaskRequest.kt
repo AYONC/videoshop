@@ -1,7 +1,7 @@
 package com.ridi.domain.task.dto
 
 import com.ridi.domain.task.model.Task
-import javax.validation.constraints.NotEmpty
+import org.hibernate.validator.constraints.NotEmpty
 import javax.validation.constraints.Size
 
 data class AddTaskRequest (

@@ -32,15 +32,24 @@
             const cancelAssignBtn = document.querySelector('.cancel_assign_btn');
             if (cancelAssignBtn != null) {
                 cancelAssignBtn.addEventListener('click', e => {
-                    fetch("/tasks/{{task.id}}/cancel-assign/", {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/json',
+                    fetch("/tasks/{{task.id}}/cancel-assign/",;
+                {
+                    'PUT',
+                            headers;
+                :
+                    {
+                        'Content-Type';
+                    :
+                        'application/json',
                         }
                     })
-                    .then(resp => resp.json())
-                    .then(data => window.location.reload(true));
-                });
+            .
+                then(resp = > resp.json();
+            )
+            .
+                then(data = > window.location.reload(true);
+            )
+            })
             }
 
             document.querySelectorAll('.assign_btn').forEach(btn => {
@@ -52,10 +61,12 @@
                         'Content-Type': 'application/json',
                     }
                 })
-                .then(resp => resp.json())
-                .then(data => window.location.reload(true));
-              });
-            });
+                        .then(resp = > resp.json();
+            )
+            .then(data = > window.location.reload(true);
+            )
+            })
+            })
         </script>
     </body>
 </html>

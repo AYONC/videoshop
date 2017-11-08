@@ -4,6 +4,7 @@ buildscript {
 		kotlinVersion = '1.1.51'
 		javaVersion = '1.8'
 		springBootVersion = '2.0.0.M5'
+		springFrameworkVersion = '5.0.0.M4'
 		jooqVersion = '3.9.1'
 		h2Version = "1.4.194"
 		mysqlConnectorVersion = '8.0.8-dmr'
@@ -80,10 +81,11 @@ dependencies {
 
 	compile group: "org.springframework.boot", name: "spring-boot-starter-redis", version: "1.0.0.RELEASE"
 
-	compile group: "org.springframework.session", name: "spring-session-data-redis", version: "2.0.0.M4"
+	compile group: "org.springframework.session", name: "spring-session-data-redis", version: springBootVersion
 	compile group: "io.lettuce", name: "lettuce-core", version: "5.0.0.RC2"
 
-//	compile group: "org.springframework.cloud", name: "spring-cloud-starter-zookeeper-config", version: "2.0.0.M1"
+	compile group: "org.springframework.session", name: "spring-session-core", version: springBootVersion
+	compile group: "org.springframework.boot", name: "spring-boot-starter-security", version: springBootVersion
 
 	compile group: "com.github.ulisesbocchio", name: "jasypt-spring-boot-starter", version: "1.16"
 

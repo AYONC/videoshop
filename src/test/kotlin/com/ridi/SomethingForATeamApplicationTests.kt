@@ -1,7 +1,7 @@
 package com.ridi
 
+import com.ridi.domain.account.repository.AccountRepository
 import com.ridi.domain.member.repository.MemberRepository
-import com.ridi.domain.admin.repository.AdminRepository
 import com.ridi.domain.task.repository.TaskRepository
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -19,8 +19,17 @@ class SomethingForATeamApplicationTests {
 	@Autowired
 	lateinit var memberRepo: MemberRepository
     @Autowired
-    lateinit var adminRepo: AdminRepository
+    lateinit var accountRepo: AccountRepository
+
 	@Test
-	fun test_1() {
+    fun accountFindByUsername() {
+        val account = accountRepo.findByUsername("test")
+        print(account)
+    }
+
+    @Test
+    fun taskFind() {
+        val tasks = taskRepo.findAssigned(1)
+        print(tasks)
 	}
 }
