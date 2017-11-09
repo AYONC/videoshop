@@ -1,7 +1,7 @@
 package com.ridi.config
 
 
-import com.ridi.domain.account.service.AccountService
+import com.ridi.domain.videoshop.account.service.AccountService
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter

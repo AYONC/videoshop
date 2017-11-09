@@ -1,6 +1,6 @@
 package com.ridi.common
 
-import com.ridi.domain.account.model.Account
+import com.ridi.domain.videoshop.account.model.Account
 import org.springframework.security.core.authority.AuthorityUtils
 import org.springframework.security.core.userdetails.User
 
