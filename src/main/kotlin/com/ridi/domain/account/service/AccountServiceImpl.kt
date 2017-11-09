@@ -1,6 +1,5 @@
 package com.ridi.domain.account.service
 
-import com.ridi.common.LoginUserDetails
 import com.ridi.domain.account.model.Account
 import com.ridi.domain.account.repository.AccountRepository
 import org.springframework.security.core.GrantedAuthority

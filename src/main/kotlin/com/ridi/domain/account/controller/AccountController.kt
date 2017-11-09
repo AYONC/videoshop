@@ -19,7 +19,7 @@ class AccountController(
 
     @PostMapping("/login")
     fun loginSuccess(): String {
-        return "rediect:/"
+        return "rediect:/index"
     }
 
     @GetMapping("/add/")

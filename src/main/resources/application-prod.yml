@@ -18,5 +18,6 @@ spring:
 
 
 handlebars:
+  exposeRequestAttributes: true
   suffix: .hbs
   cache: false
