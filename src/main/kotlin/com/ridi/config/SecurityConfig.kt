@@ -22,18 +22,23 @@ class SecurityConfig(
 ) : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity) {
-        http.csrf().disable()
+        http//.csrf().disable()
             .authorizeRequests()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/**").hasAuthority("USER")
-                .anyRequest().authenticated()
+            .antMatchers("/account/login").permitAll()
+            .antMatchers("/account/logout").permitAll()
+            .antMatchers("/**").authenticated()
+            .anyRequest().authenticated()
             .and()
+
             .formLogin()
+            .loginPage("/account/login")
             .loginProcessingUrl("/login")
             .and()
+
             .logout()
             .logoutRequestMatcher(AntPathRequestMatcher("/logout"))
-            .logoutSuccessUrl("/")
+            .logoutSuccessUrl("/account/login")
+            .permitAll()
     }
 
     @Configuration

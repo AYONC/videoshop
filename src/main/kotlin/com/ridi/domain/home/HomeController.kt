@@ -20,13 +20,6 @@ class HomeController(
     @RequestMapping("/")
     fun home(model: Model): String {
         return index()
-        /*model.addAllAttributes(mapOf(
-                "TITLE" to "로그인",
-                "DEFAULT_EMAIL" to "email",
-                "CAKE" to mapOf("CHOCO" to "BLACK"),
-                "R_FUNC" to { "firjfdddd" }
-        ))
-        return "account/login"*/
     }
 
     @GetMapping("/index")
