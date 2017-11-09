@@ -22,7 +22,7 @@ class SecurityConfig(
 ) : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity) {
-        http//.csrf().disable()
+        http
             .authorizeRequests()
             .antMatchers("/account/login").permitAll()
             .antMatchers("/account/logout").permitAll()
@@ -31,8 +31,8 @@ class SecurityConfig(
             .and()
 
             .formLogin()
+            .loginProcessingUrl("/account/login")
             .loginPage("/account/login")
-            .loginProcessingUrl("/login")
             .and()
 
             .logout()
