@@ -10,7 +10,7 @@ import javax.persistence.EntityManager
 
 @Repository
 class TaskRepositoryJooqImpl(
-    private val jooq: DSLContext,
+    @Qualifier("videoshopDsl") private val jooq: DSLContext,
     em: EntityManager
 ): TaskRepositoryJooq, JooqBaseRepository(em) {
     override fun findAssigned(assignedMemberId: Long): List<Task> =

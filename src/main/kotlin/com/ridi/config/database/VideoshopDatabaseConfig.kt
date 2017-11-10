@@ -26,7 +26,6 @@ class VideoshopDatabaseConfig : BaseDatabaseConfig() {
     lateinit var dataSourceProps: VideoshopDataSourceProperties
 
     @Bean(name = arrayOf("videoshopDataSource"))
-    @Primary
     fun videoshopDataSource() = createDataSource(dataSourceProps)
 
     @Bean(name = arrayOf("videoshopEntityManagerFactoryBean"))
@@ -42,7 +41,6 @@ class VideoshopDatabaseConfig : BaseDatabaseConfig() {
         )
 
     @Bean(name = arrayOf("videoshopEntityManagerFactory"))
-    @Primary
     fun videoshopEntityManagerFactory() = videoshopEntityManagerFactoryBean().nativeEntityManagerFactory
 
     @Bean(name = arrayOf("videoshopEntityManager"))
