@@ -1,11 +1,6 @@
 
 spring:
   profiles: test
-  datasource:
-    password: ENC(h2WUkeVO4a9WmSThMYWWVIp51O9vhZu/)
-    username: storydev
-    driver-class-name: "com.mysql.jdbc.Driver"
-    url: "jdbc:mysql://storydev.cemib2jfp9g1.ap-northeast-2.rds.amazonaws.com:3306/tmp"
   jpa:
     hibernate:
       ddl-auto: update
@@ -24,3 +19,15 @@ handlebars:
   exposeRequestAttributes: true
   suffix: .hbs
   cache: false
+
+datasource:
+  videoshop:
+    username: storydev
+    password: ENC(h2WUkeVO4a9WmSThMYWWVIp51O9vhZu/)
+    driver-class-name: "com.mysql.jdbc.Driver"
+    url: "jdbc:mysql://storydev.cemib2jfp9g1.ap-northeast-2.rds.amazonaws.com:3306/tmp"
+  history:
+    username: storydev
+    password: ENC(h2WUkeVO4a9WmSThMYWWVIp51O9vhZu/)
+    driver-class-name: "com.mysql.jdbc.Driver"
+    url: "jdbc:mysql://storydev.cemib2jfp9g1.ap-northeast-2.rds.amazonaws.com:3306/tmp_log"

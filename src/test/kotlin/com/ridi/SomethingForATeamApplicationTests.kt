@@ -1,35 +1,33 @@
 package com.ridi
 
-import com.ridi.domain.account.repository.AccountRepository
-import com.ridi.domain.member.repository.MemberRepository
-import com.ridi.domain.task.repository.TaskRepository
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.junit4.SpringRunner
+import kotlin.test.assertTrue
 
 @RunWith(SpringRunner::class)
 @SpringBootTest
 @ActiveProfiles("test")
 class SomethingForATeamApplicationTests {
-    @Autowired
-    lateinit var taskRepo: TaskRepository
-	@Autowired
-	lateinit var memberRepo: MemberRepository
-    @Autowired
-    lateinit var accountRepo: AccountRepository
+//    @Autowired
+//    lateinit var taskRepo: TaskRepository
+//	@Autowired
+//	lateinit var memberRepo: MemberRepository
+//    @Autowired
+//    lateinit var accountRepo: AccountRepository
 
 	@Test
     fun accountFindByUsername() {
-        val account = accountRepo.findByUsername("test")
-        print(account)
+//        val account = accountRepo.findByUsername("test")
+//        print(account)
     }
 
     @Test
     fun taskFind() {
-        val tasks = taskRepo.findAssigned(1)
-        print(tasks)
+        assertTrue(true)
+//        val tasks = taskRepo.findAssigned(1)
+//        print(tasks)
 	}
 }

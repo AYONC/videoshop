@@ -2,7 +2,7 @@ package com.ridi
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.net.MediaType
-import com.ridi.domain.account.dto.LoginRequest
+import com.ridi.domain.videoshop.account.dto.LoginRequest
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
