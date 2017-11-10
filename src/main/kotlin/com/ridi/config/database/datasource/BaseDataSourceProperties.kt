@@ -1,4 +1,4 @@
-package com.ridi.config.database
+package com.ridi.config.database.datasource
 
 open class BaseDataSourceProperties {
     var username: String = ""

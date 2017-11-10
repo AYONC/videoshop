@@ -1,5 +1,6 @@
 package com.ridi.config.database
 
+import com.ridi.config.database.datasource.HistoryDataSourceProperties
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -20,21 +21,22 @@ class HistoryDatabaseConfig : BaseDatabaseConfig() {
     @Autowired
     lateinit var dataSourceProps: HistoryDataSourceProperties
 
+    override fun dataSourceProps() = dataSourceProps
+    override fun jpaVendorAdapter() = jpaVendorAdapter
+    override fun packagesToScan() = arrayOf(
+        "com.ridi.domain.history"
+    )
+    override fun persistenceUnitName() = "historyPersistenceUnit"
+
     @Bean(name = arrayOf("historyDataSource"))
-    fun historyDataSource() = createDataSource(dataSourceProps)
+    fun historyDataSource() = getDataSource()
 
     @Bean(name = arrayOf("historyEntityManagerFactoryBean"))
-    fun historyEntityManagerFactoryBean() =
-        createEntityManagerFactoryBean(
-            dataSource = historyDataSource(),
-            jpaVendorAdapter = jpaVendorAdapter,
-            packagesToScan = arrayOf("com.ridi.domain.history"),
-            persistenceUnitName = "historyPersistenceUnit"
-        )
+    fun historyEntityManagerFactoryBean() = getEntityManagerFactoryBean()
 
     @Bean(name = arrayOf("historyEntityManagerFactory"))
     fun historyEntityManagerFactory() = historyEntityManagerFactoryBean().nativeEntityManagerFactory
 
     @Bean(name = arrayOf("historyEntityManager"))
-    fun historyEntityManager() = historyEntityManagerFactory().createEntityManager()!!
+    fun historyEntityManager() = historyEntityManagerFactory().createEntityManager()
 }
