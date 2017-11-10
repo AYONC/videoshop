@@ -1,11 +1,13 @@
 package com.ridi.domain.videoshop.account.model
 
+import com.ridi.common.EntityListener
 import com.ridi.common.RoleType
 import java.util.*
 import javax.persistence.*
 import javax.validation.constraints.NotNull
 
 @Entity
+@EntityListeners(EntityListener::class)
 @Table(name = "account")
 data class Account(
     @Id @GeneratedValue(strategy = GenerationType.AUTO) val id: Long = 0,
