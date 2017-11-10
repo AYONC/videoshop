@@ -5,6 +5,6 @@ enum class RoleType {
         override fun toString() = "ADMIN"
     },
     STAFF {
-        override fun toString() = "USER"
+        override fun toString() = "STAFF"
     }
 }
