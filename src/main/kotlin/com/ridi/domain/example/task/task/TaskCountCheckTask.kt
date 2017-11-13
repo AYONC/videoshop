@@ -2,10 +2,12 @@ package com.ridi.domain.example.task.task
 
 import com.ridi.common.loggerFor
 import com.ridi.domain.example.task.service.TaskService
+import org.springframework.context.annotation.Profile
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 
 @Component
+@Profile("test")
 class TaskCountCheckTask(
     private val taskService: TaskService
 ) {
