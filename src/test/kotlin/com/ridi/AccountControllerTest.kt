@@ -2,6 +2,7 @@ package com.ridi
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.net.MediaType
+import com.ridi.domain.videoshop.account.dto.AddAccountRequest
 import com.ridi.domain.videoshop.account.dto.LoginRequest
 import org.junit.Before
 import org.junit.Test
@@ -48,7 +49,14 @@ class AccountControllerTest {
     }
 
     @Test
-    fun accountLogout() {
+    fun accountRegister() {
+        var request = AddAccountRequest(username = "username", password = "password", matchPassword = "password", name = "name", phone = "phone")
+        var om = ObjectMapper()
+        mvc.perform(
+            post("/account/register")
+                .contentType(MediaType.FORM_DATA.toString())
+                .content(om.writeValueAsString(request)))
+            .andExpect(status().isOk())
 
     }
 }

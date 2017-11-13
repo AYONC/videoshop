@@ -25,12 +25,6 @@ class HomeController(
     @GetMapping("/index")
     fun index() = "home/index"
 
-    @GetMapping("/register")
-    fun register() = "account/register"
-
-    @GetMapping("/forgot-password")
-    fun forgotPassword() = "account/forgot-password"
-
     @RequestMapping("/overall")
     fun overall() = ModelAndView("home/overall", mapOf(
         "task_summaries" to taskService.findAll().map { TaskSummaryResponse(it) },
