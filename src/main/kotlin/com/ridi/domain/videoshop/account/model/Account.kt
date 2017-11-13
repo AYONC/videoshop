@@ -14,7 +14,6 @@ data class Account(
     @Column @NotNull val name: String,
     @Column @NotNull val password: String,
     @Column @NotNull val phone: String,
-    @Column @NotNull val level: Int = 1,
     @Column(name = "created_at") @NotNull val createdAt: Date = Date(),
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -24,4 +23,19 @@ data class Account(
         inverseJoinColumns = arrayOf(JoinColumn(name = "role_id", referencedColumnName = "id"))
     )
     val roles: Collection<AccountRole> = mutableSetOf()
-)
+) {
+
+    override fun equals(obj: Any?): Boolean {
+        if (this === obj) {
+            return true
+        }
+        if (obj == null) {
+            return false
+        }
+        if (javaClass != obj.javaClass) {
+            return false
+        }
+        val account = obj as Account
+        return (id == account.id) && (username == account.username)
+    }
+}

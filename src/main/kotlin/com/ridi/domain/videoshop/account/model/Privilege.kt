@@ -4,6 +4,7 @@ import javax.persistence.*
 
 
 @Entity
+@Table(name = "privilege")
 data class Privilege(
     @Id @GeneratedValue(strategy = GenerationType.AUTO) val id: Long = 0,
 

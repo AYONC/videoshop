@@ -5,6 +5,6 @@ import com.ridi.domain.videoshop.account.model.AccountRole
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface AccountRoleRepository : JpaRepository<AccountRole, Long> {
-
     override fun delete(role: AccountRole)
+    fun findByUserId(userId: Long): Collection<AccountRole>
 }
