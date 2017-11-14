@@ -1,15 +1,13 @@
-<html>
-    <head>
-    </head>
-    <body>
-        <a href="/"><< home</a>
-        <h2>비디오 리스트</h2>
-        <ul>
-            {{#videos}}
-                <li>
-                    <a href="/videos/{{id}}/">{{title}} - {{description}} - {{createdAt}} - {{isOpened}}</a>
-                </li>
-            {{/videos}}
-        </ul>
-    </body>
-</html>
+{{#partial "content"}}
+    <a href="/"><< home</a>
+    <h2>비디오 리스트</h2>
+    <ul>
+        {{#videos}}
+            <li>
+                <a href="/videos/{{id}}/">{{title}} - {{description}} - {{createdAt}} - {{isOpened}}</a>
+            </li>
+        {{/videos}}
+    </ul>
+{{/partial}}
+
+{{>member/include/base}}

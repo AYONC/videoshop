@@ -1,13 +1,11 @@
-<html>
-    <head>
-    </head>
-    <body>
-        <a href="/"><< home</a>
-        <h2>비디오 추가하기</h2>
-        <form method="POST">
-            <input type="text" name="title" placeholder="title" />
-            <input type="text" name="description" placeholder="description" />
-            <input type="submit" value="submit" />
-        </form>
-    </body>
-</html>
+{{#partial "content"}}
+    <a href="/"><< home</a>
+    <h2>비디오 추가하기</h2>
+    <form method="POST">
+        <input type="text" name="title" placeholder="title" />
+        <input type="text" name="description" placeholder="description" />
+        <input type="submit" value="submit" />
+    </form>
+{{/partial}}
+
+{{>member/include/base}}
