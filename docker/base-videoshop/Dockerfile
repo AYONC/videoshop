@@ -15,5 +15,5 @@ RUN mkdir -p /usr/local/java && \
 
 # Define commonly used JAVA_HOME variable
 # Add /srv/java and jdk on PATH variable
-ENV JAVA_HOME=/usr/local/java/jdk1.8.0_151 \
-    PATH=${PATH}:${JAVA_HOME}/bin
+ENV JAVA_HOME=/usr/local/java/jdk1.8.0_151
+ENV PATH=${PATH}:${JAVA_HOME}/bin

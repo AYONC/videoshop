@@ -1,0 +1,33 @@
+{{#partial "content"}}
+  <div class="card card-login mx-auto mt-5">
+    <div class="card-header">Login</div>
+    <div class="card-body">
+      <form name='f' action='/account/login' method='POST'>
+        <div class="form-group">
+          <label for="exampleInputEmail1">{{ CAKE.CHOCO }}아이디</label>
+          <input class="form-control" type='text' name='username'
+                 placeholder="Enter ID"
+                 value="{{ DEFAULT_EMAIL}}">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">비밀번호</label>
+          <input class="form-control" type='password' name='password'/>
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox"> Remember Password</label>
+          </div>
+        </div>
+        <input class="btn btn-primary btn-block" type="submit" value="Login" onclick="this.form.submit()"/>
+        <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
+      </form>
+      <div class="text-center">
+        <a class="d-block small mt-3" href="/account/register">Register an Account</a>
+        <a class="d-block small" href="/account/forgot-password">Forgot Password?</a>
+      </div>
+    </div>
+  </div>
+{{/partial}}
+
+{{>account/include/base}}

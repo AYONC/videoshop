@@ -3,6 +3,7 @@
 /out/
 !gradle/wrapper/gradle-wrapper.jar
 /src/main/java/com/ridi/generated/**/*
+*.log
 
 ### STS ###
 .apt_generated

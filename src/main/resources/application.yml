@@ -20,3 +20,6 @@ jasypt:
 #zookeeper:
 #  enabled: true
 #  connectString: 52.78.50.157:2181
+
+handlebars:
+  suffix: .html

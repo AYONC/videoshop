@@ -36,6 +36,6 @@ class RedisConfig {
     }
 
     @Bean
-    @Profile("dev")
+    @Profile("dev", "test")
     fun configureRedisAction(): ConfigureRedisAction = ConfigureRedisAction.NO_OP
 }

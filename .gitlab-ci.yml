@@ -32,7 +32,8 @@ gradle-test:
 gradle-build:
   stage: build
   only:
-    - release/*
+    - release/production
+    - release/staging
   script:
     - ./gradlew build --stacktrace
   artifacts:
@@ -53,7 +54,16 @@ docker-production-deploy:
     - "`aws ecr get-login --no-include-email --region=$AWS_REGION`"
 
     # build image
-    - docker build -t $PROD_IMAGE_URL -f docker/videoshop/Dockerfile --build-arg version=0.0.1 .
+    - docker build -t videoshop -f docker/videoshop/Dockerfile --build-arg version=0.0.1 .
+
+    # tagging
+    - docker tag videoshop $PROD_IMAGE_URL:$CI_COMMIT_SHA
+    - docker tag videoshop $PROD_IMAGE_URL:latest
 
     # push image
-    - docker push $PROD_IMAGE_URL
+    - docker push $PROD_IMAGE_URL:$CI_COMMIT_SHA
+    - docker push $PROD_IMAGE_URL:latest
+
+    # deploy
+    - ecs deploy videoshop-cluster videoshop-service -t $CI_COMMIT_SHA --region $AWS_REGION --access-key-id $AWS_ACCESS_KEY_ID --secret-access-key $AWS_SECRET_ACCESS_KEY
+    - export AWS_REGION=$AWS_REGION

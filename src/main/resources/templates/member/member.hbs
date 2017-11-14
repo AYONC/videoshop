@@ -1,0 +1,17 @@
+{{#partial "content"}}
+<a href="/"><< home</a>
+{{#member}}
+    <h2>member: {{name}}</h2>
+{{/member}}
+
+<h3>assigned tasks: {{assignedTasks.size}}</h3>
+<ul>
+    {{#assignedTasks}}
+        <li>
+          <a href="/tasks/{{id}}/">{{title}}</a>
+        </li>
+    {{/assignedTasks}}
+</ul>
+{{/partial}}
+
+{{>member/include/base}}
