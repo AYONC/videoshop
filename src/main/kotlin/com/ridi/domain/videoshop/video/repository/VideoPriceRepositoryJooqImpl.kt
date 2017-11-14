@@ -1,4 +1,4 @@
-package com.ridi.domain.video.repository
+package com.ridi.domain.videoshop.video.repository
 
 import com.ridi.infra.repository.JooqBaseRepository
 import org.jooq.DSLContext

@@ -1,8 +1,8 @@
-package com.ridi.domain.video.service
+package com.ridi.domain.videoshop.video.service
 
-import com.ridi.domain.video.dto.UpdateVideoRequest
-import com.ridi.domain.video.model.Video
-import com.ridi.domain.video.repository.VideoRepository
+import com.ridi.domain.videoshop.video.dto.UpdateVideoRequest
+import com.ridi.domain.videoshop.video.model.Video
+import com.ridi.domain.videoshop.video.repository.VideoRepository
 import org.springframework.stereotype.Service
 
 

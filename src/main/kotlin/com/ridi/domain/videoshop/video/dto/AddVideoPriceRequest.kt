@@ -1,6 +1,6 @@
-package com.ridi.domain.video.dto
+package com.ridi.domain.videoshop.video.dto
 
-import com.ridi.domain.video.model.VideoPrice
+import com.ridi.domain.videoshop.video.model.VideoPrice
 import java.util.*
 import javax.validation.constraints.NotEmpty
 

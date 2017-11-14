@@ -1,9 +1,9 @@
-package com.ridi.domain.video.controller
+package com.ridi.domain.videoshop.video.controller
 
-import com.ridi.domain.video.dto.AddVideoRequest
-import com.ridi.domain.video.dto.UpdateVideoRequest
-import com.ridi.domain.video.service.VideoPriceService
-import com.ridi.domain.video.service.VideoService
+import com.ridi.domain.videoshop.video.dto.AddVideoRequest
+import com.ridi.domain.videoshop.video.dto.UpdateVideoRequest
+import com.ridi.domain.videoshop.video.service.VideoPriceService
+import com.ridi.domain.videoshop.video.service.VideoService
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.ModelAndView
@@ -13,8 +13,8 @@ import javax.validation.Valid
 @Controller
 @RequestMapping("/videos/")
 class VideoController(
-    private val videoService: VideoService,
-    private val videoPriceService: VideoPriceService
+        private val videoService: VideoService,
+        private val videoPriceService: VideoPriceService
 ) {
     @GetMapping("/")
     fun videoList(): Any {

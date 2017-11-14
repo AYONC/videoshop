@@ -1,8 +1,8 @@
-package com.ridi.domain.video.controller
+package com.ridi.domain.videoshop.video.controller
 
-import com.ridi.domain.video.dto.AddVideoPriceRequest
-import com.ridi.domain.video.service.VideoPriceService
-import com.ridi.domain.video.service.VideoService
+import com.ridi.domain.videoshop.video.dto.AddVideoPriceRequest
+import com.ridi.domain.videoshop.video.service.VideoPriceService
+import com.ridi.domain.videoshop.video.service.VideoService
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
@@ -10,8 +10,8 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("/videos/")
 class VideoRestController(
-    private val videoService: VideoService,
-    private val videoPriceService: VideoPriceService
+        private val videoService: VideoService,
+        private val videoPriceService: VideoPriceService
 ) {
     @PutMapping("/{videoId}/open/")
     fun openVideo(@PathVariable videoId: Long): Any {

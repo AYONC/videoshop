@@ -1,4 +1,4 @@
-package com.ridi.domain.video.model
+package com.ridi.domain.videoshop.video.model
 
 import java.util.*
 import javax.persistence.*

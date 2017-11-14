@@ -1,4 +1,4 @@
-package com.ridi.domain.video.dto
+package com.ridi.domain.videoshop.video.dto
 
 import javax.validation.constraints.NotEmpty
 

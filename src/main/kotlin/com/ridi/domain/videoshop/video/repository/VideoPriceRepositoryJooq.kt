@@ -1,4 +1,4 @@
-package com.ridi.domain.video.repository
+package com.ridi.domain.videoshop.video.repository
 
 import org.springframework.stereotype.Repository
 

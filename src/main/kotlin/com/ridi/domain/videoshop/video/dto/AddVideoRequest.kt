@@ -1,6 +1,6 @@
-package com.ridi.domain.video.dto
+package com.ridi.domain.videoshop.video.dto
 
-import com.ridi.domain.video.model.Video
+import com.ridi.domain.videoshop.video.model.Video
 import javax.validation.constraints.NotEmpty
 
 data class AddVideoRequest(
