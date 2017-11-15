@@ -22,7 +22,7 @@ class AccountController(
 
     @PostMapping("/login")
     fun loginSuccess(): String {
-        return "rediect:/index"
+        return "redirect:/index"
     }
 
     @GetMapping("/register")
@@ -30,7 +30,7 @@ class AccountController(
 
     @PostMapping("/register")
     fun addAdmin(@Valid addAdminReq: AddAccountRequest): String {
-        var account: Account = Account(
+        val account = Account(
             name = addAdminReq.name,
             username = addAdminReq.username,
             password = passwordEncoder.encode(addAdminReq.password),
@@ -45,9 +45,4 @@ class AccountController(
     @GetMapping("/forgot-password")
     fun forgotPassword() = "account/forgot-password"
 
-    @PostMapping("/update/")
-    fun updateAdmin(@Valid addAdminReq: AddAccountRequest): String {
-        accountService.create(addAdminReq.toEntity())
-        return "admin/add_admin_success"
-    }
 }

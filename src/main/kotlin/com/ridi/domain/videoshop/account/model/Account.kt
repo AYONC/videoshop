@@ -22,7 +22,7 @@ data class Account(
         joinColumns = arrayOf(JoinColumn(name = "user_id", referencedColumnName = "id")),
         inverseJoinColumns = arrayOf(JoinColumn(name = "role_id", referencedColumnName = "id"))
     )
-    val roles: Collection<AccountRole> = mutableSetOf()
+    val privileges: Collection<Privilege> = mutableListOf()
 ) {
 
     override fun equals(obj: Any?): Boolean {

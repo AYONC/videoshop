@@ -39,7 +39,7 @@ class EntityHistoryRepository(
                     `json` text,
                     `reg_date` datetime NOT NULL,
                     PRIMARY KEY (`id`),
-                    KEY `row_id` (`row_id`)
+                    KEY `${tableName}_row_id` (`row_id`)
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
             """.trimIndent())
                 .execute()

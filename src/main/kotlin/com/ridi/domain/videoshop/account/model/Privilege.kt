@@ -12,5 +12,5 @@ data class Privilege(
     @Column var codename: String = "",
 
     @ManyToMany(mappedBy = "privileges")
-    private var roles: Collection<AccountRole> = mutableListOf()
+    private var accounts: Collection<Account> = mutableListOf()
 )
