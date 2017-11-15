@@ -5,9 +5,7 @@ import org.springframework.context.ApplicationContext
 import org.springframework.stereotype.Service
 
 @Service
-class SpringBeanHelper
-@Autowired
-constructor(ac: ApplicationContext) {
+class SpringBeanHelper(@Autowired ac: ApplicationContext) {
     init {
         context = ac
     }

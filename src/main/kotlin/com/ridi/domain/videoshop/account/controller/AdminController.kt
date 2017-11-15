@@ -10,7 +10,7 @@ import javax.validation.Valid
 
 @Controller
 @RequestMapping("/admin/")
-class AdminController() {
+class AdminController {
     @Secured("ADMIN")
     @GetMapping("/")
     fun admin() = "admin/add_admin"

@@ -1,11 +1,13 @@
 package com.ridi.domain.videoshop.video.model
 
+import com.ridi.common.EntityListener
 import java.util.*
 import javax.persistence.*
 import javax.validation.constraints.NotNull
 
 
 @Entity
+@EntityListeners(EntityListener::class)
 @Table(name = "video_price")
 data class VideoPrice(
         @Id @GeneratedValue(strategy = GenerationType.AUTO) val id: Long = 0,

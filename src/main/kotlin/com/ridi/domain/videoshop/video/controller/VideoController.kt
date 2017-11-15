@@ -46,11 +46,8 @@ class VideoController(
     }
 
     @PostMapping("/{videoId}/")
-    fun updateVideo(@PathVariable videoId: Long, @Valid updateVideoRequest: UpdateVideoRequest): Any {
-        val video = videoService.update(videoId, updateVideoRequest)
-        return  ModelAndView(
-                "video/detail", mapOf(
-                "video" to video
-        ))
+    fun updateVideo(@PathVariable videoId: Long, @Valid updateVideoRequest: UpdateVideoRequest): String {
+        videoService.update(videoId, updateVideoRequest)
+        return "redirect:/videos/" + videoId
     }
 }

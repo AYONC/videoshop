@@ -43,33 +43,35 @@
     </div>
 
     <script type="text/javascript">
-        const openButton = document.querySelector(".video-open-button");
-        if (openButton != null) {
-            openButton.addEventListener('click', e => {
-                fetch("/videos/{{video.id}}/open/", {
-                method: 'PUT',
-                        headers: {
-                    'Content-Type': 'application/json',
-                }
-            })
-        .then(resp => resp.json())
-        .then(data => window.location.reload(true));
-        });
-        }
+        window.onload = function() {
+            const openButton = document.querySelector(".video-open-button");
+            if (openButton != null) {
+                openButton.addEventListener('click', e => {
+                    fetch("/videos/{{video.id}}/open/", {
+                    method: 'PUT',
+                            headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                .then(resp => resp.json())
+                .then(data => window.location.reload(true));
+                });
+            }
 
-        const closeButton = document.querySelector(".video-close-button");
-        if (closeButton != null) {
-            closeButton.addEventListener('click', e => {
-                fetch("/videos/{{video.id}}/close/", {
-                method: 'PUT',
-                        headers: {
-                    'Content-Type': 'application/json',
-                }
-            })
-        .then(resp => resp.json())
-        .then(data => window.location.reload(true));
-        });
-        }
+            const closeButton = document.querySelector(".video-close-button");
+            if (closeButton != null) {
+                closeButton.addEventListener('click', e => {
+                    fetch("/videos/{{video.id}}/close/", {
+                    method: 'PUT',
+                            headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                .then(resp => resp.json())
+                .then(data => window.location.reload(true));
+                });
+            }
+        };
     </script>
 {{/partial}}
 
