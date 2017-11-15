@@ -45,9 +45,4 @@ class AccountController(
     @GetMapping("/forgot-password")
     fun forgotPassword() = "account/forgot-password"
 
-    @PostMapping("/update/")
-    fun updateAdmin(@Valid addAdminReq: AddAccountRequest): String {
-        accountService.create(addAdminReq.toEntity())
-        return "admin/add_admin_success"
-    }
 }

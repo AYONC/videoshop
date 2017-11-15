@@ -13,15 +13,4 @@ data class AccountRole(
     @Id @GeneratedValue(strategy = GenerationType.AUTO) val id: Long = 0,
     @Column(name = "user_id") @NotNull val userId: Long,
     @Column(name = "role_id") @NotNull val roleId: Long
-) {
-    /*
-        @JoinColumn(name = "user_id")
-        @OneToOne(targetEntity = Account::class)
-        var account: Account? = null
-    */
-    @ManyToMany
-    var accounts: Collection<Account> = mutableSetOf()
-
-    @ManyToMany
-    var privileges: Collection<Privilege> = mutableSetOf()
-}
+)

@@ -1,7 +1,6 @@
 package com.ridi.domain.videoshop.account.service
 
 import com.ridi.domain.videoshop.account.model.Account
-import com.ridi.domain.videoshop.account.model.AccountRole
 import com.ridi.domain.videoshop.account.model.LoginUser
 import com.ridi.domain.videoshop.account.model.Privilege
 import com.ridi.domain.videoshop.account.repository.AccountRepository
@@ -29,6 +28,11 @@ class AccountServiceImpl(
     override fun loadUserByUsername(username: String): UserDetails {
         try {
             val account = accountRepo.findByUsername(username).get(0)
+            val roles = getAuthorities(account.privileges)
+            for (role in roles) {
+                println(role)
+            }
+
             return LoginUser(
                 id = account.username,
                 pwd = account.password,
@@ -36,23 +40,20 @@ class AccountServiceImpl(
                 accountNonExpired = true,
                 credentialsNonExpired = true,
                 accountNonLocked = true,
-                createAuthorityList = getAuthorities(account.roles))
+                createAuthorityList = roles)
         } catch (e: Exception) {
             throw RuntimeException(e)
         }
     }
 
-    private fun getAuthorities(roles: Collection<AccountRole>): List<GrantedAuthority> {
+    private fun getAuthorities(roles: Collection<Privilege>): List<GrantedAuthority> {
         return getGrantedAuthorities(getPrivileges(roles))
     }
 
-    private fun getPrivileges(roles: Collection<AccountRole>): List<String> {
+    private fun getPrivileges(roles: Collection<Privilege>): List<String> {
         val privileges = ArrayList<String>()
         val collection = ArrayList<Privilege>()
-        for (role in roles) {
-            collection.addAll(role.privileges.asIterable())
-        }
-        for (item in collection) {
+        for (item in roles) {
             privileges.add(item.codename)
         }
 
