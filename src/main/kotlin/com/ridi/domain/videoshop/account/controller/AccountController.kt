@@ -3,11 +3,10 @@ package com.ridi.domain.videoshop.account.controller
 import com.ridi.domain.videoshop.account.dto.AddAccountRequest
 import com.ridi.domain.videoshop.account.model.Account
 import com.ridi.domain.videoshop.account.service.AccountService
+import org.springframework.http.MediaType
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
 
