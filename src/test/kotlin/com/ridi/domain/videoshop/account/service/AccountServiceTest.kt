@@ -1,6 +1,6 @@
-package com.ridi
+package com.ridi.domain.videoshop.account.service
 
-import com.ridi.domain.videoshop.account.model.Account
+import com.ridi.common.dummyAccount
 import com.ridi.domain.videoshop.account.repository.AccountRepository
 import org.junit.After
 import org.junit.Before
@@ -10,35 +10,33 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.junit4.SpringRunner
+import kotlin.test.assertEquals
 import kotlin.test.assertTrue
-
 
 @RunWith(SpringRunner::class)
 @SpringBootTest
 @ActiveProfiles("test")
-class AccountRepositoryTest {
-
+class AccountServiceTest {
     @Autowired
     lateinit var accountRepo: AccountRepository
 
+    @Autowired
+    lateinit var accountService: AccountService
+
     @Test
-    fun test_saveTest() {
-        assertTrue(accountRepo.findAll().isEmpty())
+    fun test_Account_생성_및_조회() {
+        val account = dummyAccount()
+        accountService.create(account)
 
-        val account = Account(
-            username = "test_username",
-            name = "test_name",
-            password = "test_password",
-            phone = "test_phone"
-        )
-        accountRepo.save(account)
+        val loadedAccounts = accountService.getAccount(account.username)
 
-        assertTrue(accountRepo.findAll().size == 1)
+        assertTrue(loadedAccounts.size == 1)
+        assertEquals(account, loadedAccounts[0])
     }
 
     @Before
     @After
-    fun clear() {
+    fun clean() {
         accountRepo.deleteAll()
     }
 }

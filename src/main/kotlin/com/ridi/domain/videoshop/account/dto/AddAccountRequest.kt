@@ -19,7 +19,5 @@ data class AddAccountRequest(
     @NotEmpty
     val phone: String
 ) : EntityConvertible {
-
     override fun toEntity() = Account(username = username, password = password, name = name, phone = phone)
-
 }

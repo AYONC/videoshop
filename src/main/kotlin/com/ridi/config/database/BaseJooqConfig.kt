@@ -15,6 +15,7 @@ abstract class BaseJooqConfig {
             set(dbConfig().getDataSource())
             set(getConnectionProvider())
             set(SQLDialect.MYSQL)
+            settings().isRenderSchema = false
         }
 
     fun getDsl() = DefaultDSLContext(getJooqConfiguration())

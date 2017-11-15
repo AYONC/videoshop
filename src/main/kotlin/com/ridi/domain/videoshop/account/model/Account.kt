@@ -17,11 +17,6 @@ data class Account(
     @Column(name = "created_at") @NotNull val createdAt: Date = Date(),
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-        name = "account_role",
-        joinColumns = arrayOf(JoinColumn(name = "user_id", referencedColumnName = "id")),
-        inverseJoinColumns = arrayOf(JoinColumn(name = "role_id", referencedColumnName = "id"))
-    )
     val roles: Collection<AccountRole> = mutableSetOf()
 ) {
 

@@ -1,4 +1,4 @@
-package com.ridi
+package com.ridi.domain.videoshop.account.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.net.MediaType
@@ -13,7 +13,7 @@ import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.web.context.WebApplicationContext
@@ -37,26 +37,26 @@ class AccountControllerTest {
 
     @Test
     fun accountLogin() {
-        var request = LoginRequest(username = "test", password = "1234")
-        var om = ObjectMapper()
+        val request = LoginRequest(username = "test", password = "1234")
+        val om = ObjectMapper()
         mvc.perform(
             post("/account/login")
                 .contentType(MediaType.FORM_DATA.toString())
                 .content(om.writeValueAsString(request)))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.HTML_UTF_8.toString()))
+            .andDo(print())
+            .andExpect(status().isFound)
 
     }
 
     @Test
     fun accountRegister() {
-        var request = AddAccountRequest(username = "username", password = "password", matchPassword = "password", name = "name", phone = "phone")
-        var om = ObjectMapper()
+        val request = AddAccountRequest(username = "username", password = "password", matchPassword = "password", name = "name", phone = "phone")
+        val om = ObjectMapper()
         mvc.perform(
             post("/account/register")
                 .contentType(MediaType.FORM_DATA.toString())
                 .content(om.writeValueAsString(request)))
-            .andExpect(status().isOk())
-
+            .andDo(print())
+            .andExpect(status().isOk)
     }
 }

@@ -20,18 +20,8 @@ data class AccountRole(
         var account: Account? = null
     */
     @ManyToMany
-    @JoinTable(
-        name = "account",
-        joinColumns = arrayOf(JoinColumn(name = "user_id", referencedColumnName = "id")),
-        inverseJoinColumns = arrayOf(JoinColumn(name = "account_id", referencedColumnName = "id"))
-    )
     var accounts: Collection<Account> = mutableSetOf()
 
     @ManyToMany
-    @JoinTable(
-        name = "privilege",
-        joinColumns = arrayOf(JoinColumn(name = "role_id", referencedColumnName = "id")),
-        inverseJoinColumns = arrayOf(JoinColumn(name = "privilege_id", referencedColumnName = "id"))
-    )
     var privileges: Collection<Privilege> = mutableSetOf()
 }
