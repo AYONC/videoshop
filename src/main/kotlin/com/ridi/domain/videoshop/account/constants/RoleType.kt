@@ -1,4 +1,4 @@
-package com.ridi.common
+package com.ridi.domain.videoshop.account.constants
 
 enum class RoleType {
     ADMIN {
@@ -6,5 +6,8 @@ enum class RoleType {
     },
     STAFF {
         override fun toString() = "STAFF"
+    },
+    CUSTOMER {
+        override fun toString() = "CUSTOMER"
     }
 }

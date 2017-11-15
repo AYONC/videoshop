@@ -1,7 +1,7 @@
 package com.ridi.config
 
 
-import com.ridi.domain.videoshop.account.service.AccountService
+import com.ridi.domain.videoshop.account.service.LoginService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider
@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.core.session.SessionRegistry
 import org.springframework.security.core.session.SessionRegistryImpl
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher
@@ -20,7 +19,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 class SecurityConfig(
-    var accountService: AccountService
+    val loginService: LoginService
 ) : WebSecurityConfigurerAdapter() {
 
     override fun configure(auth: AuthenticationManagerBuilder) {
@@ -37,7 +36,8 @@ class SecurityConfig(
             .authorizeRequests()
             .antMatchers("/account/login").permitAll()
             .antMatchers("/account/logout").permitAll()
-            .antMatchers("/account/register").permitAll()
+            .antMatchers("/account/register-staff").permitAll()
+            .antMatchers("/account/register-customer").permitAll()
             .antMatchers("/**").authenticated()
             .anyRequest().authenticated() // 여기 설정된 이외의 모든 리퀘스트는 로그인 사용자에게만 허용
             .and()
@@ -56,7 +56,7 @@ class SecurityConfig(
     @Bean
     fun authProvider(): DaoAuthenticationProvider {
         val authProvider = DaoAuthenticationProvider()
-        authProvider.setUserDetailsService(accountService)
+        authProvider.setUserDetailsService(loginService)
         authProvider.setPasswordEncoder(encoder())
         return authProvider
     }
