@@ -1,12 +1,17 @@
 package com.ridi.domain.videoshop.account.controller
 
+import com.nhaarman.mockito_kotlin.given
+import com.ridi.common.dummyAccount
 import com.ridi.domain.videoshop.account.dto.AddAccountRequest
 import com.ridi.domain.videoshop.account.dto.LoginRequest
-import com.ridi.domain.videoshop.account.service.AccountService
+import com.ridi.domain.videoshop.account.repository.AccountRepository
+import com.ridi.domain.videoshop.account.service.CustomerService
+import com.ridi.domain.videoshop.account.service.StaffService
 import io.florianlopes.spring.test.web.servlet.request.MockMvcRequestBuilderUtils.postForm
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.ArgumentMatchers.anyString
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
@@ -25,10 +30,12 @@ import org.springframework.web.context.WebApplicationContext
 class AccountControllerTest {
     @Autowired
     lateinit var webApplicationContext: WebApplicationContext
-
     @MockBean
-    lateinit var accountService: AccountService
-
+    lateinit var staffService: StaffService
+    @MockBean
+    lateinit var customerService: CustomerService
+    @MockBean
+    lateinit var accountRepo: AccountRepository
     lateinit var mvc: MockMvc
 
     @Before
@@ -40,7 +47,11 @@ class AccountControllerTest {
 
     @Test
     fun accountLogin() {
-        val request = LoginRequest(username = "test", password = "1234")
+        val account = dummyAccount()
+        given(accountRepo.findByUsername(anyString()))
+            .willReturn(listOf(account))
+
+        val request = LoginRequest(username = account.username, password = account.password)
         mvc.perform(
             postForm("/account/login", request)
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE))
