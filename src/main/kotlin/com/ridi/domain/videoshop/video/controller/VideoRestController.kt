@@ -24,12 +24,4 @@ class VideoRestController(
         videoService.close(videoId)
         return mapOf("success" to true)
     }
-
-    @PostMapping("{videoId}/prices/add/")
-    fun addPrice(@PathVariable videoId: Long, @Valid addVideoPriceRequest: AddVideoPriceRequest): Any {
-        val video = videoService.getOne(videoId)
-        val videoPrice = addVideoPriceRequest.toEntity()
-        videoPriceService.insert(video, videoPrice)
-        return mapOf("success" to true)
-    }
 }

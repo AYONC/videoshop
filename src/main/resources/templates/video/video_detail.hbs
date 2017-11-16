@@ -1,0 +1,77 @@
+
+{{#partial "content"}}
+    <a href="../"><< 리스트로 돌아가기</a>
+    <h2>비디오 보기 - {{video.title}}</h2>
+    <div>
+        {{#if video.isOpened}}
+            <button class="video-close-button">비디오 닫기</button>
+        {{else}}
+            <button class="video-open-button">비디오 열기</button>
+        {{/if}}
+    </div>
+    <form method="POST">
+        <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
+        <input type="text" name="title" placeholder="title" value="{{video.title}}"/>
+        <input type="text" name="description" placeholder="description" value="{{video.description}}"/>
+        <span>오픈여부: {{video.isOpened}}</span>
+        <button type="submit">실행</button>
+    </form>
+    <div>
+        <a href="/videos/{{video.id}}/prices/">가격리스트보러가기</a>
+        <h2>비디오가격</h2>
+        <div>
+            {{#activePrice}}
+                <div>
+                    <label>가격 ID</label><span>{{id}}</span>
+                </div>
+                <div>
+                    <label>가격</label><span>{{price}}원</span>
+                </div>
+                <div>
+                    <label>가격 생성시간</label><span>{{createdAt}}</span>
+                </div>
+            {{/activePrice}}
+            {{^activePrice}}
+                가격 없음
+            {{/activePrice}}
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            const openButton = document.querySelector(".video-open-button");
+            if (openButton != null) {
+                openButton.addEventListener('click', e => {
+                    fetch("/videos/{{video.id}}/open/", {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            '{{_csrf.headerName}}': '{{_csrf.token}}'
+                        },
+                        credentials: 'include'
+                    })
+                    .then(resp => resp.json())
+                    .then(data => window.location.reload(true));
+                });
+            }
+
+            const closeButton = document.querySelector(".video-close-button");
+            if (closeButton != null) {
+                closeButton.addEventListener('click', e => {
+                    fetch("/videos/{{video.id}}/close/", {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            '{{_csrf.headerName}}': '{{_csrf.token}}'
+                        },
+                        credentials: 'include'
+                    })
+                    .then(resp => resp.json())
+                    .then(data => window.location.reload(true));
+                });
+            }
+        };
+    </script>
+{{/partial}}
+
+{{>video/include/base}}

@@ -20,7 +20,7 @@ class VideoController(
     fun videoList(): Any {
         val videos = videoService.findAll()
         return ModelAndView(
-            "video/list", mapOf(
+            "video/video_list", mapOf(
             "videos" to videos
         ))
     }
@@ -31,23 +31,23 @@ class VideoController(
     @PostMapping("/add/")
     fun addVideo(@Valid addVideoRequest: AddVideoRequest): String {
         videoService.create(addVideoRequest.toEntity())
-        return "video/add_video_success"
+        return "redirect:/videos/"
     }
 
     @GetMapping("/{videoId}/")
     fun video(@PathVariable videoId: Long): Any {
         val video = videoService.getOne(videoId)
-        val videoPrices = videoPriceService.findByVideo(video)
+        val activePrice = videoPriceService.getActivePriceByVideo(video)
         return ModelAndView(
-                "video/detail", mapOf(
-                "video" to video,
-                "videoPrices" to videoPrices
+            "video/video_detail", mapOf(
+            "video" to video,
+            "activePrice" to activePrice
         ))
     }
 
     @PostMapping("/{videoId}/")
     fun updateVideo(@PathVariable videoId: Long, @Valid updateVideoRequest: UpdateVideoRequest): String {
         videoService.update(videoId, updateVideoRequest)
-        return "redirect:/videos/" + videoId
+        return "redirect:/videos/$videoId/"
     }
 }

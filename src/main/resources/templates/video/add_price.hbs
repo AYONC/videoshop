@@ -1,10 +1,9 @@
 {{#partial "content"}}
-    <a href="../"><< 리스트로 돌아가기</a>
-    <h2>비디오 추가하기</h2>
+    <a href="../"><< 비디오 가격 리스트로 돌아가기</a>
+    <h2>비디오 가격 추가하기</h2>
     <form method="POST">
         <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
-        <input type="text" name="title" placeholder="title" />
-        <input type="text" name="description" placeholder="description" />
+        <input type="number" name="price" placeholder="가격" />
         <input type="submit" value="submit" />
     </form>
 {{/partial}}

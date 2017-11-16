@@ -1,0 +1,54 @@
+{{#partial "content"}}
+    <a href="../"><< 비디오 보기</a>
+    <h2>비디오 {{video.title}}의 가격 리스트</h2>
+    <a href="./add/">가격 추가하기</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>가격</th>
+                <th>활성화 여부</th>
+                <th>가격 생성 시간</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each videoPrices}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{price}}원</td>
+                    <td>{{isActive}}</td>
+                    <td>{{createdAt}}</td>
+                    <td>
+                        {{#if isActive }}
+                            이미 활성화 상태입니다.
+                        {{else}}
+                            <button class="video-price-active-button" data-price-id="{{id}}">활성화</button>
+                        {{/if}}
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            const activeButtons = document.querySelector('.video-price-active-button');
+            activeButtons.addEventListener('click', function(event) {
+                const priceId = event.target.getAttribute('data-price-id');
+                fetch("/videos/{{video.id}}/prices/" + priceId + "/active/", {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        '{{_csrf.headerName}}': '{{_csrf.token}}'
+                    },
+                    credentials: 'include'
+                })
+                .then(function(resp) { return resp.json(); })
+                .then(function(data) { window.location.reload(true) });
+            });
+        };
+    </script>
+{{/partial}}
+
+{{>video/include/base}}
