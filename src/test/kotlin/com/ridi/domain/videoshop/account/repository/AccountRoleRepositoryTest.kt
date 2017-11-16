@@ -1,5 +1,7 @@
 package com.ridi.domain.videoshop.account.repository
 
+import com.ridi.common.dummyAccount
+import com.ridi.common.dummyPrivilege
 import com.ridi.domain.videoshop.account.model.Account
 import com.ridi.domain.videoshop.account.model.AccountRole
 import com.ridi.domain.videoshop.account.model.Privilege
@@ -30,19 +32,11 @@ class AccountRoleRepositoryTest {
 
     @Test
     fun test_Account와_AccountRole_간_M2M_TEST() {
-        val account = Account(
-            username = "test_username",
-            name = "test_name",
-            password = "test_password",
-            phone = "test_phone"
-        )
+        val account = dummyAccount()
         accountRepo.save(account)
         assertNotEquals(0, account.id)
 
-        val privilege = Privilege(
-            name = "test_name",
-            codename = "test_codename"
-        )
+        val privilege = dummyPrivilege()
         privilegeRepo.save(privilege)
 
         val role = AccountRole(
@@ -51,8 +45,8 @@ class AccountRoleRepositoryTest {
         )
         accountRoleRepo.save(role)
 
-        assertTrue(account.roles.isNotEmpty())
-        account.roles.forEach { println(it) }
+        assertTrue(account.privileges.isNotEmpty())
+        account.privileges.forEach { println(it) }
     }
 
     @Before

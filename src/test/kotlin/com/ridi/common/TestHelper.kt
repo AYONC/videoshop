@@ -1,6 +1,7 @@
 package com.ridi.common
 
 import com.ridi.domain.videoshop.account.model.Account
+import com.ridi.domain.videoshop.account.model.Privilege
 
 fun dummyAccount(
     username: String = "test_username",
@@ -12,4 +13,12 @@ fun dummyAccount(
     name = name,
     password = password,
     phone = phone
+)
+
+fun dummyPrivilege(
+    name: String = "test_name",
+    codename: String = "test_codename"
+) = Privilege(
+    name = name,
+    codename = codename
 )

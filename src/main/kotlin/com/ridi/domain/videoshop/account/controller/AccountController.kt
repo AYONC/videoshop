@@ -1,20 +1,19 @@
 package com.ridi.domain.videoshop.account.controller
 
 import com.ridi.domain.videoshop.account.dto.AddAccountRequest
-import com.ridi.domain.videoshop.account.model.Account
-import com.ridi.domain.videoshop.account.service.AccountService
+import com.ridi.domain.videoshop.account.service.CustomerService
+import com.ridi.domain.videoshop.account.service.StaffService
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
 
 @Controller
 @RequestMapping("/account/")
 class AccountController(
-    private val accountService: AccountService,
+    private val staffService: StaffService,
+    private val customerService: CustomerService,
     private val passwordEncoder: PasswordEncoder
 ) {
     @GetMapping("/login")
@@ -25,24 +24,24 @@ class AccountController(
         return "redirect:/index"
     }
 
-    @GetMapping("/register")
-    fun addAdminForm() = "account/register"
+    @GetMapping("/register-staff")
+    fun registerStaff() = "account/register-staff"
 
-    @PostMapping("/register")
-    fun addAdmin(@Valid addAdminReq: AddAccountRequest): String {
-        val account = Account(
-            name = addAdminReq.name,
-            username = addAdminReq.username,
-            password = passwordEncoder.encode(addAdminReq.password),
-            phone = addAdminReq.phone
-        )
+    @PostMapping("/register-staff")
+    fun registerStaff(@Valid addAccountReq: AddAccountRequest): String {
+        staffService.createAsStaff(addAccountReq.toEntity(passwordEncoder))
+        return "admin/add_admin_success"
+    }
 
-        accountService.create(account)
+    @GetMapping("/register-customer")
+    fun registerCustomer() = "account/register-customer"
 
+    @PostMapping("/register-customer")
+    fun registerCustomer(@Valid addAccountReq: AddAccountRequest): String {
+        customerService.createAsCustomer(addAccountReq.toEntity(passwordEncoder))
         return "admin/add_admin_success"
     }
 
     @GetMapping("/forgot-password")
     fun forgotPassword() = "account/forgot-password"
-
 }

@@ -1,0 +1,48 @@
+{{#partial "content"}}
+    <div class="card card-register mx-auto mt-5">
+      <div class="card-header">Register as STAFF</div>
+      <div class="card-body">
+        <form name='f' action='/account/register-staff' method='POST'>
+          <div class="form-group">
+            <div class="form-row">
+              <label for="exampleInputName">ID</label>
+              <input class="form-control" name="username" type="text" aria-describedby="nameHelp"
+                     placeholder="Enter ID">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <label for="exampleInputName">Name</label>
+              <input class="form-control" name="name" type="text" aria-describedby="nameHelp"
+                     placeholder="Enter name">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <label for="exampleInputPassword1">Password</label>
+                <input class="form-control" name="password" type="password" placeholder="Password">
+              </div>
+              <div class="col-md-6">
+                <label for="exampleConfirmPassword">Confirm password</label>
+                <input class="form-control" name="matchPassword" type="password" placeholder="Confirm password">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone number</label>
+            <input class="form-control" name="phone" type="tel" aria-describedby="emailHelp"
+                   placeholder="Enter phone">
+          </div>
+          <input class="btn btn-primary btn-block" type="submit" value="Register" onclick="this.form.submit()"/>
+          <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
+        </form>
+        <div class="text-center">
+          <a class="d-block small mt-3" href="login.hbs">Login Page</a>
+          <a class="d-block small" href="forgot-password.hbs">Forgot Password?</a>
+        </div>
+      </div>
+    </div>
+{{/partial}}
+
+{{>account/include/base}}
