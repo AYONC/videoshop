@@ -11,9 +11,21 @@
     </div>
     <form method="POST">
         <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
-        <input type="text" name="title" placeholder="title" value="{{video.title}}"/>
-        <input type="text" name="description" placeholder="description" value="{{video.description}}"/>
-        <span>오픈여부: {{video.isOpened}}</span>
+        <div>
+            <label for="id_title">
+                제목: <input id="id_title" type="text" name="title" placeholder="title" value="{{video.title}}"/>
+            </label>
+        </div>
+        <div>
+            <label for="id_description">
+                설명: <input id="id_description" type="text" name="description" placeholder="description" value="{{video.description}}"/>
+            </label>
+        </div>
+        <div>
+            <label for="id_description">
+                오픈여부: {{video.isOpened}}
+            </label>
+        </div>
         <button type="submit">실행</button>
     </form>
     <div>
