@@ -1,13 +1,26 @@
 {{#partial "content"}}
     <a href="/"><< home</a>
     <h2>비디오 리스트</h2>
-    <ul>
-        {{#each videos}}
-            <li>
-                <a href="/videos/{{id}}/">{{title}} - {{description}} - {{createdAt}} - {{isOpened}}</a>
-            </li>
-        {{/each}}
-    </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>제목</th>
+                <th>설명</th>
+                <th>생성시간</th>
+                <th>오픈여부</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each videos}}
+                <tr>
+                    <td><a href="/videos/{{id}}/">{{title}}</a></td>
+                    <td>{{description}}</td>
+                    <td>{{createdAt}}</td>
+                    <td>{{isOpened}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
 {{/partial}}
 
 {{>video/include/base}}
