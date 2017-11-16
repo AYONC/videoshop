@@ -2,7 +2,8 @@ package com.ridi.domain.videoshop.account.controller
 
 import com.nhaarman.mockito_kotlin.given
 import com.ridi.common.dummyAccount
-import com.ridi.domain.videoshop.account.dto.AddAccountRequest
+import com.ridi.domain.videoshop.account.dto.AddCustomerRequest
+import com.ridi.domain.videoshop.account.dto.AddStaffRequest
 import com.ridi.domain.videoshop.account.dto.LoginRequest
 import com.ridi.domain.videoshop.account.repository.AccountRepository
 import com.ridi.domain.videoshop.account.service.CustomerService
@@ -60,10 +61,10 @@ class AccountControllerTest {
     }
 
     @Test
-    fun accountRegister() {
-        val request = AddAccountRequest(username = "username", password = "password", matchPassword = "password", name = "name", phone = "phone")
+    fun staffRegister() {
+        val request = AddStaffRequest(username = "username", password = "password", matchPassword = "password", name = "name", phone = "phone")
         mvc.perform(
-            postForm("/account/register", request)
+            postForm("/account/staff/register", request)
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED))
             .andDo(print())
             .andExpect(status().isOk)

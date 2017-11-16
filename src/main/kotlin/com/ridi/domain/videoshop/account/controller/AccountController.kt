@@ -1,11 +1,14 @@
 package com.ridi.domain.videoshop.account.controller
 
-import com.ridi.domain.videoshop.account.dto.AddAccountRequest
+import com.ridi.domain.videoshop.account.dto.AddCustomerRequest
+import com.ridi.domain.videoshop.account.dto.AddStaffRequest
 import com.ridi.domain.videoshop.account.service.CustomerService
 import com.ridi.domain.videoshop.account.service.StaffService
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestMapping
 import javax.validation.Valid
 
 
@@ -24,21 +27,21 @@ class AccountController(
         return "redirect:/index"
     }
 
-    @GetMapping("/register-staff")
+    @GetMapping("/staff/register")
     fun registerStaff() = "account/register-staff"
 
-    @PostMapping("/register-staff")
-    fun registerStaff(@Valid addAccountReq: AddAccountRequest): String {
-        staffService.createAsStaff(addAccountReq.toEntity(passwordEncoder))
+    @PostMapping("/staff/register")
+    fun registerStaff(@Valid addStaffReq: AddStaffRequest): String {
+        staffService.createAsStaff(addStaffReq.toEntity(passwordEncoder))
         return "admin/add_admin_success"
     }
 
-    @GetMapping("/register-customer")
+    @GetMapping("/customer/register")
     fun registerCustomer() = "account/register-customer"
 
-    @PostMapping("/register-customer")
-    fun registerCustomer(@Valid addAccountReq: AddAccountRequest): String {
-        customerService.createAsCustomer(addAccountReq.toEntity(passwordEncoder))
+    @PostMapping("/customer/register")
+    fun registerCustomer(@Valid addCustomerReq: AddCustomerRequest): String {
+        customerService.createAsCustomer(addCustomerReq.toEntity(passwordEncoder))
         return "admin/add_admin_success"
     }
 

@@ -1,6 +1,6 @@
 package com.ridi.domain.videoshop.account.controller
 
-import com.ridi.domain.videoshop.account.dto.AddAccountRequest
+import com.ridi.domain.videoshop.account.dto.AddStaffRequest
 import org.springframework.security.access.annotation.Secured
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
@@ -16,7 +16,7 @@ class AdminController() {
     fun admin() = "admin/add_admin"
 
     @PostMapping("/update/")
-    fun updateAdmin(@Valid addAdminReq: AddAccountRequest): String {
+    fun updateAdmin(@Valid addAdminReq: AddStaffRequest): String {
 //        accountService.create(addAdminReq.toEntity())
         return "admin/add_admin_success"
     }

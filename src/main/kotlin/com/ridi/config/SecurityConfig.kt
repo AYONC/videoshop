@@ -36,8 +36,8 @@ class SecurityConfig(
             .authorizeRequests()
             .antMatchers("/account/login").permitAll()
             .antMatchers("/account/logout").permitAll()
-            .antMatchers("/account/register-staff").permitAll()
-            .antMatchers("/account/register-customer").permitAll()
+            .antMatchers("/account/staff/register").permitAll()
+            .antMatchers("/account/customer/register").permitAll()
             .antMatchers("/**").authenticated()
             .anyRequest().authenticated() // 여기 설정된 이외의 모든 리퀘스트는 로그인 사용자에게만 허용
             .and()

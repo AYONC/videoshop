@@ -1,6 +1,9 @@
 package com.ridi.domain.videoshop.account.model
 
 import com.ridi.common.EntityListener
+import com.ridi.common.toLocalDate
+import java.time.LocalDate
+import java.time.Period
 import java.util.*
 import javax.persistence.*
 import javax.validation.constraints.NotNull
@@ -14,6 +17,7 @@ data class Account(
     @Column @NotNull val name: String,
     @Column @NotNull val password: String,
     @Column @NotNull val phone: String,
+    @Column @NotNull val birth: Date? = null,
     @Column(name = "created_at") @NotNull val createdAt: Date = Date(),
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -24,18 +28,10 @@ data class Account(
     )
     val privileges: Collection<Privilege> = mutableListOf()
 ) {
-
-    override fun equals(obj: Any?): Boolean {
-        if (this === obj) {
-            return true
+    fun getAge(): Int? {
+        if (birth != null) {
+            return Period.between(birth.toLocalDate(), LocalDate.now()).years
         }
-        if (obj == null) {
-            return false
-        }
-        if (javaClass != obj.javaClass) {
-            return false
-        }
-        val account = obj as Account
-        return (id == account.id) && (username == account.username)
+        return null
     }
 }
