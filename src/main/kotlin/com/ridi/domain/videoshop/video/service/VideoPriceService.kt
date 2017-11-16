@@ -1,6 +1,5 @@
 package com.ridi.domain.videoshop.video.service
 
-import com.ridi.domain.videoshop.video.dto.AddVideoPriceRequest
 import com.ridi.domain.videoshop.video.model.Video
 import com.ridi.domain.videoshop.video.model.VideoPrice
 import com.ridi.domain.videoshop.video.repository.VideoPriceRepository

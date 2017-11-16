@@ -16,6 +16,8 @@ handlebars:
   exposeRequestAttributes: true
   suffix: .hbs
   cache: false
+  resolver:
+    method: true
 
 datasource:
   videoshop:

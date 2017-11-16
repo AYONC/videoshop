@@ -1,23 +1,20 @@
 
 {{#partial "content"}}
     <a href="/"><< home</a>
-    {{#video}}
-    <h2>비디오 보기 - {{title}}</h2>
+    <h2>비디오 보기 - {{video.title}}</h2>
     <div>
-        {{#isOpened}}
+        {{#if video.isOpened}}
             <button class="video-close-button">비디오 닫기</button>
-        {{/isOpened}}
-        {{^isOpened}}
+        {{else}}
             <button class="video-open-button">비디오 열기</button>
-        {{/isOpened}}
+        {{/if}}
     </div>
     <form method="POST">
-        <input type="text" name="title" placeholder="title" value="{{title}}"/>
-        <input type="text" name="description" placeholder="description" value="{{description}}"/>
-        <span>오픈여부: {{isOpened}}</span>
+        <input type="text" name="title" placeholder="title" value="{{video.title}}"/>
+        <input type="text" name="description" placeholder="description" value="{{video.description}}"/>
+        <span>오픈여부: {{video.isOpened}}</span>
         <button type="submit">실행</button>
     </form>
-    {{/video}}
     <div>
         <h2>비디오가격보기</h2>
         <table>
@@ -30,14 +27,14 @@
             </tr>
             </thead>
             <tbody>
-            {{#videoPrices}}
+            {{#each videoPrices}}
                 <tr>
                     <td>{{id}}</td>
                     <td>{{price}}</td>
                     <td>{{startedAt}}</td>
                     <td>{{createdAt}}</td>
                 </tr>
-            {{/videoPrices}}
+            {{/each}}
             </tbody>
         </table>
     </div>
@@ -49,9 +46,11 @@
                 openButton.addEventListener('click', e => {
                     fetch("/videos/{{video.id}}/open/", {
                     method: 'PUT',
-                            headers: {
+                    headers: {
                         'Content-Type': 'application/json',
-                    }
+                        '{{_csrf.headerName}}': '{{_csrf.token}}'
+                    },
+                    credentials: 'include'
                 })
                 .then(resp => resp.json())
                 .then(data => window.location.reload(true));
@@ -63,9 +62,11 @@
                 closeButton.addEventListener('click', e => {
                     fetch("/videos/{{video.id}}/close/", {
                     method: 'PUT',
-                            headers: {
+                    headers: {
                         'Content-Type': 'application/json',
-                    }
+                        '{{_csrf.headerName}}': '{{_csrf.token}}'
+                    },
+                    credentials: 'include'
                 })
                 .then(resp => resp.json())
                 .then(data => window.location.reload(true));
