@@ -7,9 +7,7 @@ import javax.validation.constraints.NotEmpty
 
 data class AddVideoPriceRequest(
         @NotEmpty
-        private val price: Int,
-        @NotEmpty
-        private val startedAt: Date
+        private val price: Int
 ) {
-    fun toEntity() = VideoPrice(price = price, startedAt = startedAt)
+    fun toEntity() = VideoPrice(price = price)
 }

@@ -17,6 +17,6 @@ data class VideoPrice(
         @JoinColumn(name = "video_id")
         var video: Video? = null,
 
-        @Column(name = "started_at", nullable = false) @NotNull val startedAt: Date = Date(),
+        @Column(name = "is_active", nullable = false) var isActive: Boolean = false,
         @Column(name = "created_at") @NotNull val createdAt: Date = Date()
 )
