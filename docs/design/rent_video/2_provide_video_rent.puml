@@ -1,0 +1,119 @@
+@startuml
+
+actor customer as "Customer"
+participant videoRentController as "VideoRentController" <<controller>>
+participant videoRentService as "VideoRentService" <<service>>
+participant videoRentRepository as "VideoRentRepository" <<repository>>
+participant videoRentOrderService as "VideoRentOrderService" <<service>>
+participant videoRentOrderRepository as "VideoRentOrderRepository" <<repository>>
+entity videoRentOrder as "VideoRentOrder" <<entity>>
+participant coinUseService as "CoinUseService" <<service>>
+participant coinUseRepository as "CoinUseRepository" <<repository>>
+participant coinService as "CoinService" <<service>>
+participant coinRepository as "CoinRepository" <<repository>>
+entity coin as "Coin" <<entity>>
+
+activate videoRentController
+activate videoRentService
+
+group create video rent order
+    videoRentService -> videoRentOrderService: createOrder\n(RentVideoRequest, account)
+    activate videoRentOrderService
+    videoRentOrderService -> videoRentOrderService: create \nVideoRentOrder \n(video, rentDays)
+    videoRentOrderService -> videoRentOrderRepository: save(VideoRentOrder)
+    activate videoRentOrderRepository
+
+    videoRentOrderService <- videoRentOrderRepository:
+    deactivate videoRentOrderRepository
+    videoRentService <- videoRentOrderService: return VideoRentOrder
+    deactivate videoRentOrderService
+end
+
+group provide video rent
+    videoRentService -> videoRentOrder: provideFor(account)
+    activate videoRentOrder
+    alt if order already provided
+        videoRentOrder -> videoRentOrder: throw
+        note left #ffaaaa: VideoRentOrderAlreadyProvidedException
+    end
+
+    group use coin
+        videoRentOrder -> coinUseService: useFor(VideoRentOrder)
+        activate coinUseService
+        coinUseService -> coinUseService: findCoinUsable\n(order.video.price)
+        coinUseService -> coinService: findAvailableByQuantity\n(price)
+        activate coinService
+        coinService -> coinRepository: findCoinAvailableByQuantity\n(price)
+        activate coinRepository
+
+        coinService <- coinRepository: return coin entities
+        deactivate coinRepository
+        coinUseService <- coinService: return coin entities
+        deactivate coinService
+
+        alt if has not enough coins
+            coinUseService -> coinUseService: throw
+            note left #ffaaaa: NotEnoughCoinException
+        end
+        coinUseService -> coinUseService: return \nList<CoinUsable(coin, quantity)>
+
+        loop per CoinUsable
+            coinUseService -> coin: useFor(VideoRentOrder, quantity)
+            note left: diffrent quantity per coin
+            activate coin
+
+            alt if coin has not enough quantity
+                coin -> coin: throw
+                note left #ffaaaa: NotEnoughCoinException
+            end
+
+            coin -> coin: reduce remaining \nfor required quantity
+            coinUseService <- coin:
+            deactivate coin
+
+            coinUseService -> coinRepository: save(coin)
+            activate coinRepository
+            coinUseService <- coinRepository:
+            deactivate coinRepository
+
+            coinUseService -> coinUseService: create CoinUse\n(coin, quantity, order)
+            coinUseService -> coinUseRepository: save(CoinUse)
+            activate coinUseRepository
+
+            coinUseService <- coinUseRepository:
+            deactivate coinUseRepository
+        end
+
+        videoRentOrder <- coinUseService:
+        deactivate coinUseService
+    end
+
+    group persist VideoRent, VideoRentOrder
+        videoRentOrder -> videoRentOrder: create VideoRent\n(account, video, expireDate)
+        videoRentOrder -> videoRentRepository: save(VideoRent)
+        activate videoRentRepository
+
+        videoRentOrder <- videoRentRepository:
+        deactivate videoRentRepository
+
+        videoRentOrder -> videoRentOrder: setProvided()
+        videoRentOrder -> videoRentOrder: setVideoRent(VideoRent)
+
+        videoRentOrder -> videoRentOrderRepository: save(this)
+        activate videoRentOrderRepository
+    end
+    videoRentOrder <- videoRentOrderRepository:
+    deactivate videoRentOrderRepository
+
+
+    videoRentService <- videoRentOrder: return VideoRent
+    deactivate videoRentOrder
+end
+
+videoRentController <- videoRentService: return VideoRent
+deactivate videoRentService
+
+customer <- videoRentController: success with VideoRent
+deactivate videoRentController
+
+@enduml

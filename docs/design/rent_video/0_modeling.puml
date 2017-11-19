@@ -1,0 +1,40 @@
+@startuml
+
+class Video
+
+class Account
+
+class VideoRent {
+    account: Account
+    video: Video
+    expireDate: Date
+}
+
+class VideoRentOrder {
+    video: Video
+    videoRent: VideoRent
+    rentDays: Int
+    isProvided: Boolean
+}
+
+class Coin {
+    amount: Long
+    remainingQuantity: Long
+}
+
+class CoinUse {
+    coin: Coin
+    order: VideoRentOrder
+    quantity: Long
+}
+
+VideoRent --> Video: 1:n
+VideoRent --> Account: 1:n
+
+VideoRentOrder --> Video: n:1
+VideoRentOrder --> VideoRent: 1:1
+
+CoinUse --> Coin: n:1
+CoinUse --> VideoRentOrder: n:1
+
+@enduml

@@ -1,0 +1,60 @@
+@startuml
+
+actor customer as "Customer"
+participant videoRentController as "VideoRentController" <<controller>>
+participant videoRentService as "VideoRentService" <<service>>
+participant videoRentRepository as "VideoRentRepository" <<repository>>
+entity account as "Account" <<entity>>
+participant videoService as "VideoService" <<service>>
+participant videoRepository as "VideoRepository" <<repository>>
+entity video as "Video" <<entity>>
+
+... after authenticated ...
+
+customer -> videoRentController: RentVideoRequest\n(videoId, rentDays)
+activate videoRentController
+
+videoRentController -> videoRentController: validate RentVideoRequest
+
+videoRentController -> videoRentService: rent(RentVideoRequest)
+activate videoRentService
+
+group check is customer
+    videoRentService -> videoRentService: get logined account entity
+    videoRentService -> account: assertIsCustomer()
+    activate account
+
+    alt if account is not customer
+        account -> account: throw
+        note left #ffaaaa: CustomerAssertionFailedException
+    end
+
+    videoRentService <- account:
+    deactivate account
+end
+
+group check is video rentable
+    videoRentService -> videoService: getById(videoId)
+    activate videoService
+    videoService -> videoRepository: getById(videoId)
+    activate videoRepository
+
+    videoService <- videoRepository: return video entity
+    deactivate videoRepository
+    videoRentService <- videoService: return video entity
+    deactivate videoService
+
+    videoRentService -> videoRentService: assertIsVideoRentable\n(account, video)
+    videoRentService -> video: assertIsOpened()
+    activate video
+
+    alt if video is not opened
+        video -> video: throw
+        note left #ffaaaa: VideoNotOpenedException
+    end
+
+    videoRentService <- video:
+    deactivate video
+end
+
+@enduml
