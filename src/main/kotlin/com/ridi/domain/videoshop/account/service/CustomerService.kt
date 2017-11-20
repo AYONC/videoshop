@@ -17,7 +17,7 @@ class CustomerService(
     fun createAsCustomer(account: Account) {
         accountRepo.save(account)
 
-        val customerPrivilege = privilegeService.getCustomerPriivilege()
+        val customerPrivilege = privilegeService.getCustomerPrivilege()
         val accountRole = AccountRole(userId = account.id, roleId = customerPrivilege.id)
         accountRoleRepo.save(accountRole)
     }

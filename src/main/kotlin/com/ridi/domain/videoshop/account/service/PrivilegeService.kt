@@ -9,5 +9,5 @@ class PrivilegeService(
     val privilegeRepo: PrivilegeRepository
 ) {
     fun getStaffPrivilege() = privilegeRepo.findByName(RoleType.STAFF.toString())
-    fun getCustomerPriivilege() = privilegeRepo.findByName(RoleType.CUSTOMER.toString())
+    fun getCustomerPrivilege() = privilegeRepo.findByName(RoleType.CUSTOMER.toString())
 }
