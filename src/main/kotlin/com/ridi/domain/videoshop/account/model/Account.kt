@@ -2,6 +2,8 @@ package com.ridi.domain.videoshop.account.model
 
 import com.ridi.common.EntityListener
 import com.ridi.common.toLocalDate
+import com.ridi.domain.videoshop.account.constants.RoleType
+import com.ridi.domain.videoshop.account.exception.CustomerAssertionFailedException
 import java.time.LocalDate
 import java.time.Period
 import java.util.*
@@ -28,10 +30,20 @@ data class Account(
     )
     val privileges: Collection<Privilege> = mutableListOf()
 ) {
+    fun assertIsCustomer() {
+        if (!isCustomer()) {
+            throw CustomerAssertionFailedException()
+        }
+    }
+
+    fun isCustomer() = privileges.filter { it.codename == RoleType.CUSTOMER.toString() }.count() > 0
+
     fun getAge(): Int? {
         if (birth != null) {
             return Period.between(birth.toLocalDate(), LocalDate.now()).years
         }
         return null
     }
+
+    override fun toString() = username
 }

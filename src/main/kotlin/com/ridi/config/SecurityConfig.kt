@@ -9,10 +9,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
-import org.springframework.security.core.session.SessionRegistry
 import org.springframework.security.core.session.SessionRegistryImpl
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
-import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher
 
 
@@ -54,22 +52,15 @@ class SecurityConfig(
     }
 
     @Bean
-    fun authProvider(): DaoAuthenticationProvider {
-        val authProvider = DaoAuthenticationProvider()
-        authProvider.setUserDetailsService(loginService)
-        authProvider.setPasswordEncoder(encoder())
-        return authProvider
-    }
+    fun authProvider() =
+        DaoAuthenticationProvider().apply {
+            setUserDetailsService(loginService)
+            setPasswordEncoder(encoder())
+        }
 
     @Bean
-    fun encoder(): PasswordEncoder {
-        return BCryptPasswordEncoder(11)
-    }
+    fun encoder() = BCryptPasswordEncoder(11)
 
     @Bean
-    fun sessionRegistry(): SessionRegistry {
-        return SessionRegistryImpl()
-    }
-
-
+    fun sessionRegistry() = SessionRegistryImpl()
 }

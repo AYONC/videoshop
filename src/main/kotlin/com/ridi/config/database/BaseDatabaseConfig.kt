@@ -28,7 +28,8 @@ abstract class BaseDatabaseConfig {
             persistenceUnitName = persistenceUnitName()
             jpaPropertyMap = hashMapOf<String, Any?>(
                 "hibernate.transaction.jta.platform" to AtomikosJtaPlatform::class.java.name,
-                "javax.persistence.transactionType" to "JTA"
+                "javax.persistence.transactionType" to "JTA",
+                "hibernate.enable_lazy_load_no_trans" to true
             )
         }
     }
