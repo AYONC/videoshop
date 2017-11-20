@@ -11,7 +11,7 @@ entity video as "Video" <<entity>>
 
 ... after authenticated ...
 
-customer -> videoRentController: RentVideoRequest\n(videoId, rentDays)
+customer -> videoRentController: RentVideoRequest\n(videoId, rentDays, \nisIgnoreRentBefore)
 activate videoRentController
 
 videoRentController -> videoRentController: validate RentVideoRequest
@@ -31,6 +31,17 @@ group check is customer
 
     videoRentService <- account:
     deactivate account
+end
+
+group check is video has rented before
+    alt if not req.isIgnoreRentBefore
+        videoRentService -> videoRentService: findByVideoId(videoId)
+        videoRentService -> videoRentRepository: findByVideoId(videoId)
+        alt if video has rented before:
+            videoRentService -> videoRentService: throw
+            note left #ffaaaa: VideoHasRentedBeforeException
+        end
+    end
 end
 
 group check is video rentable
