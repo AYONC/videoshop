@@ -2,6 +2,7 @@ package com.ridi.domain.videoshop.video.model
 
 import com.ridi.common.EntityListener
 import com.ridi.domain.videoshop.video.exception.VideoNotOpenedException
+import com.ridi.domain.videoshop.video.util.AgeRating
 import java.util.*
 import javax.persistence.*
 import javax.validation.constraints.NotNull
@@ -14,6 +15,7 @@ data class Video(
         @Id @GeneratedValue(strategy = GenerationType.AUTO) val id: Long = 0,
         @Column @NotNull var title: String,
         @Column @NotNull var description: String,
+        @Column @NotNull @Enumerated(EnumType.ORDINAL) var rating: AgeRating,
         @Column(name = "cover_path", nullable = true) var coverPath: String? = null,
         @Column(name = "is_opened", nullable = false) var isOpened: Boolean = false,
         @Column(name = "created_at") @NotNull val createdAt: Date = Date()
