@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.DependsOn
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer
 import org.springframework.orm.jpa.vendor.Database
+import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter
 import org.springframework.transaction.annotation.EnableTransactionManagement
 import org.springframework.transaction.jta.JtaTransactionManager

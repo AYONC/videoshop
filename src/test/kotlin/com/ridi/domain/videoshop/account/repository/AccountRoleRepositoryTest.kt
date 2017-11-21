@@ -2,6 +2,7 @@ package com.ridi.domain.videoshop.account.repository
 
 import com.ridi.common.dummyAccount
 import com.ridi.common.dummyPrivilege
+import com.ridi.common.initializePrivilege
 import com.ridi.domain.videoshop.account.model.Account
 import com.ridi.domain.videoshop.account.model.AccountRole
 import com.ridi.domain.videoshop.account.model.Privilege
@@ -50,6 +51,10 @@ class AccountRoleRepositoryTest {
     }
 
     @Before
+    fun setUp() {
+        initializePrivilege()
+    }
+
     @After
     fun clear() {
         accountRepo.deleteAll()

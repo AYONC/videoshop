@@ -1,5 +1,6 @@
 package com.ridi.domain.history.entity.repository
 
+import com.ridi.common.dummyAccount
 import com.ridi.domain.videoshop.account.model.Account
 import com.ridi.domain.videoshop.account.repository.AccountRepository
 import org.jooq.DSLContext
@@ -39,13 +40,6 @@ class EntityHistoryRepositoryTest {
         val count = jooq.fetch("SELECT COUNT(*) FROM account_history WHERE row_id = ?", account.id).getValue(0, 0) as Long
         assertTrue(count == 1L)
     }
-
-    private fun dummyAccount() = Account(
-        username = "test_username",
-        name = "test_name",
-        password = "test_password",
-        phone = "test_phone"
-    )
 
     @Before
     fun setUp() {
