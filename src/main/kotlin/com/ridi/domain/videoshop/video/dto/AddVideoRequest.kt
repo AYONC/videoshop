@@ -2,6 +2,7 @@ package com.ridi.domain.videoshop.video.dto
 
 import com.ridi.domain.videoshop.video.model.Video
 import com.ridi.domain.videoshop.video.util.AgeRating
+import org.springframework.web.bind.annotation.RequestAttribute
 import javax.validation.constraints.NotEmpty
 
 data class AddVideoRequest(
@@ -10,7 +11,7 @@ data class AddVideoRequest(
         @NotEmpty
         private val description: String,
         @NotEmpty
-        private val age_rating: AgeRating
+        private val addRating: AgeRating
 ) {
-    fun toEntity() = Video(title = title, description = description, rating = age_rating)
+    fun toEntity() = Video(title = title, description = description, rating = addRating)
 }
