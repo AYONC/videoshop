@@ -1,0 +1,77 @@
+@startuml
+
+entity customer as "Customer" <<entity>>
+
+participant customerGroupController as "CustomerGroupController" <<controller>> #aaffaa
+participant customerGroupService as "CustomerGroupService" <<service>> #aaffaa
+
+entity account as "Account" <<entity>>
+
+participant customerGroupRepo as "CustomerGroupRepository" <<repository>> #aaffaa
+participant customerGroupMemberRepo as "CustomerGroupMemberRepository" <<repository>>
+
+
+customer -> customerGroupController: AddGroupRequest(title)
+activate customerGroupController
+
+customerGroupController -> customerGroupController: validate addGroupRequest
+
+customerGroupController -> customerGroupController: get account entity
+
+customerGroupController -> customerGroupService: createGroup(addGroupRequest, account)
+activate customerGroupService
+
+customerGroupService -> account: assertIsCustomer
+activate account
+alt if not customer
+    account -> account: throw
+    note left #ffaaaa: CustomerAssertionFailedException
+end
+customerGroupService <- account:
+deactivate account
+
+group check guest is already in other group
+    customerGroupService -> customerGroupService: assertIsNotInGroup(guest)
+    activate customerGroupService
+
+    customerGroupService -> customerGroupService: isInGroup(guest)
+    activate customerGroupService
+
+    customerGroupService -> customerGroupMemberRepo: countByAccount(guest)
+    activate customerGroupMemberRepo
+    customerGroupService <- customerGroupMemberRepo: return count
+    deactivate customerGroupMemberRepo
+
+    customerGroupService <- customerGroupService: return isIn
+    deactivate customerGroupService
+
+    alt if account is already in group
+        customerGroupService -> customerGroupService: throw
+        note left #ffaaaa: CustomerInGroupException
+    end
+
+    customerGroupService <- customerGroupService:
+    deactivate customerGroupService
+end
+
+group transactional
+    customerGroupService -> customerGroupService: create CustomerGroup(title)
+    customerGroupService -> customerGroupRepo: save(group)
+    activate customerGroupRepo
+    customerGroupService <- customerGroupRepo:
+    deactivate customerGroupRepo
+
+    customerGroupService -> customerGroupService: create CustomerGroupMember(group, account)
+    customerGroupService -> customerGroupMemberRepo: save()
+    activate customerGroupMemberRepo
+    customerGroupService <- customerGroupMemberRepo:
+    deactivate customerGroupMemberRepo
+end
+
+customerGroupController <- customerGroupService:
+deactivate customerGroupService
+
+customer <- customerGroupController: success
+deactivate customerGroupController
+
+@enduml

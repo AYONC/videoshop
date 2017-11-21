@@ -8,6 +8,6 @@ import org.springframework.stereotype.Service
 class PrivilegeService(
     val privilegeRepo: PrivilegeRepository
 ) {
-    fun getStaffPrivilege() = privilegeRepo.findByName(RoleType.STAFF.toString())
-    fun getCustomerPrivilege() = privilegeRepo.findByName(RoleType.CUSTOMER.toString())
+    fun getStaffPrivilege() = privilegeRepo.getByName(RoleType.STAFF.toString())
+    fun getCustomerPrivilege() = privilegeRepo.getByName(RoleType.CUSTOMER.toString())
 }

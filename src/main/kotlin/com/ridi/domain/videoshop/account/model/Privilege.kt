@@ -8,9 +8,11 @@ import javax.persistence.*
 data class Privilege(
     @Id @GeneratedValue(strategy = GenerationType.AUTO) val id: Long = 0,
 
-    @Column var name: String = "",
-    @Column var codename: String = "",
+    @Column val name: String = "",
+    @Column val codename: String = "",
 
     @ManyToMany(mappedBy = "privileges")
-    private var accounts: Collection<Account> = mutableListOf()
-)
+    private val accounts: Collection<Account> = mutableListOf()
+) {
+    override fun toString() = name
+}

@@ -34,12 +34,14 @@ class VideoshopDatabaseConfig : BaseDatabaseConfig() {
     override fun persistenceUnitName() = "videoshopPersistenceUnit"
 
     @Bean(name = arrayOf("videoshopDataSource"))
+    @Primary
     fun videoshopDataSource() = getDataSource()
 
     @Bean(name = arrayOf("videoshopEntityManagerFactoryBean"))
     fun videoshopEntityManagerFactoryBean() = getEntityManagerFactoryBean()
 
     @Bean(name = arrayOf("videoshopEntityManagerFactory"))
+    @Primary
     fun videoshopEntityManagerFactory() = videoshopEntityManagerFactoryBean().nativeEntityManagerFactory
 
     @Bean(name = arrayOf("videoshopEntityManager"))

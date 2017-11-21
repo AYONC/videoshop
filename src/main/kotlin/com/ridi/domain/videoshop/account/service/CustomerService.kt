@@ -21,4 +21,6 @@ class CustomerService(
         val accountRole = AccountRole(userId = account.id, roleId = customerPrivilege.id)
         accountRoleRepo.save(accountRole)
     }
+
+    fun getOne(id: Long) = accountRepo.getOne(id)
 }
