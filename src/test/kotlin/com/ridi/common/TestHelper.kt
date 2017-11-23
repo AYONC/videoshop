@@ -4,6 +4,11 @@ import com.ridi.domain.videoshop.account.constants.RoleType
 import com.ridi.domain.videoshop.account.model.Account
 import com.ridi.domain.videoshop.account.model.Privilege
 import com.ridi.domain.videoshop.account.repository.PrivilegeRepository
+import com.ridi.domain.videoshop.coin.model.Coin
+import com.ridi.domain.videoshop.video.model.Video
+import com.ridi.domain.videoshop.video.model.VideoPrice
+import com.ridi.domain.videoshop.videorent.model.VideoRent
+import com.ridi.domain.videoshop.videorent.model.VideoRentOrder
 import java.util.*
 
 fun dummyAccount(
@@ -26,6 +31,60 @@ fun dummyPrivilege(
 ) = Privilege(
     name = name,
     codename = codename
+)
+
+fun dummyVideo(
+    title: String = "test_title",
+    description: String = "test_description",
+    coverPath: String? = null,
+    isOpened: Boolean = false
+) = Video(
+    title = title,
+    description = description,
+    coverPath = coverPath,
+    isOpened = isOpened
+)
+
+fun dummyVideoPrice(
+    video: Video = dummyVideo(),
+    price: Int = 0,
+    isActive: Boolean = false
+) = VideoPrice(
+    video = video,
+    price = price,
+    isActive = isActive
+)
+
+fun dummyVideoRentOrder(
+    video: Video = dummyVideo(),
+    videoRent: VideoRent? = null,
+    rentDays: Int = 3,
+    isProvided: Boolean = false
+) = VideoRentOrder(
+    video = video,
+    videoRent = videoRent,
+    rentDays = rentDays,
+    isProvided = isProvided
+)
+
+fun dummyVideoRent(
+    account: Account = dummyAccount(),
+    video: Video = dummyVideo(),
+    expireDate: Date = Date()
+) = VideoRent(
+    account = account,
+    video = video,
+    expireDate = expireDate
+)
+
+fun dummyCoin(
+    account: Account = dummyAccount(),
+    amount: Long = 0L,
+    remainingQuantity: Long = 0L
+) = Coin(
+    account = account,
+    amount = amount,
+    remainingQuantity = remainingQuantity
 )
 
 fun initializePrivilege() {

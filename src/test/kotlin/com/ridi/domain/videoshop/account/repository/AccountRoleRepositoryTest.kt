@@ -6,6 +6,7 @@ import com.ridi.common.initializePrivilege
 import com.ridi.domain.videoshop.account.model.Account
 import com.ridi.domain.videoshop.account.model.AccountRole
 import com.ridi.domain.videoshop.account.model.Privilege
+import com.ridi.domain.videoshop.account.service.CustomerService
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -22,32 +23,19 @@ import kotlin.test.assertTrue
 @SpringBootTest
 @ActiveProfiles("test")
 class AccountRoleRepositoryTest {
-    @Autowired
-    lateinit var accountRepo: AccountRepository
-
-    @Autowired
-    lateinit var accountRoleRepo: AccountRoleRepository
-
-    @Autowired
-    lateinit var privilegeRepo: PrivilegeRepository
+    @Autowired lateinit var accountRepo: AccountRepository
+    @Autowired lateinit var customerService: CustomerService
+    @Autowired lateinit var accountRoleRepo: AccountRoleRepository
+    @Autowired lateinit var privilegeRepo: PrivilegeRepository
 
     @Test
     fun test_Account와_AccountRole_간_M2M_TEST() {
-        val account = dummyAccount()
-        accountRepo.save(account)
+        var account = dummyAccount()
+        customerService.createAsCustomer(account)
+        account = accountRepo.getOne(account.id)
+
         assertNotEquals(0, account.id)
-
-        val privilege = dummyPrivilege()
-        privilegeRepo.save(privilege)
-
-        val role = AccountRole(
-            userId = account.id,
-            roleId = privilege.id
-        )
-        accountRoleRepo.save(role)
-
         assertTrue(account.privileges.isNotEmpty())
-        account.privileges.forEach { println(it) }
     }
 
     @Before

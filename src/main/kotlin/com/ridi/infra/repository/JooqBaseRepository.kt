@@ -12,6 +12,7 @@ open class JooqBaseRepository(
         for (i in values.indices) {
             result.setParameter(i + 1, values[i])
         }
+
         return result.resultList.filterNotNull().map { it as E }
     }
 }

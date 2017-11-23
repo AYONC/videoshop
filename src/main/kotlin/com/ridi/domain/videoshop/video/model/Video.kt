@@ -1,6 +1,7 @@
 package com.ridi.domain.videoshop.video.model
 
 import com.ridi.common.EntityListener
+import com.ridi.domain.videoshop.video.exception.VideoNotOpenedException
 import java.util.*
 import javax.persistence.*
 import javax.validation.constraints.NotNull
@@ -16,4 +17,10 @@ data class Video(
         @Column(name = "cover_path", nullable = true) var coverPath: String? = null,
         @Column(name = "is_opened", nullable = false) var isOpened: Boolean = false,
         @Column(name = "created_at") @NotNull val createdAt: Date = Date()
-)
+) {
+    fun assertIsOpened() {
+        if (!isOpened) {
+            throw VideoNotOpenedException()
+        }
+    }
+}

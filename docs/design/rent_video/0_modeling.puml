@@ -18,6 +18,7 @@ class VideoRentOrder {
 }
 
 class Coin {
+    account: Account
     amount: Long
     remainingQuantity: Long
 }
@@ -36,5 +37,7 @@ VideoRentOrder --> VideoRent: 1:1
 
 CoinUse --> Coin: n:1
 CoinUse --> VideoRentOrder: n:1
+
+Coin -> Account: n:1
 
 @enduml

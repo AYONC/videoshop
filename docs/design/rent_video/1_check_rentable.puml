@@ -15,12 +15,12 @@ customer -> videoRentController: RentVideoRequest\n(videoId, rentDays, \nisIgnor
 activate videoRentController
 
 videoRentController -> videoRentController: validate RentVideoRequest
+videoRentController -> videoRentController: get logged account entity
 
-videoRentController -> videoRentService: rent(RentVideoRequest)
+videoRentController -> videoRentService: rent(RentVideoRequest, account)
 activate videoRentService
 
 group check is customer
-    videoRentService -> videoRentService: get logined account entity
     videoRentService -> account: assertIsCustomer()
     activate account
 
@@ -33,10 +33,32 @@ group check is customer
     deactivate account
 end
 
+group get video entity
+    videoRentService -> videoService: getOne(videoId)
+    activate videoService
+    videoService -> videoRepository: getOne(videoId)
+    activate videoRepository
+
+    videoService <- videoRepository: return video entity
+    deactivate videoRepository
+    videoRentService <- videoService: return video entity
+    deactivate videoService
+end
+
 group check is video has rented before
     alt if not req.isIgnoreRentBefore
-        videoRentService -> videoRentService: findByVideoId(videoId)
-        videoRentService -> videoRentRepository: findByVideoId(videoId)
+        videoRentService -> videoRentService: findByVideoAndAccount(video, account)
+        activate videoRentService
+
+        videoRentService -> videoRentRepository: findByVideoIdAndAccountId(videoId, accountId)
+        activate videoRentRepository
+
+        videoRentService <- videoRentRepository:
+        deactivate videoRentRepository
+
+        videoRentService <- videoRentService:
+        deactivate videoRentService
+
         alt if video has rented before:
             videoRentService -> videoRentService: throw
             note left #ffaaaa: VideoHasRentedBeforeException
@@ -45,17 +67,9 @@ group check is video has rented before
 end
 
 group check is video rentable
-    videoRentService -> videoService: getById(videoId)
-    activate videoService
-    videoService -> videoRepository: getById(videoId)
-    activate videoRepository
-
-    videoService <- videoRepository: return video entity
-    deactivate videoRepository
-    videoRentService <- videoService: return video entity
-    deactivate videoService
-
     videoRentService -> videoRentService: assertIsVideoRentable\n(account, video)
+    activate videoRentService
+
     videoRentService -> video: assertIsOpened()
     activate video
 
@@ -66,6 +80,9 @@ group check is video rentable
 
     videoRentService <- video:
     deactivate video
+
+    videoRentService <- videoRentService
+    deactivate videoRentService
 end
 
 @enduml

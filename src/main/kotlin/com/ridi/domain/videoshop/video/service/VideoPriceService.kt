@@ -1,5 +1,6 @@
 package com.ridi.domain.videoshop.video.service
 
+import com.ridi.domain.videoshop.coin.exception.VideoPriceNotExistException
 import com.ridi.domain.videoshop.video.model.Video
 import com.ridi.domain.videoshop.video.model.VideoPrice
 import com.ridi.domain.videoshop.video.repository.VideoPriceRepository
@@ -14,6 +15,15 @@ class VideoPriceService(
     fun insert(video: Video, videoPrice: VideoPrice) {
         videoPrice.video = video
         videoPriceRepo.save(videoPrice)
+    }
+
+    fun getLatestByVideo(video: Video): VideoPrice {
+        val prices = videoPriceRepo.findByVideoOrderByIdDesc(video)
+        if (prices.count() == 0) {
+            throw VideoPriceNotExistException()
+        }
+
+        return prices.get(0)
     }
 
     fun findByVideo(video: Video) = videoPriceRepo.findByVideoOrderByIdDesc(video)

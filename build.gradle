@@ -74,37 +74,43 @@ repositories {
 }
 
 dependencies {
+	// required for spring
 	compile group: "org.springframework.boot", name: "spring-boot-starter-web", version: springBootVersion
 	compile group: "org.springframework.boot", name: "spring-boot-starter-jooq", version: springBootVersion
 	compile group: "org.springframework.boot", name: "spring-boot-starter-data-jpa", version: springBootVersion
 	compile group: "org.springframework.boot", name: "spring-boot-devtools", version: springBootVersion
-	compile group: "pl.allegro.tech.boot", name: "handlebars-spring-boot-starter", version: "0.2.15"
-
-	compile group: "org.springframework.boot", name: "spring-boot-starter-redis", version: "1.0.0.RELEASE"
-
-	compile group: "org.springframework.session", name: "spring-session-data-redis", version: springBootVersion
-	compile group: "io.lettuce", name: "lettuce-core", version: "5.0.0.RC2"
-
 	compile group: "org.springframework.session", name: "spring-session-core", version: springBootVersion
 	compile group: "org.springframework.boot", name: "spring-boot-starter-security", version: springBootVersion
 	compile group: "org.springframework.boot", name: "spring-boot-configuration-processor", version: springBootVersion
 	compile group: "org.springframework.security", name: "spring-security-config", version: springFrameworkVersion
-
-
 	compile group: "com.github.ulisesbocchio", name: "jasypt-spring-boot-starter", version: "1.16"
+	compile group: "com.fasterxml.jackson.module", name: "jackson-module-kotlin", version: "2.8.7"
 
+	// kotlin
 	compile group: "org.jetbrains.kotlin", name: "kotlin-stdlib-jre8", version: kotlinVersion
 	compile group: "org.jetbrains.kotlin", name: "kotlin-reflect", version: kotlinVersion
 
-	compile group: "com.fasterxml.jackson.module", name: "jackson-module-kotlin", version: "2.8.7"
+	// template
+	compile group: "pl.allegro.tech.boot", name: "handlebars-spring-boot-starter", version: "0.2.15"
+
+	// redis
+	compile group: "org.springframework.boot", name: "spring-boot-starter-redis", version: "1.0.0.RELEASE"
+	compile group: "org.springframework.session", name: "spring-session-data-redis", version: springBootVersion
+	compile group: "io.lettuce", name: "lettuce-core", version: "5.0.0.RC2"
+
+	// database
 	compile group: "org.jooq", name: "jooq", version: jooqVersion
 	compile group: "org.apache.commons", name: "commons-dbcp2", version: "2.1.1"
+    compile group: 'mysql', name: 'mysql-connector-java', version: mysqlConnectorVersion
+	compile group: "com.h2database", name: "h2", version: h2Version
+
+	// transaction
     compile group: "com.atomikos", name: "transactions", version: atomikosVersion
 	compile group: "com.atomikos", name: "transactions-jta", version: atomikosVersion
 	compile group: "com.atomikos", name: "transactions-hibernate4", version: atomikosVersion
 
-	compile group: 'mysql', name: 'mysql-connector-java', version: mysqlConnectorVersion
-	compile group: "com.h2database", name: "h2", version: h2Version
+	// utils
+	compile group: "joda-time", name: "joda-time", version: "2.9.9"
 
 	testCompile group: "org.springframework.boot", name: "spring-boot-starter-test", version: springBootVersion
 	testCompile group: "org.jetbrains.kotlin", name: "kotlin-test-junit", version: kotlinVersion

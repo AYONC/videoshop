@@ -8,6 +8,7 @@ participant videoRentOrderService as "VideoRentOrderService" <<service>>
 participant videoRentOrderRepository as "VideoRentOrderRepository" <<repository>>
 entity videoRentOrder as "VideoRentOrder" <<entity>>
 participant coinUseService as "CoinUseService" <<service>>
+participant videoPriceService as "VideoPriceService" <<service>>
 participant coinUseRepository as "CoinUseRepository" <<repository>>
 participant coinService as "CoinService" <<service>>
 participant coinRepository as "CoinRepository" <<repository>>
@@ -38,12 +39,25 @@ group provide video rent
     end
 
     group use coin
-        videoRentOrder -> coinUseService: useFor(VideoRentOrder)
+        videoRentOrder -> coinUseService: useFor(order, account)
         activate coinUseService
-        coinUseService -> coinUseService: findCoinUsable\n(order.video.price)
-        coinUseService -> coinService: findAvailableByQuantity\n(price)
+
+        coinUseService -> videoPriceService: getLatestByVideo(video)
+        activate videoPriceService
+
+        alt if price not exist
+            videoPriceService -> videoPriceService: throw
+            note left #ffaaaa: VideoPriceNotExistException
+        end
+
+        coinUseService <- videoPriceService: return price
+        deactivate videoPriceService
+
+        coinUseService -> coinUseService: findCoinUsable\n(account, price)
+        activate coinUseService
+        coinUseService -> coinService: findAvailableOf\n(account)
         activate coinService
-        coinService -> coinRepository: findCoinAvailableByQuantity\n(price)
+        coinService -> coinRepository: findAvailableOf\n(account)
         activate coinRepository
 
         coinService <- coinRepository: return coin entities
@@ -56,10 +70,11 @@ group provide video rent
             note left #ffaaaa: NotEnoughCoinException
         end
         coinUseService -> coinUseService: return \nList<CoinUsable(coin, quantity)>
+        deactivate coinUseService
 
         loop per CoinUsable
-            coinUseService -> coin: useFor(VideoRentOrder, quantity)
-            note left: diffrent quantity per coin
+            coinUseService -> coin: useFor(quantity)
+            note left: different quantity per coin
             activate coin
 
             alt if coin has not enough quantity
@@ -101,10 +116,10 @@ group provide video rent
 
         videoRentOrder -> videoRentOrderRepository: save(this)
         activate videoRentOrderRepository
-    end
-    videoRentOrder <- videoRentOrderRepository:
-    deactivate videoRentOrderRepository
 
+        videoRentOrder <- videoRentOrderRepository:
+        deactivate videoRentOrderRepository
+    end
 
     videoRentService <- videoRentOrder: return VideoRent
     deactivate videoRentOrder
