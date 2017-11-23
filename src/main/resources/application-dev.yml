@@ -1,6 +1,12 @@
 
 spring:
   profiles: dev
+  devtools:
+    livereload:
+      enabled: true
+  freemaker:
+    cache: false
+
   jpa:
     hibernate:
       ddl-auto: update

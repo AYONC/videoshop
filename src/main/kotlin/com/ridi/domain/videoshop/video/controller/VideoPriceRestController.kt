@@ -1,7 +1,6 @@
 package com.ridi.domain.videoshop.video.controller
 
 import com.ridi.domain.videoshop.video.service.VideoPriceService
-import com.ridi.domain.videoshop.video.service.VideoService
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestMapping

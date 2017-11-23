@@ -43,6 +43,7 @@ class SecurityConfig(
             .formLogin()
             .loginProcessingUrl("/account/login")
             .loginPage("/account/login")
+            .successForwardUrl("/")
             .and()
 
             .logout()

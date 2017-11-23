@@ -1,7 +1,6 @@
 package com.ridi.domain.videoshop.account.repository
 
 import com.ridi.domain.videoshop.account.model.Account
-import com.ridi.domain.videoshop.account.repository.AccountRepository
 import org.junit.After
 import org.junit.Before
 import org.junit.Test

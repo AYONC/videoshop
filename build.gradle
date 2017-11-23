@@ -73,6 +73,13 @@ repositories {
 	maven { url "https://plugins.gradle.org/m2/" }
 }
 
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = file("$buildDir/classes/kotlin/main/")
+    }
+}
+
 dependencies {
 	// required for spring
 	compile group: "org.springframework.boot", name: "spring-boot-starter-web", version: springBootVersion
@@ -111,7 +118,6 @@ dependencies {
 
 	// utils
 	compile group: "joda-time", name: "joda-time", version: "2.9.9"
-
 	testCompile group: "org.springframework.boot", name: "spring-boot-starter-test", version: springBootVersion
 	testCompile group: "org.jetbrains.kotlin", name: "kotlin-test-junit", version: kotlinVersion
     testCompile group: "com.nhaarman", name: "mockito-kotlin", version: "1.5.0"

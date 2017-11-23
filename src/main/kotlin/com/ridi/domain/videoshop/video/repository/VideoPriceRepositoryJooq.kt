@@ -1,7 +1,7 @@
 package com.ridi.domain.videoshop.video.repository
 
-import org.springframework.stereotype.Repository
 import com.ridi.domain.videoshop.video.model.VideoPrice
+import org.springframework.stereotype.Repository
 
 
 @Repository
