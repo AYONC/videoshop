@@ -1,0 +1,20 @@
+@startuml
+
+'skinparam monochrome true
+'skinparam handwritten true
+
+skinparam sequence {
+    TitleFontName "Chalkboard"
+    TitleFontSize 20
+	ParticipantFontName "Chalkboard"
+	ParticipantFontSize 16
+	ArrowFontName "Chalkboard"
+	ArrowFontSize 14
+	ActorFontName "Chalkboard"
+	DividerFontName "Chalkboard"
+    GroupFontName "Chalkboard"
+    GroupFontSize 14
+}
+hide footbox
+
+@enduml

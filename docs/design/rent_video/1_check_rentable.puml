@@ -1,5 +1,7 @@
 @startuml
 
+!include "../theme.puml"
+
 actor customer as "Customer"
 participant videoRentController as "VideoRentController" <<controller>>
 participant videoRentService as "VideoRentService" <<service>>
