@@ -18,6 +18,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 class SecurityConfig(
     val loginService: LoginService
+//    val authenticationDetailsSource: WebAuthenticationDetailsSource
 ) : WebSecurityConfigurerAdapter() {
 
     override fun configure(auth: AuthenticationManagerBuilder) {
@@ -32,7 +33,7 @@ class SecurityConfig(
         // .hasRole .hasAnyRole 로 url 접근 권한 설정 가능
         http
             .authorizeRequests()
-            .antMatchers("/account/login").permitAll()
+            .antMatchers("/account/login", "/account/registrationConform").permitAll()
             .antMatchers("/account/logout").permitAll()
             .antMatchers("/account/staff/register").permitAll()
             .antMatchers("/account/customer/register").permitAll()
@@ -44,6 +45,7 @@ class SecurityConfig(
             .loginProcessingUrl("/account/login")
             .loginPage("/account/login")
             .successForwardUrl("/")
+//            .authenticationDetailsSource(authenticationDetailsSource)
             .and()
 
             .logout()

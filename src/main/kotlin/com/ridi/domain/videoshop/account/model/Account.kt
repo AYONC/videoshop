@@ -4,6 +4,7 @@ import com.ridi.common.EntityListener
 import com.ridi.common.toLocalDate
 import com.ridi.domain.videoshop.account.constants.RoleType
 import com.ridi.domain.videoshop.account.exception.CustomerAssertionFailedException
+import org.jboss.aerogear.security.otp.api.Base32
 import java.time.LocalDate
 import java.time.Period
 import java.util.*
@@ -20,6 +21,7 @@ data class Account(
     @Column @NotNull val password: String,
     @Column @NotNull val phone: String,
     @Column @NotNull val birth: Date? = null,
+    @Column(name = "is_using_2fa") @NotNull val isUsing2FA: Boolean = false,
     @Column(name = "created_at") @NotNull val createdAt: Date = Date(),
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -30,6 +32,14 @@ data class Account(
     )
     val privileges: Collection<Privilege> = mutableListOf()
 ) {
+    var secret: String = Base32.random()
+    var enabled: Boolean = false
+
+    init {
+        this.secret = Base32.random()
+        this.enabled = false
+    }
+
     fun assertIsCustomer() {
         if (!isCustomer()) {
             throw CustomerAssertionFailedException()

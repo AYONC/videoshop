@@ -4,11 +4,17 @@ import com.ridi.domain.videoshop.account.dto.AddCustomerRequest
 import com.ridi.domain.videoshop.account.dto.AddStaffRequest
 import com.ridi.domain.videoshop.account.service.CustomerService
 import com.ridi.domain.videoshop.account.service.StaffService
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.core.userdetails.User
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestMethod
+import org.springframework.web.servlet.ModelAndView
+import java.io.UnsupportedEncodingException
+import java.security.Principal
 import javax.validation.Valid
 
 
@@ -34,6 +40,19 @@ class AccountController(
     fun registerStaff(@Valid addStaffReq: AddStaffRequest): String {
         staffService.createAsStaff(addStaffReq.toEntity(passwordEncoder))
         return "admin/add_admin_success"
+    }
+
+
+    @RequestMapping(value = "/registrationConfirm", method = arrayOf(RequestMethod.GET))
+    @Throws(UnsupportedEncodingException::class)
+    fun confirmRegistration(principal: Principal): ModelAndView {
+        val authToken = principal as UsernamePasswordAuthenticationToken
+        val user = authToken.principal as User
+        val account = staffService.accountRepo.findByUsername(user.username).get(0)
+        return ModelAndView(
+            "account/qrcode", mapOf(
+            "qr" to staffService.generateQRUrl(account)
+        ))
     }
 
     @GetMapping("/customer/register")

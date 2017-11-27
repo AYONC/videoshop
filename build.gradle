@@ -111,6 +111,9 @@ dependencies {
     compile group: 'mysql', name: 'mysql-connector-java', version: mysqlConnectorVersion
 	compile group: "com.h2database", name: "h2", version: h2Version
 
+	// 2fa
+	compile group: 'org.jboss.aerogear', name: 'aerogear-otp-java', version: '1.0.0'
+
 	// transaction
     compile group: "com.atomikos", name: "transactions", version: atomikosVersion
 	compile group: "com.atomikos", name: "transactions-jta", version: atomikosVersion
