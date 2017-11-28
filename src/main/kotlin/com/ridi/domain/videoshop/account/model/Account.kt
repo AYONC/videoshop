@@ -33,11 +33,9 @@ data class Account(
     val privileges: Collection<Privilege> = mutableListOf()
 ) {
     var secret: String = Base32.random()
-    var enabled: Boolean = false
 
     init {
         this.secret = Base32.random()
-        this.enabled = false
     }
 
     fun assertIsCustomer() {

@@ -1,0 +1,41 @@
+@startuml
+
+!include "../theme.puml"
+
+actor staff as "Staff"
+participant springSecurity as "SpringSecurity" <<provider>>
+participant loginService as "LoginService" <<service>>
+participant accountRepository as "AccountRepository" <<repository>>
+entity account as "Account" <<entity>>
+participant accountController as "AccountController" <<controller>>
+
+title Authentication /account/login
+
+' < 로그인 시나리오 > '
+' 1. 로그인 요청(username, password, secretkey)
+' 2. username, password, secretkey.
+' 3. 등록 완료 후, /staff/register/mfa로 이동
+' 4. 2fa 등록하기
+
+staff -> springSecurity : LoginRequest\n(username, password)
+activate springSecurity
+springSecurity -> loginService: loadUserByUsername
+activate loginService
+loginService -> accountRepository: findByUsername
+activate accountRepository
+accountRepository -> account
+activate account
+
+accountRepository <- account
+deactivate account
+loginService <- accountRepository: return account entity
+deactivate accountRepository
+springSecurity <- loginService: return loginUser entity
+deactivate loginService
+staff <- springSecurity: authorized session
+
+
+newpage Authentication /account/logout
+
+
+@enduml

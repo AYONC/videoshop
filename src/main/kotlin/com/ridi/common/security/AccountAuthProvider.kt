@@ -1,6 +1,7 @@
 package com.ridi.common.security
 
 
+import com.ridi.domain.videoshop.account.dto.LoginUser
 import com.ridi.domain.videoshop.account.repository.AccountRepository
 
 import org.jboss.aerogear.security.otp.Totp
@@ -31,7 +32,7 @@ class AccountAuthProvider : DaoAuthenticationProvider() {
 
         }
         val result = super.authenticate(auth)
-        return UsernamePasswordAuthenticationToken(user, result.credentials, result.authorities)
+        return UsernamePasswordAuthenticationToken(LoginUser.fromAccount(account = user), result.credentials, result.authorities)
     }
 
     private fun isValidLong(code: String): Boolean {

@@ -1,10 +1,13 @@
 package com.ridi.config
 
 
+import com.ridi.common.security.AccountAuthProvider
+import com.ridi.common.security.AuthenticationFailureHandler
+import com.ridi.common.security.AuthenticationSuccessHandler
+import com.ridi.common.security.WebAuthenticationDetailsSource
 import com.ridi.domain.videoshop.account.service.LoginService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -17,8 +20,10 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 class SecurityConfig(
-    val loginService: LoginService
-//    val authenticationDetailsSource: WebAuthenticationDetailsSource
+    val loginService: LoginService,
+    val authenticationDetailsSource: WebAuthenticationDetailsSource,
+    val authenticationSuccessHandler: AuthenticationSuccessHandler,
+    val authenticationFailureHandler: AuthenticationFailureHandler
 ) : WebSecurityConfigurerAdapter() {
 
     override fun configure(auth: AuthenticationManagerBuilder) {
@@ -44,8 +49,10 @@ class SecurityConfig(
             .formLogin()
             .loginProcessingUrl("/account/login")
             .loginPage("/account/login")
-            .successForwardUrl("/")
-//            .authenticationDetailsSource(authenticationDetailsSource)
+            .failureUrl("/account/login?error=true")
+            .successHandler(authenticationSuccessHandler)
+            .failureHandler(authenticationFailureHandler)
+            .authenticationDetailsSource(authenticationDetailsSource)
             .and()
 
             .logout()
@@ -56,7 +63,7 @@ class SecurityConfig(
 
     @Bean
     fun authProvider() =
-        DaoAuthenticationProvider().apply {
+        AccountAuthProvider().apply {
             setUserDetailsService(loginService)
             setPasswordEncoder(encoder())
         }

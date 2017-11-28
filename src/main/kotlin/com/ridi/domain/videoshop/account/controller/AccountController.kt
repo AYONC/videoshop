@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.servlet.ModelAndView
 import java.io.UnsupportedEncodingException
 import java.security.Principal
+import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 import javax.validation.Valid
 
 
@@ -26,11 +28,11 @@ class AccountController(
     private val passwordEncoder: PasswordEncoder
 ) {
     @GetMapping("/login")
-    fun account() = "account/login"
+    fun getLogin(request: HttpServletRequest, response: HttpServletResponse) = "account/login"
 
     @PostMapping("/login")
-    fun loginSuccess(): String {
-        return "redirect:/index"
+    fun postLogin(): String {
+        return "account/login"
     }
 
     @GetMapping("/staff/register")
@@ -39,11 +41,11 @@ class AccountController(
     @PostMapping("/staff/register")
     fun registerStaff(@Valid addStaffReq: AddStaffRequest): String {
         staffService.createAsStaff(addStaffReq.toEntity(passwordEncoder))
-        return "admin/add_admin_success"
+        return "redirect:/staff/register/mfa"
     }
 
 
-    @RequestMapping(value = "/registrationConfirm", method = arrayOf(RequestMethod.GET))
+    @RequestMapping(value = "/staff/register/mfa", method = arrayOf(RequestMethod.GET))
     @Throws(UnsupportedEncodingException::class)
     fun confirmRegistration(principal: Principal): ModelAndView {
         val authToken = principal as UsernamePasswordAuthenticationToken

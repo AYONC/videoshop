@@ -1,0 +1,19 @@
+@startuml
+
+!include "../theme.puml"
+
+actor staff as "Staff"
+participant springSecurity as "SpringSecurity" <<provider>>
+participant loginService as "LoginService" <<service>>
+participant accountRepository as "AccountRepository" <<repository>>
+entity account as "Account" <<entity>>
+participant accountController as "AccountController" <<controller>>
+
+' < 계정등록 시나리오 > '
+' 1. 계정 등록 페이지
+' 2. 계정 등록 시 secret키 발급.
+' 3. 등록 완료 후, /staff/register/mfa로 이동
+' 4. 2fa 등록하기
+
+
+@enduml

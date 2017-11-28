@@ -8,7 +8,5 @@ import javax.servlet.http.HttpServletRequest
 
 @Component
 class WebAuthenticationDetailsSource : AuthenticationDetailsSource<HttpServletRequest, WebAuthenticationDetails> {
-    override fun buildDetails(context: HttpServletRequest): WebAuthenticationDetails {
-        return AuthenticationDetails(context)
-    }
+    override fun buildDetails(context: HttpServletRequest) = AuthenticationDetails(context)
 }
