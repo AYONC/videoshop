@@ -17,6 +17,5 @@ class SwaggerConfig {
         .groupName("videoshop").select()
         .apis(RequestHandlerSelectors.any())
         .paths(PathSelectors.any())
-        .build();
-
+        .build()
 }
