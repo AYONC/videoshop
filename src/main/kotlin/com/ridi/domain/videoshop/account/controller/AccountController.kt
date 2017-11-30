@@ -2,6 +2,7 @@ package com.ridi.domain.videoshop.account.controller
 
 import com.ridi.domain.videoshop.account.dto.AddCustomerRequest
 import com.ridi.domain.videoshop.account.dto.AddStaffRequest
+import com.ridi.domain.videoshop.account.model.Account
 import com.ridi.domain.videoshop.account.service.CustomerService
 import com.ridi.domain.videoshop.account.service.StaffService
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
@@ -50,7 +51,7 @@ class AccountController(
     fun confirmRegistration(principal: Principal): ModelAndView {
         val authToken = principal as UsernamePasswordAuthenticationToken
         val user = authToken.principal as User
-        val account = staffService.accountRepo.findByUsername(user.username).get(0)
+        val account: Account = staffService.accountRepo.findByUsername(user.username)?.get(0) ?: throw NullPointerException("Invalid username or password")
         return ModelAndView(
             "account/qrcode", mapOf(
             "qr" to staffService.generateQRUrl(account)

@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface AccountRepositoryJooq {
-    fun findByUsername(username: String): List<Account>
+    fun findByUsername(username: String): List<Account>?
 }

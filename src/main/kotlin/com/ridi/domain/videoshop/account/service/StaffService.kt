@@ -27,6 +27,11 @@ class StaffService(
         accountRoleRepo.save(accountRole)
     }
 
+    @Transactional
+    fun updateAccount(account: Account) {
+        accountRepo.save(account)
+    }
+
     @Throws(UnsupportedEncodingException::class)
     fun generateQRUrl(user: Account): String {
         return QR_PREFIX + URLEncoder.encode(String.format("otpauth://totp/%s:%s?secret=%s&issuer=%s", APP_NAME, user.username, user.secret, APP_NAME), "UTF-8")

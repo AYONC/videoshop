@@ -17,6 +17,11 @@
   </p>
   <br/>
   <img src="{{qr}}"/>
+
+  <form name='f' action='/account/staff/register/mfa' method='POST'>
+    <input class="btn btn-primary btn-block" type="submit" value="Login" onclick="this.form.submit()"/>
+    <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
+  </form>
 </div>
 
 

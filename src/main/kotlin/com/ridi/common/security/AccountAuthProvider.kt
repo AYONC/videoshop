@@ -2,6 +2,7 @@ package com.ridi.common.security
 
 
 import com.ridi.domain.videoshop.account.dto.LoginUser
+import com.ridi.domain.videoshop.account.model.Account
 import com.ridi.domain.videoshop.account.repository.AccountRepository
 
 import org.jboss.aerogear.security.otp.Totp
@@ -20,8 +21,7 @@ class AccountAuthProvider : DaoAuthenticationProvider() {
     @Throws(AuthenticationException::class)
     override fun authenticate(auth: Authentication): Authentication {
         val verificationCode = (auth.details as AuthenticationDetails).verificationCode
-
-        val user = userRepository.findByUsername(auth.name).get(0) ?: throw BadCredentialsException("Invalid username or password")
+        val user: Account = userRepository.findByUsername(auth.name)?.get(0) ?: throw BadCredentialsException("Invalid username or password")
         // MFA 관련 추가
 
         if (user.isUsing2FA) {
