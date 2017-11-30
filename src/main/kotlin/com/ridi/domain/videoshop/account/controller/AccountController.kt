@@ -6,7 +6,7 @@ import com.ridi.domain.videoshop.account.model.Account
 import com.ridi.domain.videoshop.account.service.CustomerService
 import com.ridi.domain.videoshop.account.service.StaffService
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
-import org.springframework.security.core.userdetails.User
+import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
@@ -48,13 +48,13 @@ class AccountController(
 
     @RequestMapping(value = "/staff/register/mfa", method = arrayOf(RequestMethod.GET))
     @Throws(UnsupportedEncodingException::class)
-    fun confirmRegistration(principal: Principal): ModelAndView {
+    fun confirmRegistration(@AuthenticationPrincipal principal: Principal): ModelAndView {
         val authToken = principal as UsernamePasswordAuthenticationToken
-        val user = authToken.principal as User
-        val account: Account = staffService.accountRepo.findByUsername(user.username)?.get(0) ?: throw NullPointerException("Invalid username or password")
+        val user = authToken.principal as Account
+//        val account: Account = staffService.accountRepo.findByUsername(user.username)?.get(0) ?: throw NullPointerException("Invalid username or password")
         return ModelAndView(
             "account/qrcode", mapOf(
-            "qr" to staffService.generateQRUrl(account)
+            "qr" to staffService.generateQRUrl(user)
         ))
     }
 
