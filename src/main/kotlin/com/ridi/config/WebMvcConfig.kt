@@ -4,6 +4,7 @@ import com.ridi.common.intercepter.TestInterceptor
 import com.ridi.domain.videoshop.video.util.AgeRatingConverter
 import org.springframework.context.annotation.Configuration
 import org.springframework.format.FormatterRegistry
+import org.springframework.http.converter.HttpMessageConverter
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter

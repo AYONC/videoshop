@@ -11,7 +11,7 @@ data class AddVideoRequest(
         @NotEmpty
         private val description: String,
         @NotEmpty
-        private val addRating: AgeRating
+        private val ageRating: AgeRating
 ) {
-    fun toEntity() = Video(title = title, description = description, rating = addRating)
+    fun toEntity() = Video(title = title, description = description, rating = ageRating)
 }
