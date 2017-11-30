@@ -2,6 +2,7 @@ package com.ridi.domain.videoshop.video.model
 
 import com.ridi.common.EntityListener
 import com.ridi.domain.videoshop.video.exception.VideoNotOpenedException
+import com.ridi.domain.videoshop.video.exception.VideoNotPassAgeRatingException
 import com.ridi.domain.videoshop.video.util.AgeRating
 import java.util.*
 import javax.persistence.*
@@ -23,6 +24,12 @@ data class Video(
     fun assertIsOpened() {
         if (!isOpened) {
             throw VideoNotOpenedException()
+        }
+    }
+
+    fun assertIsPassing(age: Int?) {
+        if (!rating.isPassing(age)) {
+            throw VideoNotPassAgeRatingException()
         }
     }
 }

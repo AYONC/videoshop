@@ -1,5 +1,6 @@
 package com.ridi.domain.videoshop.videorent.service
 
+import com.ridi.domain.videoshop.account.exception.CustomerNotRegisterBirthException
 import com.ridi.domain.videoshop.account.model.Account
 import com.ridi.domain.videoshop.video.model.Video
 import com.ridi.domain.videoshop.video.service.VideoService
@@ -24,6 +25,7 @@ class VideoRentService(
         }
 
         assertIsVideoRentable(video, account)
+        assertIsPassAgeRating(video, account)
 
         val order = videoRentOrderService.createOrder(req, video)
         return order.provideFor(account)
@@ -39,5 +41,10 @@ class VideoRentService(
 
     private fun assertIsVideoRentable(video: Video, account: Account) {
         video.assertIsOpened()
+    }
+
+    private fun assertIsPassAgeRating(video: Video, account: Account) {
+        val age = account.getAge()
+        video.assertIsPassing(age)
     }
 }
