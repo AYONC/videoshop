@@ -7,6 +7,7 @@ import com.ridi.domain.videoshop.account.repository.PrivilegeRepository
 import com.ridi.domain.videoshop.coin.model.Coin
 import com.ridi.domain.videoshop.video.model.Video
 import com.ridi.domain.videoshop.video.model.VideoPrice
+import com.ridi.domain.videoshop.video.util.AgeRating
 import com.ridi.domain.videoshop.videorent.model.VideoRent
 import com.ridi.domain.videoshop.videorent.model.VideoRentOrder
 import java.util.*
@@ -36,11 +37,13 @@ fun dummyPrivilege(
 fun dummyVideo(
     title: String = "test_title",
     description: String = "test_description",
+    rating: AgeRating = AgeRating.ALL,
     coverPath: String? = null,
     isOpened: Boolean = false
 ) = Video(
     title = title,
     description = description,
+    rating = rating,
     coverPath = coverPath,
     isOpened = isOpened
 )

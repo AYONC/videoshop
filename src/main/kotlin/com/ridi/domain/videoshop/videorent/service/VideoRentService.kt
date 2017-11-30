@@ -1,6 +1,5 @@
 package com.ridi.domain.videoshop.videorent.service
 
-import com.ridi.domain.videoshop.account.exception.CustomerNotRegisterBirthException
 import com.ridi.domain.videoshop.account.model.Account
 import com.ridi.domain.videoshop.video.model.Video
 import com.ridi.domain.videoshop.video.service.VideoService

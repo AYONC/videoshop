@@ -2,6 +2,7 @@ package com.ridi.domain.videoshop.videorent.service
 
 import com.ridi.common.*
 import com.ridi.domain.videoshop.account.exception.CustomerAssertionFailedException
+import com.ridi.domain.videoshop.account.exception.CustomerNotRegisterBirthException
 import com.ridi.domain.videoshop.account.repository.AccountRepository
 import com.ridi.domain.videoshop.account.service.CustomerService
 import com.ridi.domain.videoshop.account.service.StaffService
@@ -9,8 +10,10 @@ import com.ridi.domain.videoshop.coin.exception.NotEnoughCoinException
 import com.ridi.domain.videoshop.coin.repository.CoinRepository
 import com.ridi.domain.videoshop.coin.service.CoinService
 import com.ridi.domain.videoshop.video.exception.VideoNotOpenedException
+import com.ridi.domain.videoshop.video.exception.VideoNotPassAgeRatingException
 import com.ridi.domain.videoshop.video.repository.VideoPriceRepository
 import com.ridi.domain.videoshop.video.repository.VideoRepository
+import com.ridi.domain.videoshop.video.util.AgeRating
 import com.ridi.domain.videoshop.videorent.dto.RentVideoRequest
 import com.ridi.domain.videoshop.videorent.exception.VideoHasRentedBeforeException
 import com.ridi.domain.videoshop.videorent.repository.VideoRentRepository
@@ -191,6 +194,44 @@ class VideoRentServiceTest {
 
         coin = coinRepo.getOne(coin.id)
         assertEquals(coin.remainingQuantity, 500)
+    }
+
+    @Test(expected = CustomerNotRegisterBirthException::class)
+    fun given_생일_등록이_안됀_계정_when_비디오_대여_then_실패() {
+        var account = dummyAccount()
+        customerService.createAsCustomer(account)
+        account = accountRepo.getOne(account.id)
+
+        val video = dummyVideo(rating = AgeRating.LIMIT_18 ,isOpened = true)
+        videoRepo.save(video)
+
+        val videoPrice = dummyVideoPrice(
+                video = video,
+                price = 1500,
+                isActive = true
+        )
+        videoPriceRepo.save(videoPrice)
+
+        videoRentService.rent(RentVideoRequest(video.id), account)
+    }
+
+    @Test(expected = VideoNotPassAgeRatingException::class)
+    fun given_생일_등록한_계정_when_비디오_대여_then_나이_미달_실패() {
+        var account = dummyAccount(birth=Date())
+        customerService.createAsCustomer(account)
+        account = accountRepo.getOne(account.id)
+
+        val video = dummyVideo(rating = AgeRating.LIMIT_18 ,isOpened = true)
+        videoRepo.save(video)
+
+        val videoPrice = dummyVideoPrice(
+                video = video,
+                price = 1500,
+                isActive = true
+        )
+        videoPriceRepo.save(videoPrice)
+
+        videoRentService.rent(RentVideoRequest(video.id), account)
     }
 
    @Before
