@@ -59,6 +59,7 @@ class CoinUseService(
             }
 
             totalRequiredQuantity -= requiredQuantity
+
             coinUsables.add(CoinUsable(coin, requiredQuantity))
         }
 

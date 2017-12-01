@@ -25,19 +25,17 @@ class SessionConfig : BeanClassLoaderAware {
     @Bean
     fun connectionFactory(): LettuceConnectionFactory = LettuceConnectionFactory()
 
-    internal fun objectMapper(): ObjectMapper {
-        val mapper = ObjectMapper()
-        mapper.addMixIn(Account::class.java, AccountMix::class.java)
-        mapper.addMixIn(
+    internal fun objectMapper(): ObjectMapper = ObjectMapper().apply {
+        addMixIn(Account::class.java, AccountMix::class.java)
+        addMixIn(
             CommonUsernamePasswordAuthenticationToken::class.java,
             CommonUsernamePasswordAuthenticationTokenMix::class.java
         )
-        mapper.registerModules(SecurityJackson2Modules.getModules(this.loader))
-        return mapper
+        registerModules(SecurityJackson2Modules.getModules(loader))
     }
 
     override fun setBeanClassLoader(classLoader: ClassLoader) {
-        this.loader = classLoader
+        loader = classLoader
     }
 }
 

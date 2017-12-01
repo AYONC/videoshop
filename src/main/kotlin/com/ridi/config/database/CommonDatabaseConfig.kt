@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.DependsOn
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer
 import org.springframework.orm.jpa.vendor.Database
-import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter
 import org.springframework.transaction.annotation.EnableTransactionManagement
 import org.springframework.transaction.jta.JtaTransactionManager
@@ -35,14 +34,11 @@ class CommonDatabaseConfig {
         }
 
     @Bean(name = arrayOf("atomikosTransactionManager"), initMethod = "init", destroyMethod = "close")
-    fun atomikosTransactionManager(): UserTransactionManager {
-        val userTransactionManager = UserTransactionManager().apply {
+    fun atomikosTransactionManager(): UserTransactionManager =
+        UserTransactionManager().apply {
             forceShutdown = false
+            AtomikosJtaPlatform.tm = this
         }
-
-        AtomikosJtaPlatform.tm = userTransactionManager
-        return userTransactionManager
-    }
 
     @Bean(name = arrayOf("transactionManager"))
     @DependsOn(*arrayOf("userTransaction", "atomikosTransactionManager"))

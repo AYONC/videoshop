@@ -78,10 +78,6 @@ data class Account(
         return (username == user!!.username)
     }
 
-    override fun toString(): String {
-        val builder = StringBuilder()
-        builder.append("Account [id=").append(id).append(", username=").append(username).append(", password=").append(password).append(", isUsing2FA=")
-            .append(isUsing2FA).append(", secret=").append(secret).append(", privileges=").append(privileges).append("]")
-        return builder.toString()
-    }
+    override fun toString(): String =
+        "Account [id=$id, username=$username, password=$password, isUsing2FA=$isUsing2FA, secret=$secret, privileges=$privileges]"
 }

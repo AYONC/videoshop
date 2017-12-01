@@ -18,5 +18,5 @@ data class Privilege(
     @JsonIgnore
     private val accounts: Collection<Account> = mutableListOf()
 ) : Serializable {
-    override fun toString() = name
+    override fun toString() = "Privilege [id=$id, name=$name, codename=$codename, accounts=$accounts]"
 }
