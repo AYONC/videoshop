@@ -1,0 +1,18 @@
+@startuml
+
+skinparam monochrome true
+
+
+class Account
+
+class Privilege
+
+class AccountRole {
+    account: Account
+    privilege: Privilege
+}
+
+Account --> AccountRole: 1:n
+Privilege --> AccountRole: 1:n
+
+@enduml

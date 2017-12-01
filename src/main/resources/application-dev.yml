@@ -39,3 +39,8 @@ datasource:
     password: ENC(h2WUkeVO4a9WmSThMYWWVIp51O9vhZu/)
     driver-class-name: "com.mysql.jdbc.Driver"
     url: "jdbc:mysql://storydev.cemib2jfp9g1.ap-northeast-2.rds.amazonaws.com:3306/tmp_log"
+
+server:
+  error:
+    whitelabel:
+      enabled: false

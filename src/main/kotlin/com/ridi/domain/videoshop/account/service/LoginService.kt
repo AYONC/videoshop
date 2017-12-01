@@ -14,7 +14,7 @@ class LoginService(
 ) : UserDetailsService {
     @Throws(UsernameNotFoundException::class)
     override fun loadUserByUsername(username: String): UserDetails {
-        val account = accountRepo.findByUsername(username).get(0)
+        val account = accountRepo.findByUsername(username)?.get(0) ?: throw UsernameNotFoundException("Username Not Found")
         val codeNames = account.privileges.map { it.codename }
         val authorities = codeNames.map { SimpleGrantedAuthority(it) }
 
