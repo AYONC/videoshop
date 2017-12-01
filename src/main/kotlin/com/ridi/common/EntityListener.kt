@@ -6,7 +6,6 @@ import javax.persistence.PostPersist
 class EntityListener {
     @PostPersist
     fun methodInvokedAfterPersist(entity: Any) {
-        val entityHistoryRepo = SpringBeanHelper.getBean(EntityHistoryRepository::class.java)
-        entityHistoryRepo.createHistory(entity)
+        SpringBeanHelper.getBean(EntityHistoryRepository::class.java).apply { createHistory(entity) }
     }
 }

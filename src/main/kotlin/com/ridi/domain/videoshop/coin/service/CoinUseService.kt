@@ -59,6 +59,9 @@ class CoinUseService(
             }
 
             totalRequiredQuantity -= requiredQuantity
+
+            coinUsables + CoinUsable(coin, requiredQuantity) // 새로운 list를 반환
+
             coinUsables.add(CoinUsable(coin, requiredQuantity))
         }
 

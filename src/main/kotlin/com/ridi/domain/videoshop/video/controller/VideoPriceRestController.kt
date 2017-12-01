@@ -12,7 +12,10 @@ class VideoPriceRestController(
         private val videoPriceService: VideoPriceService
 ) {
     @PutMapping("/{priceId}/active/")
-    fun openVideo(@PathVariable("videoId") videoId: Long, @PathVariable("priceId") priceId: Long): Any {
+    fun openVideo(
+        @PathVariable("videoId") videoId: Long,
+        @PathVariable("priceId") priceId: Long
+    ): Any {
         videoPriceService.active(videoId, priceId)
         return mapOf("success" to true)
     }

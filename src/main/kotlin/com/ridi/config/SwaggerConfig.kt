@@ -13,9 +13,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 class SwaggerConfig {
     @Bean
-    fun swaggerSpringMvcPlugin() = Docket(DocumentationType.SWAGGER_2)
-        .groupName("videoshop").select()
-        .apis(RequestHandlerSelectors.any())
-        .paths(PathSelectors.any())
-        .build()
+    fun swaggerSpringMvcPlugin() = Docket(DocumentationType.SWAGGER_2).apply {
+        groupName("videoshop").select().apply {
+            apis(RequestHandlerSelectors.any())
+            paths(PathSelectors.any())
+            build()
+        }
+    }
 }
